@@ -10,13 +10,13 @@ Os diagramas foram desenhados na página "02 · IFML" do arquivo do Figma "[Gest
 
 | Nº      | Modelo                                                | Área do menu                     | Histórias                                      | Wireframes                                                                                                             |
 | ------- | ----------------------------------------------------- | -------------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| IFML-01 | [Acesso e Painel](#ifml-01-acesso-e-painel)           | Login e Atendimento › Painel     | US-001                                         | [1 - Login](<../wireframes/Meuprojetooficina/1 - Login/>), [2 - Painel](<../wireframes/Meuprojetooficina/2 - Painel/>) |
-| IFML-02 | [Clientes](#ifml-02-clientes)                         | Cadastros › Clientes             | US-003, US-004, US-005, US-010, US-013         | [5 - Clientes](<../wireframes/Meuprojetooficina/5 - Clientes/>)                                                        |
-| IFML-03 | [Veículos](#ifml-03-veículos)                         | Cadastros › Veículos             | US-006, US-007, US-011, US-014                 | [6 - Veículos](<../wireframes/Meuprojetooficina/6 - Veículos/>) (6.01 a 6.06)                                          |
-| IFML-04 | [Ordens de serviço](#ifml-04-ordens-de-serviço)       | Atendimento › Ordens de serviço  | US-008, US-009, US-012, US-015, US-027, US-028 | [4 - Ordens de serviço](<../wireframes/Meuprojetooficina/4 - Ordens de serviço/>)                                      |
-| IFML-05 | [Orçamentos](#ifml-05-orçamentos)                     | Atendimento › Orçamento          | US-016, US-017, US-018, US-026                 | [3 - Orçamento](<../wireframes/Meuprojetooficina/3 - Orçamento/>)                                                      |
-| IFML-06 | [Histórico do veículo](#ifml-06-histórico-do-veículo) | Cadastros › Veículos › Histórico | US-029, US-030                                 | [6 - Veículos](<../wireframes/Meuprojetooficina/6 - Veículos/>) (6.07 a 6.11)                                          |
-| IFML-07 | [Peças e estoque](#ifml-07-peças-e-estoque)           | Cadastros › Peças e estoque      | US-019 a US-024                                | [7 - Peças e estoque](<../wireframes/Meuprojetooficina/7 - Peças e estoque/>)                                          |
+| IFML-01 | [Acesso e Painel](#ifml-01-acesso-e-painel)           | Login e Atendimento › Painel     | US-001                                         | [pub](../wireframes/pub/README.md) (T-PUB-01), [secretaria](../wireframes/secretaria/README.md) (T-SEC-01) |
+| IFML-02 | [Clientes](#ifml-02-clientes)                         | Cadastros › Clientes             | US-003, US-004, US-005, US-010, US-013         | [secretaria](../wireframes/secretaria/README.md) (T-SEC-02 a T-SEC-10)                                                        |
+| IFML-03 | [Veículos](#ifml-03-veículos)                         | Cadastros › Veículos             | US-006, US-007, US-011, US-014                 | [secretaria](../wireframes/secretaria/README.md) (T-SEC-11 a T-SEC-16)                                          |
+| IFML-04 | [Ordens de serviço](#ifml-04-ordens-de-serviço)       | Atendimento › Ordens de serviço  | US-008, US-009, US-012, US-015, US-027, US-028 | [secretaria](../wireframes/secretaria/README.md) (T-SEC-44 a T-SEC-52)                                      |
+| IFML-05 | [Orçamentos](#ifml-05-orçamentos)                     | Atendimento › Orçamento          | US-016, US-017, US-018, US-026                 | [secretaria](../wireframes/secretaria/README.md) (T-SEC-22 a T-SEC-43)                                                      |
+| IFML-06 | [Histórico do veículo](#ifml-06-histórico-do-veículo) | Cadastros › Veículos › Histórico | US-029, US-030                                 | [secretaria](../wireframes/secretaria/README.md) (T-SEC-17 a T-SEC-21)                                          |
+| IFML-07 | [Peças e estoque](#ifml-07-peças-e-estoque)           | Cadastros › Peças e estoque      | US-019 a US-024                                | [estoquista](../wireframes/estoquista/README.md) (T-EST-01 a T-EST-11)                              |
 
 O [site map](../site-map.md) distribui as áreas entre três perfis: secretária, estoquista e gerente. Os modelos concentram-se na secretária, que é quem mais usa o sistema, e a divisão segue as áreas do menu lateral (Atendimento, Cadastros e Gestão), não os perfis. O IFML-07 descreve as telas de peças, que no site map pertencem ao estoquista.
 
@@ -264,7 +264,7 @@ Os rodapés do IFML-04 e do IFML-05 foram desenhados antes da revisão das hist�
 
 ## Limites do modelo
 
-- As áreas Balcão, Agenda dos boxes e Relatórios ainda não têm modelo IFML. As telas da Agenda dos boxes e de Relatórios estão nos wireframes, nas pastas 8 e 9.
+- As áreas Balcão, Agenda dos boxes e Relatórios ainda não têm modelo IFML. As telas da Agenda dos boxes (T-SEC-53 a T-SEC-57) e de Relatórios (T-GER-01) estão nos wireframes.
 - Os modelos não desenham fluxos até as páginas `[L]`, porque o menu lateral as alcança de qualquer ponto. Pela mesma razão, o breadcrumb não aparece nos diagramas.
 - Assume-se sessão válida em todos os modelos, exceto no IFML-01. O comportamento de sessão expirada não está modelado.
 - Os nomes das ações (`Autenticar`, `Abrir OS`, `Registrar decisão`) descrevem operações do sistema. Eles não correspondem a classes do domínio nem a endpoints, porque a API ainda não foi implementada.
@@ -273,6 +273,6 @@ Os rodapés do IFML-04 e do IFML-05 foram desenhados antes da revisão das hist�
 
 - [Protótipo: índice da pasta](../README.md)
 - [Mapa do site](../site-map.md)
-- [Wireframes](../wireframes/README.md) e [índice das telas](<../wireframes/Meuprojetooficina/0 - Índice.md>)
+- [Wireframes](../wireframes/README.md) e [índice das telas](../wireframes/indice-das-telas.md)
 - [Histórias de usuário](../../03-requisitos/historias-de-usuario.md)
 - [Matriz de rastreabilidade](../../07-rastreabilidade/matriz.md)

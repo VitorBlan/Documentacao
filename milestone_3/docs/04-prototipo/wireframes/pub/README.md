@@ -1,29 +1,45 @@
-# Wireframes das telas públicas (T-PUB)
+# Wireframes públicos (T-PUB)
 
-Milestone 2 · Protótipo do FilaCidadã, versão 0.2 (Fábrica de Software I)
+Fábrica de Software I · Protótipo em alta fidelidade · Desktop 1440×900 · Acesso sem sessão
 
-Wireframes de média fidelidade das telas acessíveis sem sessão: página inicial, login e cadastro de cidadão. Formato 1280x800 (desktop). Escala de cinza com um acento azul; a ação principal de cada tela é o botão azul preenchido.
+Estes wireframes mostram a única tela do Bancada acessada sem sessão: o login. O Bancada não tem página inicial pública nem autocadastro, porque só os funcionários da oficina usam o sistema.
 
 ## Telas
 
-| ID | Arquivo | Tela | UC | RF | US | Endpoints |
-|---|---|---|---|---|---|---|
-| T-PUB-01 | [01-pagina-inicial.svg](01-pagina-inicial.svg) | Página inicial (landing page) | UC-03 | RF-011 | — | GET /landing-page |
-| T-PUB-02 | [02-login.svg](02-login.svg) | Login | UC-01 | RF-002 | US-002 | POST /api/auth/sign-in/email |
-| T-PUB-03 | [03-cadastro.svg](03-cadastro.svg) | Cadastro de cidadão | UC-01 | RF-001 | US-001 | POST /api/auth/sign-up/email; GET /timezones |
+| Tela | Arquivo | Caso de uso | US | Área |
+|---|---|---|---|---|
+| T-PUB-01 Login: entrar no sistema | [01-login-entrar-no-sistema.svg](01-login-entrar-no-sistema.svg) | Todos (inclusão) | US-001 | Login |
 
-Ainda não desenhadas nesta entrega, mas listadas em [../../README.md](../../README.md) como T-PUB-04 (recuperar senha), T-PUB-05 (sessão expirada, 498) e T-PUB-06 (acompanhar senha por código, RF-061). Ficam para a próxima revisão do protótipo.
+Os casos de uso reproduzem os vínculos registrados nas issues do GitLab, conforme o índice de [historias-de-usuario.md](../../../03-requisitos/historias-de-usuario.md#índice).
 
-## Notas de comportamento
+## Entrar no sistema
 
-- **T-PUB-01.** Textos e blocos vêm de `GET /landing-page`. Os valores da prévia são os padrões de `LandingPageService.getDadosPadrao()`. Abaixo da dobra, a página segue a ordem do JSON: funcionalidades, passo a passo, para quem é, FAQ e chamada final. Os botões "Comece agora" e "Criar conta grátis" levam a T-PUB-03; "Entrar" leva a T-PUB-02.
-- **T-PUB-02.** Sucesso: a sessão vem em cookie e no cabeçalho `set-auth-token`; o destino depende do papel, e o destino por papel ainda não está definido nos requisitos. Erro de credencial (401) mostra a faixa com "E-mail ou senha inválidos". Após muitas tentativas, o BetterAuth aplica bloqueio temporário; a tela mostra só a nota, sem número de tentativas, porque o código não fixa esse limite.
-- **T-PUB-03.** Campos enviados: `name`, `email`, `password` e `fusoHorario` (lista de `GET /timezones`, padrão America/Manaus). `pais` é preenchido pelo padrão BR e não aparece. O campo "Confirmar senha" é só de interface. A conta é criada sem login automático (`autoSignIn: false`), então o sucesso leva à tela de login com a mensagem de conta criada. E-mail já cadastrado responde 422.
+**T-PUB-01 · Login: entrar no sistema**
+
+![Tela de login: painel escuro à esquerda com a marca Bancada e os indicadores veículos na oficina, boxes ativos e mecânicos hoje; à direita, formulário com Matrícula, Senha, opção Manter conectada, link Esqueci a senha, botão Entrar e aviso de acesso restrito por perfil](01-login-entrar-no-sistema.svg)
+
+## Regras de comportamento
+
+Cada linha é um cenário Gherkin das histórias. A coluna Situação indica se o wireframe mostra o comportamento: **Desenhado**, **Parcial** (a tela existe, mas falta parte do cenário), **Não desenhado** ou **Divergente** (a tela contradiz o cenário). Cenários marcados `@proposta` foram escritos pela equipe de documentação e ainda não estão nas issues.
+
+| Cenário | US | Telas | Situação | Observação |
+|---|---|---|---|---|
+| Login com credenciais de usuário privilegiado | US-001 | T-PUB-01 → T-SEC-01 | Desenhado | Após "Entrar", a secretária chega ao Painel |
+| Login com informação faltando ou incorreta | US-001 | — | Não desenhado | O IFML-01 prevê a mensagem de erro sob o formulário, mas o estado de erro não foi exportado |
+| Login de usuário não privilegiado | US-001 | T-PUB-01 | Parcial | A tela informa que o acesso é restrito por perfil, mas não há estado de recusa desenhado |
 
 ## Divergências
 
-1. A lista oficial em [../../README.md](../../README.md) prevê 6 telas PUB. Esta entrega traz 3 (T-PUB-01 a 03), e os números 02 e 03 foram trocados para casar com a lista (login é 02, cadastro é 03).
-2. A senha do cadastro segue só `minPasswordLength: 8` do BetterAuth. A regra de maiúscula, minúscula, número e caractere especial (`senhaRegex`) vale apenas para `PATCH /me/senha`. Quem cria conta pode escolher senha que depois não passaria na troca. Decisão para a frente de requisitos.
-3. Fora do código: não há regra de elegibilidade para prioridade, então a tela não explica quem tem direito.
+| ID | Divergência | Telas | Tratamento proposto |
+|---|---|---|---|
+| W-01 | O link "Esqueci a senha" e a opção "Manter conectada neste terminal" não têm história de usuário. | T-PUB-01 | Registrar a história de recuperação de senha ou retirar o link do protótipo |
+| W-02 | A história fala em "login"; a tela pede "Matrícula". | T-PUB-01 | Registrar no glossário que o login da secretária é a matrícula do funcionário |
 
-Veja também: [Protótipo (índice)](../../README.md) · [Mapa do site](../../site-map.md) · [Wireframes do cidadão](../cidadao/README.md) · [Requisitos funcionais](../../../03-requisitos/requisitos-funcionais.md)
+## Veja também
+
+- [Wireframes: todos os perfis](../README.md)
+- [Índice das telas](../indice-das-telas.md)
+- [Site map](../../site-map.md)
+- [Protótipo: revisão de usabilidade e pendências](../../README.md)
+- [IFML](../../ifml/README.md)
+- [Histórias de usuário](../../../03-requisitos/historias-de-usuario.md)
