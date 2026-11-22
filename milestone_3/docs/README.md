@@ -77,7 +77,7 @@ Status: "Concluído" indica documento já adaptado ao Bancada; "Em elaboração"
 | [05-modelagem/classes/README.md](05-modelagem/classes/README.md)                             | Diagrama de classes do domínio                                                      | 2         | Pendente      |
 | [05-modelagem/sequencia/README.md](05-modelagem/sequencia/README.md)                         | Diagramas de sequência (DS-001 a DS-020)                                            | 2         | Pendente      |
 | [05-modelagem/atividades/README.md](05-modelagem/atividades/README.md)                       | Diagramas de atividades (DA-001 a DA-016)                                           | 3         | Concluído     |
-| [05-modelagem/estados/README.md](05-modelagem/estados/README.md)                             | Diagramas de estados (DE-001 a DE-003)                                              | 3         | Pendente      |
+| [05-modelagem/estados/README.md](05-modelagem/estados/README.md)                             | Diagramas de estados (DE-001 a DE-003)                                              | 3         | Concluído     |
 | [05-modelagem/ocl/README.md](05-modelagem/ocl/README.md)                                     | Restrições em OCL                                                                   | 2         | Pendente      |
 | [06-banco-de-dados/README.md](06-banco-de-dados/README.md)                                   | Índice do banco de dados                                                            | 2         | Pendente      |
 | [06-banco-de-dados/dicionario-de-dados.md](06-banco-de-dados/dicionario-de-dados.md)         | Dicionário de dados                                                                 | 2         | Pendente      |
