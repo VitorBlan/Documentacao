@@ -4,7 +4,7 @@ Milestone 3 · Fábrica de Software I · Unidade de rastreabilidade
 
 Responde às quatro perguntas da revisão cruzada (UML × protótipo × requisitos), lista os órfãos nos dois sentidos e registra cada lacuna com ação e prazo. A tabela base está em [matriz.md](matriz.md).
 
-Situação em 22/11/2026. Os vínculos e a cobertura de caso de uso, classe, sequência, atividade e estado foram revistos com os documentos de [05-modelagem](../05-modelagem/README.md). A conferência de tela, de tabela e das issues do GitLab é a de 15/11/2026 (issues do [projeto2](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2), arquivo do Figma "Gestão de Oficina Mecânica" e banco do Milestone 2, `milestone_2/ddl.sql`) e não foi repetida. As lacunas ainda não têm issue aberta. Os prazos são sugeridos para antes da monitoria do Milestone 3 (01/12/2026); os de 20/11/2026 já passaram e precisam ser reprogramados.
+Situação em 22/11/2026. Os vínculos e a cobertura de caso de uso, classe, sequência, atividade e estado foram revistos com os documentos de [05-modelagem](../05-modelagem/README.md). A conferência de tela, de tabela e das issues do GitLab é a de 15/11/2026 (issues do [projeto2](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2), arquivo do Figma "Gestão de Oficina Mecânica" e banco do Milestone 2, [06-banco-de-dados](../06-banco-de-dados/README.md)) e não foi repetida. As lacunas ainda não têm issue aberta. Os prazos são sugeridos para antes da monitoria do Milestone 3 (01/12/2026); os de 20/11/2026 já passaram e precisam ser reprogramados.
 
 ## Resumo das quatro perguntas
 

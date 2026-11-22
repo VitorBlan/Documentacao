@@ -2,7 +2,7 @@
 
 Fábrica de Software I · Milestone 1 · termos do domínio e do projeto, em ordem alfabética
 
-Os termos seguem o domínio do Bancada. A coluna "No banco" aponta para a tabela, a coluna ou a restrição do script do Milestone 2 (`milestone_2/ddl.sql`). Valores de status aparecem como estão gravados no banco.
+Os termos seguem o domínio do Bancada. A coluna "No banco" aponta para a tabela, a coluna ou a restrição do script do banco ([schema.sql](../06-banco-de-dados/schema.sql)). Valores de status aparecem como estão gravados no banco.
 
 | Termo | Significado | No banco |
 |---|---|---|

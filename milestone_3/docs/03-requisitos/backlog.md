@@ -108,7 +108,7 @@ Uma história só entra em uma milestone quando:
 2. O texto tem o formato **Como** / **quero** / **para**, com ator do catálogo (ACT-01 a ACT-03).
 3. Os critérios de aceite usam a estrutura completa `Dado` / `Quando` / `Então` / `E`, com resultado observável.
 4. A issue tem as labels `prio::`, `size::` e `type::` e está ligada ao RF de origem.
-5. A regra foi conferida com o banco (`milestone_2/ddl.sql`); conflitos foram registrados em Divergências.
+5. A regra foi conferida com o banco ([06-banco-de-dados](../06-banco-de-dados/README.md)); conflitos foram registrados em Divergências.
 
 ## Definição de Pronto (Definition of Done)
 

@@ -31,7 +31,7 @@ Os objetivos são qualitativos. As metas numéricas (tempo de resposta, volume d
 
 **Dentro do escopo:** os requisitos RF-01 a RF-07 e RNF-01 a RNF-05 registrados no GitLab, o catálogo de casos de uso (UC-001 a UC-023) e os objetivos acima.
 
-**Fora do escopo:** nenhuma exclusão foi formalizada com o cliente até esta versão. O banco do Milestone 2 (`milestone_2/ddl.sql`) traz as tabelas `pagamento` e `pagamento_parcelas`, que não correspondem a nenhum requisito; a decisão sobre elas está na [RFP](rfp.md), seção 12.
+**Fora do escopo:** nenhuma exclusão foi formalizada com o cliente até esta versão. O banco do Milestone 2 ([06-banco-de-dados](../06-banco-de-dados/README.md)) traz as tabelas `pagamento` e `pagamento_parcelas`, que não correspondem a nenhum requisito; a decisão sobre elas está na [RFP](rfp.md), seção 12.
 
 ## Partes interessadas
 
@@ -85,7 +85,7 @@ Os títulos seguem as issues do GitLab, que são a referência de rastreabilidad
 
 ## Divergências
 
-Diferenças entre os requisitos registrados no GitLab e o banco do Milestone 2 (`milestone_2/ddl.sql`). A frente responsável deve decidir o ajuste.
+Diferenças entre os requisitos registrados no GitLab e o banco do Milestone 2 ([06-banco-de-dados](../06-banco-de-dados/README.md)). A frente responsável deve decidir o ajuste.
 
 1. **Ciclo de status da OS.** A issue RF-06 descreve o ciclo `Aprovada → em execução → concluída`. O banco (`ck_os_status`) usa `aberta`, `em execução` e `concluída`, e a regra decidida pelo grupo é que `aprovado` pertence ao orçamento, não à OS. O texto da RF-06 precisa ser atualizado.
 2. **Meio da resposta do cliente.** A RF-02 exige registrar o meio pelo qual a aprovação chegou (presencial, telefone ou mensagem). O banco não tem coluna com esse nome; a coluna `orca_formato` pode cumprir esse papel, mas não tem restrição de valores. Confirmar com o responsável pelo banco.

@@ -1,11 +1,8 @@
 -- =============================================================
 -- Bancada: DDL do SGBD MySQL 8 (InnoDB, utf8mb4)
--- Copia fiel de milestone_2/ddl.sql, do repositorio do grupo, na
--- versao ajustada: parte do commit fc46f06 (20/11/2026) e acrescenta
--- 11 restricoes CHECK, a coluna orca_meio_resposta e 4 gatilhos de
--- status (ver README, secao "Ajustes sobre o DDL do Milestone 2").
--- O codigo SQL abaixo e o do arquivo ajustado, sem alteracao: so este
--- cabecalho foi acrescentado.
+-- Versao ajustada do DDL do Milestone 2: acrescenta 11 restricoes
+-- CHECK, a coluna orca_meio_resposta e 4 gatilhos de status (ver
+-- README, secao "Ajustes sobre o DDL do Milestone 2").
 -- Conferido em um MySQL 8.0.46: o script cria 21 tabelas, 27 chaves
 -- estrangeiras, 17 restricoes CHECK, 1 coluna gerada e 5 gatilhos.
 --

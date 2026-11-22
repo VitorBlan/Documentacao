@@ -11,7 +11,7 @@ Uma linha por história de usuário (30 histórias), mais uma linha para a RF-07
 - **Sequência**: diagramas da página "06 · Diagrama de Sequência" (documento de [sequência](../05-modelagem/sequencia/README.md)), ligados pelo caso de uso. Quando a história não tem caso de uso, o diagrama foi ligado pelo assunto e a célula diz isso. `UC-000` é o código usado no GitLab para diagrama sem caso de uso no catálogo. A presença do diagrama não garante que ele desenhe o que a issue descreve; os desvios estão na lacuna L-18.
 - **Atividade ou estado**: diagramas da página "08 - Diagrama de Atividades e Estados" (documentos de [atividades](../05-modelagem/atividades/README.md) e de [estados](../05-modelagem/estados/README.md)), ligados pelo diagrama de sequência (padrão `DA-0XX | DS-0YY`).
 - **Tela no Figma**: quadro principal da página "03 · Protótipo", com link. "(+n)" indica quantos quadros a mais (estados de erro, sucesso ou filtro) existem para a mesma história.
-- **Tabela**: tabelas de `milestone_2/ddl.sql`.
+- **Tabela**: tabelas do banco, descritas em [06-banco-de-dados](../06-banco-de-dados/README.md).
 - **Teste**: a coluna do modelo não foi incluída, porque o repositório não tem código da aplicação nem testes. A ausência está registrada em [lacunas.md](lacunas.md) (L-12).
 
 ## Matriz

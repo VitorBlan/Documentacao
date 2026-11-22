@@ -1,606 +1,578 @@
 -- =============================================================
--- FilaCidada: DDL do SGBD PostgreSQL 17
--- Equivalente a prisma/migrations/20260805220051_init_uuid/migration.sql
--- (migracao unica, mais recente). Gerado a partir de prisma/schema.prisma.
--- Use para estudo e revisao; a aplicacao cria o banco por
--- `prisma migrate deploy`, nao por este arquivo.
+-- Bancada: DDL do SGBD MySQL 8 (InnoDB, utf8mb4)
+-- Versao ajustada do DDL do Milestone 2: acrescenta 11 restricoes
+-- CHECK, a coluna orca_meio_resposta e 4 gatilhos de status (ver
+-- README, secao "Ajustes sobre o DDL do Milestone 2").
+-- Conferido em um MySQL 8.0.46: o script cria 21 tabelas, 27 chaves
+-- estrangeiras, 17 restricoes CHECK, 1 coluna gerada e 5 gatilhos.
+--
+-- Como executar:
+--   * Exige MySQL 8.0.16 ou superior. Nas versoes anteriores o CHECK
+--     e aceito, mas ignorado.
+--   * Execute com --default-character-set=utf8mb4: os CHECK e os
+--     gatilhos tem literais acentuados (orcado, em execucao, concluida).
+--   * Os gatilhos usam DELIMITER $$, comando do cliente mysql e do
+--     Workbench. Outros clientes e drivers podem exigir adaptacao.
+--   * O script cria o banco oficina_carro e falha se ele ja existir
+--     (o CREATE DATABASE nao tem IF NOT EXISTS).
 --
 -- Convencoes:
---   * Nomes de tabela em snake_case plural; colunas em camelCase (aspas duplas).
---   * Chave primaria UUID. O valor e gerado pelo Prisma (uuid()) no cliente,
---     por isso nao ha DEFAULT de UUID no banco.
---   * updatedAt nao tem DEFAULT no banco: o Prisma (@updatedAt) o preenche.
---   * Enums do dominio sao tipos do banco (CREATE TYPE ... AS ENUM).
+--   * Tabelas em snake_case, no singular. Colunas em minusculas, com o
+--     prefixo da tabela (pess_nome, orca_status).
+--   * Chave primaria INT AUTO_INCREMENT (<prefixo>_id). Excecoes:
+--     funcionario (PK e FK em pess_id) e as tabelas de associacao
+--     (PK composta).
+--   * Prefixos: pess_ pessoa; funo_ funcao; func_ funcionario;
+--     cama_ carro_marca; camo_ carro_modelo; veic_ veiculo; box_ box;
+--     serv_ servico; orca_ orcamento; orpe_ orcamento_peca;
+--     orse_ orcamento_servico; orhi_ orcamento_historico;
+--     os_ ordem_servico; ospe_ ordem_servico_peca;
+--     oshi_ ordem_servico_historico; peca_ peca; pemo_ peca_modelo;
+--     dist_ distribuidora; pedi_ peca_distribuidora; paga_ pagamento;
+--     papa_ pagamento_parcelas. A FK meca_id (ordem_servico) aponta
+--     para o funcionario que atua como mecanico.
+--   * Auditoria: <PREFIXO>_CRIADO_EM e <PREFIXO>_ATUALIZADO_EM, em
+--     maiusculas. As tabelas de historico so tem _CRIADO_EM.
+--   * Nomes de restricao e de indice: uk_ unico; ix_ indice comum;
+--     fk_ chave estrangeira; ck_ CHECK; tg_ gatilho. As FKs nao
+--     declaram ON DELETE nem ON UPDATE (padrao: NO ACTION).
+--   * Descricao de cada tabela e coluna: dicionario-de-dados.md.
 -- =============================================================
 
--- CreateEnum
-CREATE TYPE "Papel" AS ENUM ('ADMIN_PLATAFORMA', 'ADMIN_INSTITUICAO', 'OPERADOR', 'USUARIO_FINAL');
-
--- CreateEnum
-CREATE TYPE "StatusInstituicao" AS ENUM ('PENDENTE', 'APROVADA', 'REJEITADA');
-
--- CreateEnum
-CREATE TYPE "TipoAtendimento" AS ENUM ('ONLINE', 'PRESENCIAL', 'HIBRIDO');
-
--- CreateEnum
-CREATE TYPE "ModoQrCode" AS ENUM ('ROTATIVO', 'FIXO');
-
--- CreateEnum
-CREATE TYPE "StatusSenha" AS ENUM ('AGUARDANDO', 'EM_ATENDIMENTO', 'CANCELADA', 'FINALIZADA');
-
--- CreateEnum
-CREATE TYPE "PrioridadeSenha" AS ENUM ('LEGAL', 'FIDELIDADE', 'NORMAL');
-
--- CreateEnum
-CREATE TYPE "NotificacaoTipo" AS ENUM ('SENHA_CHAMADA', 'SENHA_FINALIZADA', 'SENHA_CANCELADA', 'SENHA_PROXIMA', 'SENHA_NOVA_NA_FILA', 'SENHA_TRANSFERIDA', 'FILA_CRIADA', 'FILA_REMOVIDA', 'FILA_ATUALIZADA', 'SOLICITACAO_INSTITUICAO', 'INSTITUICAO_APROVADA', 'INSTITUICAO_REJEITADA', 'USUARIO_CRIADO', 'SISTEMA', 'SENHA_ENCAMINHADA_FLOW', 'SENHA_MOVIDA_FILA');
-
--- CreateEnum
-CREATE TYPE "FlowTransicaoTipo" AS ENUM ('SEQUENCIAL', 'CONDICIONAL', 'ALTA');
-
--- CreateEnum
-CREATE TYPE "SenhaFlowStatus" AS ENUM ('EM_ANDAMENTO', 'CONCLUIDO', 'CANCELADO');
-
--- CreateTable
-CREATE TABLE "users" (
-    "id" UUID NOT NULL,
-    "name" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "emailVerified" BOOLEAN NOT NULL DEFAULT false,
-    "image" TEXT,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "pais" TEXT NOT NULL DEFAULT 'BR',
-    "ativo" BOOLEAN NOT NULL DEFAULT true,
-    "fusoHorario" VARCHAR(64) NOT NULL DEFAULT 'America/Manaus',
-    "ultimoLoginEm" TIMESTAMP(3),
-    "instituicaoId" UUID,
-
-    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "sessions" (
-    "id" UUID NOT NULL,
-    "token" TEXT NOT NULL,
-    "expiresAt" TIMESTAMP(3) NOT NULL,
-    "ipAddress" TEXT,
-    "userAgent" TEXT,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "userId" UUID NOT NULL,
-
-    CONSTRAINT "sessions_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "accounts" (
-    "id" UUID NOT NULL,
-    "accountId" TEXT NOT NULL,
-    "providerId" TEXT NOT NULL,
-    "accessToken" TEXT,
-    "refreshToken" TEXT,
-    "accessTokenExpiresAt" TIMESTAMP(3),
-    "refreshTokenExpiresAt" TIMESTAMP(3),
-    "scope" TEXT,
-    "idToken" TEXT,
-    "password" TEXT,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "userId" UUID NOT NULL,
-
-    CONSTRAINT "accounts_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "verifications" (
-    "id" UUID NOT NULL,
-    "identifier" TEXT NOT NULL,
-    "value" TEXT NOT NULL,
-    "expiresAt" TIMESTAMP(3) NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "verifications_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "usuario_papeis" (
-    "usuarioId" UUID NOT NULL,
-    "papel" "Papel" NOT NULL,
-
-    CONSTRAINT "usuario_papeis_pkey" PRIMARY KEY ("usuarioId","papel")
-);
-
--- CreateTable
-CREATE TABLE "instituicoes" (
-    "id" UUID NOT NULL,
-    "nome" VARCHAR(180) NOT NULL,
-    "ativo" BOOLEAN NOT NULL DEFAULT true,
-    "status" "StatusInstituicao" NOT NULL DEFAULT 'PENDENTE',
-    "cnpj" VARCHAR(18),
-    "email" VARCHAR(180),
-    "telefone" VARCHAR(32),
-    "responsavel" VARCHAR(180),
-    "endereco" TEXT,
-    "descricao" TEXT,
-    "contratoUrl" TEXT,
-    "motivoRejeicao" TEXT,
-    "aprovadoEm" TIMESTAMP(3),
-    "solicitanteId" UUID,
-    "aprovadoPorId" UUID,
-    "configuracoes" JSONB,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "instituicoes_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "tipos_etapa" (
-    "id" UUID NOT NULL,
-    "codigo" VARCHAR(64) NOT NULL,
-    "nome" VARCHAR(120) NOT NULL,
-    "cor" VARCHAR(32) NOT NULL DEFAULT 'gray',
-    "ativo" BOOLEAN NOT NULL DEFAULT true,
-    "instituicaoId" UUID NOT NULL,
-
-    CONSTRAINT "tipos_etapa_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "filas" (
-    "id" UUID NOT NULL,
-    "nome" VARCHAR(180) NOT NULL,
-    "tipoAtendimento" "TipoAtendimento" NOT NULL,
-    "ativa" BOOLEAN NOT NULL DEFAULT true,
-    "prioridadesHabilitadas" BOOLEAN NOT NULL DEFAULT false,
-    "fidelidadeHabilitada" BOOLEAN NOT NULL DEFAULT false,
-    "tempoMaximoAtendimento" INTEGER,
-    "modoQrCode" "ModoQrCode" NOT NULL DEFAULT 'ROTATIVO',
-    "tempoExibicaoMin" INTEGER,
-    "tempoExpiracaoMin" INTEGER,
-    "toleranciaMin" INTEGER,
-    "tempoAlertaSegundos" INTEGER,
-    "instituicaoId" UUID NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "filas_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "mesas" (
-    "id" UUID NOT NULL,
-    "numero" VARCHAR(32) NOT NULL,
-    "nome" VARCHAR(120),
-    "ativa" BOOLEAN NOT NULL DEFAULT true,
-    "filaId" UUID NOT NULL,
-
-    CONSTRAINT "mesas_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "senhas" (
-    "id" UUID NOT NULL,
-    "numero" INTEGER,
-    "posicao" INTEGER NOT NULL,
-    "status" "StatusSenha" NOT NULL,
-    "prioridade" "PrioridadeSenha",
-    "prioridadePeso" INTEGER NOT NULL DEFAULT 3,
-    "nomeCidadao" VARCHAR(180),
-    "presencial" BOOLEAN NOT NULL DEFAULT false,
-    "mesa" VARCHAR(32),
-    "mesaNome" VARCHAR(120),
-    "tokenPublico" VARCHAR(64),
-    "filaId" UUID NOT NULL,
-    "instituicaoId" UUID NOT NULL,
-    "usuarioId" UUID,
-    "operadorId" UUID,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "flowId" UUID,
-    "flowStepAtualId" UUID,
-
-    CONSTRAINT "senhas_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "qr_codes" (
-    "id" UUID NOT NULL,
-    "codigo" VARCHAR(64) NOT NULL,
-    "validoAte" TIMESTAMP(3) NOT NULL,
-    "toleranciaAte" TIMESTAMP(3) NOT NULL,
-    "ativo" BOOLEAN NOT NULL DEFAULT true,
-    "filaId" UUID NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "qr_codes_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "auditorias" (
-    "id" UUID NOT NULL,
-    "acao" VARCHAR(64) NOT NULL,
-    "entidade" VARCHAR(64) NOT NULL,
-    "entidadeId" UUID,
-    "dados" JSONB,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "instituicaoId" UUID,
-    "usuarioId" UUID,
-
-    CONSTRAINT "auditorias_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "landing_pages" (
-    "id" UUID NOT NULL,
-    "chave" VARCHAR(64) NOT NULL,
-    "conteudo" JSONB NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "landing_pages_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "notificacoes" (
-    "id" UUID NOT NULL,
-    "tipo" "NotificacaoTipo" NOT NULL,
-    "titulo" VARCHAR(180) NOT NULL,
-    "mensagem" TEXT NOT NULL,
-    "dados" JSONB,
-    "lida" BOOLEAN NOT NULL DEFAULT false,
-    "usuarioId" UUID NOT NULL,
-    "instituicaoId" UUID,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "notificacoes_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "flows" (
-    "id" UUID NOT NULL,
-    "nome" VARCHAR(180) NOT NULL,
-    "descricao" TEXT,
-    "ativo" BOOLEAN NOT NULL DEFAULT true,
-    "instituicaoId" UUID NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "flows_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "flow_steps" (
-    "id" UUID NOT NULL,
-    "nome" VARCHAR(180) NOT NULL,
-    "ordem" INTEGER NOT NULL,
-    "tipo" VARCHAR(64) NOT NULL,
-    "tempoMedioMinutos" INTEGER,
-    "permiteBifurcacao" BOOLEAN NOT NULL DEFAULT false,
-    "ativo" BOOLEAN NOT NULL DEFAULT true,
-    "flowId" UUID NOT NULL,
-    "filaId" UUID NOT NULL,
-
-    CONSTRAINT "flow_steps_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "flow_transitions" (
-    "id" UUID NOT NULL,
-    "tipo" "FlowTransicaoTipo" NOT NULL DEFAULT 'SEQUENCIAL',
-    "label" VARCHAR(120),
-    "flowId" UUID NOT NULL,
-    "fromStepId" UUID NOT NULL,
-    "toStepId" UUID NOT NULL,
-
-    CONSTRAINT "flow_transitions_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "senha_flow_trackings" (
-    "id" UUID NOT NULL,
-    "status" "SenhaFlowStatus" NOT NULL DEFAULT 'EM_ANDAMENTO',
-    "senhaId" UUID NOT NULL,
-    "flowId" UUID NOT NULL,
-    "stepAtualId" UUID,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "senha_flow_trackings_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "senha_flow_historicos" (
-    "id" UUID NOT NULL,
-    "stepNome" VARCHAR(180) NOT NULL,
-    "filaId" VARCHAR(64) NOT NULL,
-    "entradaEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "saidaEm" TIMESTAMP(3),
-    "resultado" VARCHAR(120),
-    "observacao" TEXT,
-    "trackingId" UUID NOT NULL,
-    "stepId" UUID NOT NULL,
-    "operadorId" UUID,
-
-    CONSTRAINT "senha_flow_historicos_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "chat_mensagens" (
-    "id" UUID NOT NULL,
-    "texto" TEXT NOT NULL,
-    "nome" VARCHAR(180) NOT NULL,
-    "senhaId" UUID NOT NULL,
-    "usuarioId" UUID NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "chat_mensagens_pkey" PRIMARY KEY ("id")
-);
-
--- CreateIndex
-CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
-
--- CreateIndex
-CREATE INDEX "users_instituicaoId_idx" ON "users"("instituicaoId");
-
--- CreateIndex
-CREATE INDEX "users_ativo_idx" ON "users"("ativo");
-
--- CreateIndex
-CREATE UNIQUE INDEX "sessions_token_key" ON "sessions"("token");
-
--- CreateIndex
-CREATE INDEX "sessions_userId_idx" ON "sessions"("userId");
-
--- CreateIndex
-CREATE INDEX "sessions_expiresAt_idx" ON "sessions"("expiresAt");
-
--- CreateIndex
-CREATE INDEX "accounts_userId_idx" ON "accounts"("userId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "accounts_providerId_accountId_key" ON "accounts"("providerId", "accountId");
-
--- CreateIndex
-CREATE INDEX "verifications_identifier_idx" ON "verifications"("identifier");
-
--- CreateIndex
-CREATE INDEX "verifications_expiresAt_idx" ON "verifications"("expiresAt");
-
--- CreateIndex
-CREATE INDEX "usuario_papeis_papel_idx" ON "usuario_papeis"("papel");
-
--- CreateIndex
-CREATE UNIQUE INDEX "instituicoes_nome_key" ON "instituicoes"("nome");
-
--- CreateIndex
-CREATE INDEX "instituicoes_status_idx" ON "instituicoes"("status");
-
--- CreateIndex
-CREATE INDEX "instituicoes_ativo_idx" ON "instituicoes"("ativo");
-
--- CreateIndex
-CREATE UNIQUE INDEX "tipos_etapa_instituicaoId_codigo_key" ON "tipos_etapa"("instituicaoId", "codigo");
-
--- CreateIndex
-CREATE INDEX "filas_instituicaoId_idx" ON "filas"("instituicaoId");
-
--- CreateIndex
-CREATE INDEX "filas_instituicaoId_ativa_idx" ON "filas"("instituicaoId", "ativa");
-
--- CreateIndex
-CREATE UNIQUE INDEX "mesas_filaId_numero_key" ON "mesas"("filaId", "numero");
-
--- CreateIndex
-CREATE UNIQUE INDEX "senhas_tokenPublico_key" ON "senhas"("tokenPublico");
-
--- CreateIndex
-CREATE INDEX "senhas_filaId_status_prioridadePeso_posicao_idx" ON "senhas"("filaId", "status", "prioridadePeso", "posicao");
-
--- CreateIndex
-CREATE INDEX "senhas_usuarioId_filaId_status_idx" ON "senhas"("usuarioId", "filaId", "status");
-
--- CreateIndex
-CREATE INDEX "senhas_instituicaoId_numero_idx" ON "senhas"("instituicaoId", "numero");
-
--- CreateIndex
-CREATE INDEX "senhas_operadorId_idx" ON "senhas"("operadorId");
-
--- CreateIndex
-CREATE INDEX "senhas_flowId_idx" ON "senhas"("flowId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "qr_codes_codigo_key" ON "qr_codes"("codigo");
-
--- CreateIndex
-CREATE INDEX "qr_codes_filaId_ativo_idx" ON "qr_codes"("filaId", "ativo");
-
--- CreateIndex
-CREATE INDEX "qr_codes_validoAte_idx" ON "qr_codes"("validoAte");
-
--- CreateIndex
-CREATE INDEX "auditorias_instituicaoId_createdAt_idx" ON "auditorias"("instituicaoId", "createdAt");
-
--- CreateIndex
-CREATE INDEX "auditorias_entidade_entidadeId_idx" ON "auditorias"("entidade", "entidadeId");
-
--- CreateIndex
-CREATE INDEX "auditorias_usuarioId_idx" ON "auditorias"("usuarioId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "landing_pages_chave_key" ON "landing_pages"("chave");
-
--- CreateIndex
-CREATE INDEX "notificacoes_usuarioId_lida_idx" ON "notificacoes"("usuarioId", "lida");
-
--- CreateIndex
-CREATE INDEX "notificacoes_usuarioId_createdAt_idx" ON "notificacoes"("usuarioId", "createdAt" DESC);
-
--- CreateIndex
-CREATE INDEX "flows_instituicaoId_ativo_idx" ON "flows"("instituicaoId", "ativo");
-
--- CreateIndex
-CREATE INDEX "flow_steps_filaId_idx" ON "flow_steps"("filaId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "flow_steps_flowId_ordem_key" ON "flow_steps"("flowId", "ordem");
-
--- CreateIndex
-CREATE INDEX "flow_transitions_flowId_idx" ON "flow_transitions"("flowId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "flow_transitions_fromStepId_toStepId_key" ON "flow_transitions"("fromStepId", "toStepId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "senha_flow_trackings_senhaId_key" ON "senha_flow_trackings"("senhaId");
-
--- CreateIndex
-CREATE INDEX "senha_flow_trackings_flowId_status_idx" ON "senha_flow_trackings"("flowId", "status");
-
--- CreateIndex
-CREATE INDEX "senha_flow_historicos_trackingId_idx" ON "senha_flow_historicos"("trackingId");
-
--- CreateIndex
-CREATE INDEX "chat_mensagens_senhaId_createdAt_idx" ON "chat_mensagens"("senhaId", "createdAt");
-
--- AddForeignKey
-ALTER TABLE "users" ADD CONSTRAINT "users_instituicaoId_fkey" FOREIGN KEY ("instituicaoId") REFERENCES "instituicoes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "sessions" ADD CONSTRAINT "sessions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "accounts" ADD CONSTRAINT "accounts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "usuario_papeis" ADD CONSTRAINT "usuario_papeis_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "instituicoes" ADD CONSTRAINT "instituicoes_solicitanteId_fkey" FOREIGN KEY ("solicitanteId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "instituicoes" ADD CONSTRAINT "instituicoes_aprovadoPorId_fkey" FOREIGN KEY ("aprovadoPorId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "tipos_etapa" ADD CONSTRAINT "tipos_etapa_instituicaoId_fkey" FOREIGN KEY ("instituicaoId") REFERENCES "instituicoes"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "filas" ADD CONSTRAINT "filas_instituicaoId_fkey" FOREIGN KEY ("instituicaoId") REFERENCES "instituicoes"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "mesas" ADD CONSTRAINT "mesas_filaId_fkey" FOREIGN KEY ("filaId") REFERENCES "filas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senhas" ADD CONSTRAINT "senhas_filaId_fkey" FOREIGN KEY ("filaId") REFERENCES "filas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senhas" ADD CONSTRAINT "senhas_instituicaoId_fkey" FOREIGN KEY ("instituicaoId") REFERENCES "instituicoes"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senhas" ADD CONSTRAINT "senhas_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senhas" ADD CONSTRAINT "senhas_operadorId_fkey" FOREIGN KEY ("operadorId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senhas" ADD CONSTRAINT "senhas_flowId_fkey" FOREIGN KEY ("flowId") REFERENCES "flows"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senhas" ADD CONSTRAINT "senhas_flowStepAtualId_fkey" FOREIGN KEY ("flowStepAtualId") REFERENCES "flow_steps"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "qr_codes" ADD CONSTRAINT "qr_codes_filaId_fkey" FOREIGN KEY ("filaId") REFERENCES "filas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "auditorias" ADD CONSTRAINT "auditorias_instituicaoId_fkey" FOREIGN KEY ("instituicaoId") REFERENCES "instituicoes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "auditorias" ADD CONSTRAINT "auditorias_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "notificacoes" ADD CONSTRAINT "notificacoes_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "notificacoes" ADD CONSTRAINT "notificacoes_instituicaoId_fkey" FOREIGN KEY ("instituicaoId") REFERENCES "instituicoes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "flows" ADD CONSTRAINT "flows_instituicaoId_fkey" FOREIGN KEY ("instituicaoId") REFERENCES "instituicoes"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "flow_steps" ADD CONSTRAINT "flow_steps_flowId_fkey" FOREIGN KEY ("flowId") REFERENCES "flows"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "flow_steps" ADD CONSTRAINT "flow_steps_filaId_fkey" FOREIGN KEY ("filaId") REFERENCES "filas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "flow_transitions" ADD CONSTRAINT "flow_transitions_flowId_fkey" FOREIGN KEY ("flowId") REFERENCES "flows"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "flow_transitions" ADD CONSTRAINT "flow_transitions_fromStepId_fkey" FOREIGN KEY ("fromStepId") REFERENCES "flow_steps"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "flow_transitions" ADD CONSTRAINT "flow_transitions_toStepId_fkey" FOREIGN KEY ("toStepId") REFERENCES "flow_steps"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senha_flow_trackings" ADD CONSTRAINT "senha_flow_trackings_senhaId_fkey" FOREIGN KEY ("senhaId") REFERENCES "senhas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senha_flow_trackings" ADD CONSTRAINT "senha_flow_trackings_flowId_fkey" FOREIGN KEY ("flowId") REFERENCES "flows"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senha_flow_trackings" ADD CONSTRAINT "senha_flow_trackings_stepAtualId_fkey" FOREIGN KEY ("stepAtualId") REFERENCES "flow_steps"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senha_flow_historicos" ADD CONSTRAINT "senha_flow_historicos_trackingId_fkey" FOREIGN KEY ("trackingId") REFERENCES "senha_flow_trackings"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senha_flow_historicos" ADD CONSTRAINT "senha_flow_historicos_stepId_fkey" FOREIGN KEY ("stepId") REFERENCES "flow_steps"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "senha_flow_historicos" ADD CONSTRAINT "senha_flow_historicos_operadorId_fkey" FOREIGN KEY ("operadorId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "chat_mensagens" ADD CONSTRAINT "chat_mensagens_senhaId_fkey" FOREIGN KEY ("senhaId") REFERENCES "senhas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "chat_mensagens" ADD CONSTRAINT "chat_mensagens_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- =============================================================
--- Comentarios (COMMENT ON). Documentam o papel de tabelas e colunas
--- no proprio banco; nao alteram estrutura.
--- =============================================================
-
-COMMENT ON TABLE "users" IS 'Usuario do sistema (contrato do BetterAuth mais campos do dominio). Classe Usuario.';
-COMMENT ON TABLE "sessions" IS 'Sessao do BetterAuth. Uma linha por sessao ativa ou expirada.';
-COMMENT ON TABLE "accounts" IS 'Conta de login do BetterAuth: credential (senha em password) ou provedor OAuth.';
-COMMENT ON TABLE "verifications" IS 'Token temporario do BetterAuth (ex.: redefinicao de senha).';
-COMMENT ON TABLE "usuario_papeis" IS 'Associacao Usuario x Papel. Chave composta (usuarioId, papel).';
-COMMENT ON TABLE "instituicoes" IS 'Instituicao que possui filas. Passa pelo fluxo de solicitacao e aprovacao (status).';
-COMMENT ON TABLE "tipos_etapa" IS 'Tipo de etapa de atendimento cadastrado por instituicao (codigo unico por instituicao).';
-COMMENT ON TABLE "filas" IS 'Fila de atendimento da instituicao, com configuracao de QR Code em colunas.';
-COMMENT ON TABLE "mesas" IS 'Mesa ou guiche de atendimento de uma fila.';
-COMMENT ON TABLE "senhas" IS 'Senha (ticket) emitida numa fila, online ou presencial.';
-COMMENT ON TABLE "qr_codes" IS 'QR Code de uma fila, com validade e tolerancia.';
-COMMENT ON TABLE "auditorias" IS 'Trilha de auditoria append-only. Sem FK em entidadeId (registro polimorfico).';
-COMMENT ON TABLE "landing_pages" IS 'Conteudo da landing page em JSON, lido inteiro pelo front.';
-COMMENT ON TABLE "notificacoes" IS 'Notificacao persistida do usuario. Fonte de verdade; WebSocket e push sao efeitos colaterais.';
-COMMENT ON TABLE "flows" IS 'Fluxo de atendimento da instituicao (grafo de steps e transicoes).';
-COMMENT ON TABLE "flow_steps" IS 'No do flow, ligado a uma fila. Desativar, nao apagar, quando ja usado.';
-COMMENT ON TABLE "flow_transitions" IS 'Aresta do flow entre dois steps.';
-COMMENT ON TABLE "senha_flow_trackings" IS 'Acompanhamento de uma senha dentro de um flow. Uma linha por senha (senhaId unico).';
-COMMENT ON TABLE "senha_flow_historicos" IS 'Historico append-only dos steps por onde a senha passou. Snapshot de nome e fila.';
-COMMENT ON TABLE "chat_mensagens" IS 'Mensagem do chat durante o atendimento (senha EM_ATENDIMENTO).';
-
-COMMENT ON COLUMN "senhas"."prioridadePeso" IS 'Peso de ordenacao: menor valor e chamado primeiro. LEGAL=1, FIDELIDADE=2, NORMAL ou sem prioridade=3.';
-COMMENT ON COLUMN "senhas"."tokenPublico" IS 'Token publico da senha para acompanhamento sem login. Unico.';
-COMMENT ON COLUMN "senhas"."mesaNome" IS 'Snapshot do nome da mesa no momento do atendimento.';
-COMMENT ON COLUMN "qr_codes"."validoAte" IS 'Fim da validade do QR Code.';
-COMMENT ON COLUMN "qr_codes"."toleranciaAte" IS 'Fim da tolerancia apos validoAte.';
-COMMENT ON COLUMN "auditorias"."entidadeId" IS 'Id do registro afetado. Sem FK: a entidade pode nao existir mais.';
-COMMENT ON COLUMN "senha_flow_historicos"."stepNome" IS 'Snapshot do nome do step no momento da entrada.';
-COMMENT ON COLUMN "senha_flow_historicos"."filaId" IS 'Snapshot do id da fila (texto, sem FK): sobrevive a exclusao da fila.';
-COMMENT ON COLUMN "chat_mensagens"."nome" IS 'Snapshot do nome do autor no momento do envio.';
-COMMENT ON COLUMN "landing_pages"."conteudo" IS 'Documento JSON da landing page.';
+CREATE DATABASE oficina_carro;	
+USE oficina_carro;
+
+CREATE TABLE pessoa (
+    pess_id INT NOT NULL AUTO_INCREMENT,
+    pess_nome VARCHAR(50) NOT NULL,
+    pess_cpf VARCHAR(11) NOT NULL,
+    pess_dt_nascimento DATE NOT NULL,
+    pess_telefone VARCHAR(11) NOT NULL,
+    pess_email VARCHAR(100) NOT NULL,
+    pess_ct_preferencial VARCHAR(100) NOT NULL, -- Contato preferencial
+    pess_cep VARCHAR(8),
+    pess_en_logradouro VARCHAR(45) NOT NULL,
+    pess_en_numero VARCHAR(6) NOT NULL,
+    pess_en_bairro VARCHAR(45) NOT NULL,
+    pess_en_complemento VARCHAR(100),
+    pess_observacoes VARCHAR(500),
+    PESS_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PESS_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_pessoa_cpf (pess_cpf),
+    UNIQUE KEY uk_pessoa_email (pess_email),
+    CONSTRAINT pk_pessoa PRIMARY KEY (pess_id)
+	
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE funcao (
+    funo_id INT NOT NULL AUTO_INCREMENT,
+    funo_funcao VARCHAR(30) NOT NULL,
+    FUNO_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FUNO_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_funcao_funcao (funo_funcao),
+
+    CONSTRAINT pk_funcao PRIMARY KEY (funo_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE carro_marca (
+    cama_id INT NOT NULL AUTO_INCREMENT,
+    cama_marca VARCHAR(30) NOT NULL,
+    CAMA_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CAMA_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_cama_marca (cama_marca),
+
+    CONSTRAINT pk_marca PRIMARY KEY (cama_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE distribuidora (
+    dist_id INT NOT NULL AUTO_INCREMENT,
+    dist_nome VARCHAR(100) NOT NULL,
+    dist_cnpj VARCHAR(14) NOT NULL,
+    dist_telefone VARCHAR(11) NOT NULL,
+    dist_email VARCHAR(100) NOT NULL,
+    dist_cep VARCHAR(8),
+    dist_en_logradouro VARCHAR(100) NOT NULL,
+    dist_en_numero VARCHAR(6) NOT NULL,
+    dist_en_bairro VARCHAR(100) NOT NULL,
+    dist_en_complemento VARCHAR(100),
+    dist_observacoes VARCHAR(500),
+    DIST_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DIST_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_distribuidora_cnpj (dist_cnpj),
+    UNIQUE KEY uk_distribuidora_telefone (dist_telefone),
+    UNIQUE KEY uk_distribuidora_email (dist_email),
+
+    CONSTRAINT pk_distribuidora PRIMARY KEY (dist_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE box (
+    box_id INT NOT NULL AUTO_INCREMENT,
+    box_numero TINYINT UNSIGNED NOT NULL,
+    BOX_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    BOX_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_box_numero (box_numero),
+
+    CONSTRAINT pk_box PRIMARY KEY (box_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE servico (
+    serv_id INT NOT NULL AUTO_INCREMENT,
+    serv_nome VARCHAR(100) NOT NULL,
+    serv_descricao VARCHAR(255),
+    serv_valor DECIMAL(10, 2) NOT NULL,
+    SERV_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    SERV_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_servico_nome (serv_nome),
+
+    CONSTRAINT pk_servico PRIMARY KEY (serv_id),
+
+    CONSTRAINT ck_serv_valor CHECK (serv_valor >= 0)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE funcionario (
+    pess_id INT NOT NULL,
+    funo_id INT NOT NULL,
+    func_login VARCHAR(30),
+    func_senha VARCHAR(100),
+    func_hr_trabalho_entrada TIME,
+    func_hr_trabalho_saida TIME,
+    FUNC_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FUNC_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_funcionario_login (func_login),
+
+    CONSTRAINT pk_funcionario PRIMARY KEY (pess_id),
+
+    CONSTRAINT ck_func_acesso
+        CHECK ((func_login IS NULL) = (func_senha IS NULL)),
+
+    CONSTRAINT fk_func_funcao
+        FOREIGN KEY (funo_id)
+        REFERENCES funcao (funo_id),
+    CONSTRAINT fk_func_pessoa
+        FOREIGN KEY (pess_id)
+        REFERENCES pessoa (pess_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_funcao_funcionario ON funcionario (funo_id);
+
+CREATE TABLE carro_modelo (
+    camo_id INT NOT NULL AUTO_INCREMENT,
+    camo_modelo VARCHAR(100) NOT NULL,
+    cama_id INT NOT NULL,
+    CAMO_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CAMO_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_camo_marca_modelo (cama_id, camo_modelo),
+
+    CONSTRAINT pk_modelo PRIMARY KEY (camo_id),
+
+    CONSTRAINT fk_camo_marca
+        FOREIGN KEY (cama_id)
+        REFERENCES carro_marca (cama_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE veiculo (
+    veic_id INT NOT NULL AUTO_INCREMENT,
+    veic_placa VARCHAR(7) NOT NULL,
+    veic_cor VARCHAR(20) NOT NULL,
+    veic_ano YEAR NULL,
+    pess_id INT NOT NULL,
+    camo_id INT NOT NULL,
+    VEIC_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    VEIC_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_veiculo_placa (veic_placa),
+
+    CONSTRAINT pk_veiculo PRIMARY KEY (veic_id),
+
+    CONSTRAINT fk_veic_modelo
+        FOREIGN KEY (camo_id)
+        REFERENCES carro_modelo (camo_id),
+    CONSTRAINT fk_veic_pessoa
+        FOREIGN KEY (pess_id)
+        REFERENCES pessoa (pess_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_camo_veiculo ON veiculo (camo_id);
+
+CREATE TABLE peca (
+    peca_id INT NOT NULL AUTO_INCREMENT,
+    peca_codigo VARCHAR(30) NOT NULL,
+    peca_nome VARCHAR(100) NOT NULL,
+    peca_categoria VARCHAR(50) NOT NULL,
+    peca_descricao VARCHAR(255) NOT NULL,
+    peca_estoque INT NOT NULL DEFAULT 0,
+    peca_estoque_minimo INT NOT NULL DEFAULT 0,
+    peca_preco DECIMAL(10, 2) NOT NULL,
+    peca_ativo BOOL NOT NULL DEFAULT TRUE,
+    PECA_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PECA_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_peca_codigo (peca_codigo),
+
+    CONSTRAINT pk_peca PRIMARY KEY (peca_id),
+
+    CONSTRAINT ck_peca_estoque CHECK (peca_estoque >= 0),
+    CONSTRAINT ck_peca_valores CHECK (peca_preco >= 0 AND peca_estoque_minimo >= 0)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_nome_peca ON peca (peca_nome);
+CREATE INDEX ix_cate_peca ON peca (peca_categoria);
+CREATE INDEX ix_esto_peca ON peca (peca_estoque);
+
+CREATE TABLE peca_modelo (
+    peca_id INT NOT NULL,
+    camo_id INT NOT NULL,
+    PEMO_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PEMO_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_peca_modelo PRIMARY KEY (peca_id, camo_id),
+
+    CONSTRAINT fk_pemo_peca
+        FOREIGN KEY (peca_id)
+        REFERENCES peca (peca_id),
+    CONSTRAINT fk_pemo_modelo
+        FOREIGN KEY (camo_id)
+        REFERENCES carro_modelo (camo_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_camo_pemo ON peca_modelo (camo_id);
+
+CREATE TABLE orcamento (
+    orca_id INT NOT NULL AUTO_INCREMENT,
+    orca_valor DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    orca_status VARCHAR(20) NOT NULL DEFAULT 'aberto',
+    orca_meio_resposta VARCHAR(20) NULL, -- Meio da resposta do cliente: presencial, telefone ou mensagem (RF-02)
+    orca_formato VARCHAR(20) NOT NULL,
+    orca_quilometragem INT NOT NULL,
+    veic_id INT NOT NULL,
+    func_id INT NOT NULL,
+    ORCA_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ORCA_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_orcamento PRIMARY KEY (orca_id),
+
+    CONSTRAINT ck_orca_status
+        CHECK (orca_status IN ('aberto', 'orçado', 'aprovado', 'recusado')),
+    CONSTRAINT ck_orca_meio
+        CHECK (orca_meio_resposta IS NULL
+               OR orca_meio_resposta IN ('presencial', 'telefone', 'mensagem')),
+    -- Orçamento aprovado ou recusado exige o meio da resposta (RF-02)
+    CONSTRAINT ck_orca_decisao
+        CHECK (orca_status NOT IN ('aprovado', 'recusado') OR orca_meio_resposta IS NOT NULL),
+    CONSTRAINT ck_orca_valores
+        CHECK (orca_valor >= 0 AND orca_quilometragem >= 0),
+
+    CONSTRAINT fk_orcamento_veiculo
+        FOREIGN KEY (veic_id)
+        REFERENCES veiculo (veic_id),
+    CONSTRAINT fk_orcamento_funcionario
+        FOREIGN KEY (func_id)
+        REFERENCES funcionario (pess_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_orcamento_01 ON orcamento (orca_status);
+CREATE INDEX ix_orcamento_02 ON orcamento (ORCA_CRIADO_EM);
+CREATE INDEX ix_veiculo_orcamento ON orcamento (veic_id);
+CREATE INDEX ix_funcionario_orcamento ON orcamento (func_id);
+
+CREATE TABLE orcamento_peca (
+    orca_id INT NOT NULL,
+    peca_id INT NOT NULL,
+    orpe_quantidade INT NOT NULL,
+    orpe_preco_unitario DECIMAL(10, 2) NOT NULL,
+    ORPE_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ORPE_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_orpe PRIMARY KEY (orca_id, peca_id),
+
+    CONSTRAINT ck_orpe_valores
+        CHECK (orpe_quantidade > 0 AND orpe_preco_unitario >= 0),
+
+    CONSTRAINT fk_orpe_orcamento
+        FOREIGN KEY (orca_id)
+        REFERENCES orcamento (orca_id),
+    CONSTRAINT fk_orpe_peca
+        FOREIGN KEY (peca_id)
+        REFERENCES peca (peca_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_peca_orpe ON orcamento_peca (peca_id);
+
+CREATE TABLE orcamento_servico (
+    orca_id INT NOT NULL,
+    serv_id INT NOT NULL,
+    orse_valor DECIMAL(10, 2) NOT NULL,
+    ORSE_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ORSE_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_orse PRIMARY KEY (orca_id, serv_id),
+
+    CONSTRAINT ck_orse_valor CHECK (orse_valor >= 0),
+
+    CONSTRAINT fk_orse_orcamento
+        FOREIGN KEY (orca_id)
+        REFERENCES orcamento (orca_id),
+    CONSTRAINT fk_orse_servico
+        FOREIGN KEY (serv_id)
+        REFERENCES servico (serv_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_serv_orse ON orcamento_servico (serv_id);
+
+CREATE TABLE orcamento_historico (
+    orhi_id INT NOT NULL AUTO_INCREMENT,
+    orhi_status VARCHAR(20) NOT NULL,
+    orca_id INT NOT NULL,
+    func_id INT NOT NULL,
+    ORHI_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_orhi PRIMARY KEY (orhi_id),
+
+    CONSTRAINT ck_orhi_status
+        CHECK (orhi_status IN ('aberto', 'orçado', 'aprovado', 'recusado')),
+
+    CONSTRAINT fk_orhi_orcamento
+        FOREIGN KEY (orca_id)
+        REFERENCES orcamento (orca_id),
+    CONSTRAINT fk_orhi_funcionario
+        FOREIGN KEY (func_id)
+        REFERENCES funcionario (pess_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_orcamento_orhi ON orcamento_historico (orca_id, ORHI_CRIADO_EM);
+CREATE INDEX ix_funcionario_orhi ON orcamento_historico (func_id);
+
+CREATE TABLE peca_distribuidora (
+    pedi_id INT NOT NULL AUTO_INCREMENT,
+    peca_id INT NOT NULL,
+    dist_id INT NOT NULL,
+    pedi_quantidade INT NOT NULL,
+    pedi_custo_unitario DECIMAL(10, 2) NOT NULL,
+    PEDI_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PEDI_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_pedi PRIMARY KEY (pedi_id),
+
+    CONSTRAINT fk_pedi_peca
+        FOREIGN KEY (peca_id)
+        REFERENCES peca (peca_id),
+    CONSTRAINT fk_pedi_distribuidora
+        FOREIGN KEY (dist_id)
+        REFERENCES distribuidora (dist_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_peca_pedi ON peca_distribuidora (peca_id);
+CREATE INDEX ix_dist_pedi ON peca_distribuidora (dist_id);
+
+CREATE TABLE ordem_servico (
+    os_id INT NOT NULL AUTO_INCREMENT,
+    os_detalhes VARCHAR(500),
+    os_inicio DATETIME,
+    os_fim DATETIME,
+    os_status VARCHAR(20) NOT NULL DEFAULT 'aberta',
+    orca_id INT NOT NULL,
+    box_id INT,
+    meca_id INT,
+    func_id INT NOT NULL,
+    os_box_ativo INT GENERATED ALWAYS AS (IF(os_status = 'em execução', box_id, NULL)) STORED,
+    OS_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    OS_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_os_orcamento (orca_id),
+    UNIQUE KEY uk_os_box_ativo (os_box_ativo),
+
+    CONSTRAINT pk_ordem_servico PRIMARY KEY (os_id),
+
+    CONSTRAINT ck_os_status
+        CHECK (os_status IN ('aberta', 'em execução', 'concluída')),
+    -- Uma OS em execução ou concluída tem box, mecânico e data de início (RF-03)
+    CONSTRAINT ck_os_execucao
+        CHECK (os_status = 'aberta'
+               OR (box_id IS NOT NULL AND meca_id IS NOT NULL AND os_inicio IS NOT NULL)),
+    -- Uma OS concluída tem data de fim, e o fim não vem antes do início (RF-03 e RF-06)
+    CONSTRAINT ck_os_conclusao
+        CHECK (os_status <> 'concluída' OR os_fim IS NOT NULL),
+    CONSTRAINT ck_os_periodo
+        CHECK (os_inicio IS NULL OR os_fim IS NULL OR os_fim >= os_inicio),
+
+    CONSTRAINT fk_os_orcamento
+        FOREIGN KEY (orca_id)
+        REFERENCES orcamento (orca_id),
+    CONSTRAINT fk_os_box
+        FOREIGN KEY (box_id)
+        REFERENCES box (box_id),
+    CONSTRAINT fk_os_mecanico
+        FOREIGN KEY (meca_id)
+        REFERENCES funcionario (pess_id),
+    CONSTRAINT fk_os_funcionario
+        FOREIGN KEY (func_id)
+        REFERENCES funcionario (pess_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_box_os ON ordem_servico (box_id);
+CREATE INDEX ix_mecanico_os ON ordem_servico (meca_id);
+CREATE INDEX ix_funcionario_os ON ordem_servico (func_id);
+
+CREATE TABLE ordem_servico_peca (
+    os_id INT NOT NULL,
+    peca_id INT NOT NULL,
+    ospe_qt_peca INT NOT NULL,
+    ospe_preco_unitario DECIMAL(10, 2) NOT NULL,
+    OSPE_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    OSPE_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_ospe PRIMARY KEY (os_id, peca_id),
+
+    CONSTRAINT ck_ospe_valores
+        CHECK (ospe_qt_peca > 0 AND ospe_preco_unitario >= 0),
+
+    CONSTRAINT fk_ospe_os
+        FOREIGN KEY (os_id)
+        REFERENCES ordem_servico (os_id),
+    CONSTRAINT fk_ospe_peca
+        FOREIGN KEY (peca_id)
+        REFERENCES peca (peca_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_peca_ospe ON ordem_servico_peca (peca_id);
+
+CREATE TABLE ordem_servico_historico (
+    oshi_id INT NOT NULL AUTO_INCREMENT,
+    oshi_status VARCHAR(20) NOT NULL,
+    os_id INT NOT NULL,
+    func_id INT NOT NULL,
+    OSHI_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_oshi PRIMARY KEY (oshi_id),
+
+    CONSTRAINT ck_oshi_status
+        CHECK (oshi_status IN ('aberta', 'em execução', 'concluída')),
+
+    CONSTRAINT fk_oshi_os
+        FOREIGN KEY (os_id)
+        REFERENCES ordem_servico (os_id),
+    CONSTRAINT fk_oshi_funcionario
+        FOREIGN KEY (func_id)
+        REFERENCES funcionario (pess_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_os_oshi ON ordem_servico_historico (os_id, OSHI_CRIADO_EM);
+CREATE INDEX ix_funcionario_oshi ON ordem_servico_historico (func_id);
+
+CREATE TABLE pagamento (
+    paga_id INT NOT NULL AUTO_INCREMENT,
+    paga_metodo VARCHAR(45) NOT NULL,
+    paga_valor DECIMAL(10, 2) NOT NULL,
+    paga_nota_fiscal VARCHAR(44),
+    paga_status VARCHAR(20) NOT NULL,
+    paga_parcelado BOOL NOT NULL DEFAULT FALSE,
+    paga_dt_pagamento DATETIME,
+    os_id INT NOT NULL,
+    PAGA_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PAGA_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uk_pagamento_nf (paga_nota_fiscal),
+
+    CONSTRAINT pk_pagamento PRIMARY KEY (paga_id),
+
+    CONSTRAINT fk_pagamento_os
+        FOREIGN KEY (os_id)
+        REFERENCES ordem_servico (os_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE INDEX ix_os_pagamento ON pagamento (os_id);
+
+CREATE TABLE pagamento_parcelas (
+    paga_id INT NOT NULL,
+    papa_numero TINYINT UNSIGNED NOT NULL,
+    papa_valor DECIMAL(10, 2) NOT NULL,
+    papa_vencimento DATE NOT NULL,
+    papa_dt_pagamento DATETIME,
+    PAPA_CRIADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PAPA_ATUALIZADO_EM DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_pagamento_parcelas PRIMARY KEY (paga_id, papa_numero),
+
+    CONSTRAINT fk_papa_pagamento
+        FOREIGN KEY (paga_id)
+        REFERENCES pagamento (paga_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+/*Trigger criada por vitor apenas para entendimento didático */
+DELIMITER $$
+
+CREATE TRIGGER tg_os_bi_orcamento_aprovado
+BEFORE INSERT ON ordem_servico
+FOR EACH ROW
+BEGIN
+    IF (SELECT orca_status FROM orcamento WHERE orca_id = NEW.orca_id) <> 'aprovado' THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'A ordem de serviço só pode ser criada a partir de um orçamento aprovado.';
+    END IF;
+END$$
+
+/* Ordem dos status:
+   orçamento: aberto -> orçado -> aprovado ou recusado;
+   OS: aberta -> em execução -> concluída.
+   A dúvida sobre recusar o orçamento a partir de "aberto" está na lacuna L-05. */
+
+CREATE TRIGGER tg_orca_bi_status_inicial
+BEFORE INSERT ON orcamento
+FOR EACH ROW
+BEGIN
+    IF NEW.orca_status <> 'aberto' THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'O orçamento nasce com o status aberto.';
+    END IF;
+END$$
+
+CREATE TRIGGER tg_orca_bu_transicao
+BEFORE UPDATE ON orcamento
+FOR EACH ROW
+BEGIN
+    IF NEW.orca_status <> OLD.orca_status AND NOT (
+           (OLD.orca_status = 'aberto' AND NEW.orca_status = 'orçado')
+        OR (OLD.orca_status = 'orçado' AND NEW.orca_status IN ('aprovado', 'recusado'))
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Transição de status do orçamento inválida.';
+    END IF;
+END$$
+
+CREATE TRIGGER tg_os_bi_status_inicial
+BEFORE INSERT ON ordem_servico
+FOR EACH ROW
+FOLLOWS tg_os_bi_orcamento_aprovado
+BEGIN
+    IF NEW.os_status <> 'aberta' THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'A OS nasce com o status aberta.';
+    END IF;
+END$$
+
+CREATE TRIGGER tg_os_bu_transicao
+BEFORE UPDATE ON ordem_servico
+FOR EACH ROW
+BEGIN
+    IF NEW.orca_id <> OLD.orca_id THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'A OS não pode trocar de orçamento.';
+    END IF;
+    IF NEW.os_status <> OLD.os_status AND NOT (
+           (OLD.os_status = 'aberta' AND NEW.os_status = 'em execução')
+        OR (OLD.os_status = 'em execução' AND NEW.os_status = 'concluída')
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Transição de status da OS inválida.';
+    END IF;
+END$$
+
+DELIMITER ;

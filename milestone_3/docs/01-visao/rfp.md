@@ -93,7 +93,7 @@ Nenhuma exclusão foi formalizada com o cliente até esta versão. Os itens com 
 | 01/12/2026 | Milestone 3, monitoria          |
 | 08/12/2026 | Milestone 3, apresentação final |
 
-Fonte: PM Canvas do Milestone 1 (`milestone_1/gestao-de-oficina-mecanica-de-carros.html`) e milestones do grupo no GitLab.
+Fonte: PM Canvas do Milestone 1 ([pm-canvas.md](pm-canvas.md)) e milestones do grupo no GitLab.
 
 ## 11. Como o grupo será avaliado
 

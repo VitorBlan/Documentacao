@@ -2,7 +2,7 @@
 
 Milestone 2 · Unidade: Engenharia de Software (Fábrica de Software I) · Modelagem do domínio
 
-Este documento escreve em OCL as regras de negócio que o [diagrama de classes](../classes/README.md) não expressa. Cada restrição vem de um requisito funcional ([requisitos-funcionais.md](../../03-requisitos/requisitos-funcionais.md)), de uma história de usuário, de um cenário de diagrama de sequência ou de uma decisão do grupo. O projeto ainda não tem código da aplicação nem o `milestone_2/ddl.sql` no repositório; por isso a garantia no banco, na [tabela de rastreio](#tabela-de-rastreio), vem do que os requisitos citam (restrições, chaves únicas e gatilhos), e não de uma leitura do DDL. Onde os documentos do projeto divergem, a OCL segue a issue do GitLab e a decisão do grupo, e a diferença fica na seção de [divergências](#divergências).
+Este documento escreve em OCL as regras de negócio que o [diagrama de classes](../classes/README.md) não expressa. Cada restrição vem de um requisito funcional ([requisitos-funcionais.md](../../03-requisitos/requisitos-funcionais.md)), de uma história de usuário, de um cenário de diagrama de sequência ou de uma decisão do grupo. O projeto ainda não tem código da aplicação, e as regras desta página não foram conferidas com o script do banco ([schema.sql](../../06-banco-de-dados/schema.sql)); por isso a garantia no banco, na [tabela de rastreio](#tabela-de-rastreio), vem do que os requisitos citam (restrições, chaves únicas e gatilhos), e não de uma leitura do DDL. Onde os documentos do projeto divergem, a OCL segue a issue do GitLab e a decisão do grupo, e a diferença fica na seção de [divergências](#divergências).
 
 ## Convenções
 
@@ -476,7 +476,7 @@ Observação: a classe guarda a senha em um atributo, e o modelo não define com
 
 ## Tabela de rastreio
 
-Expressão (resumida), regra, origem e a garantia no banco. A coluna "Garantia no banco" cita as restrições, as chaves únicas e os gatilhos que os requisitos e o glossário mencionam. "Não confirmada" quer dizer que o `milestone_2/ddl.sql` não está no repositório e nenhum documento cita a restrição. "Nenhuma" quer dizer que o documento afirma que o banco aceita a violação.
+Expressão (resumida), regra, origem e a garantia no banco. A coluna "Garantia no banco" cita as restrições, as chaves únicas e os gatilhos que os requisitos e o glossário mencionam. "Não confirmada" quer dizer que a restrição não foi conferida com o script do banco e nenhum documento a cita. "Nenhuma" quer dizer que o documento afirma que o banco aceita a violação.
 
 | Ref | Expressão (resumo) | Regra | Origem | Garantia no banco |
 |---|---|---|---|---|

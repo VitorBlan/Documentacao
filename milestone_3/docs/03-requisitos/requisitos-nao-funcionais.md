@@ -2,7 +2,7 @@
 
 Milestone 1 · Fábrica de Software I · Unidade de requisitos
 
-Os requisitos não funcionais do Bancada são as issues RNF-01 a RNF-05 do GitLab, todas com `prio::P1` (Must) no Milestone 1. Para cada RNF, este documento traz o texto da issue, uma métrica verificável e a evidência no banco do Milestone 2 (`milestone_2/ddl.sql`) ou no protótipo. Os requisitos funcionais afetados estão em [requisitos-funcionais.md](requisitos-funcionais.md).
+Os requisitos não funcionais do Bancada são as issues RNF-01 a RNF-05 do GitLab, todas com `prio::P1` (Must) no Milestone 1. Para cada RNF, este documento traz o texto da issue, uma métrica verificável e a evidência no banco do Milestone 2 ([06-banco-de-dados](../06-banco-de-dados/README.md)) ou no protótipo. Os requisitos funcionais afetados estão em [requisitos-funcionais.md](requisitos-funcionais.md).
 
 ## Como ler
 

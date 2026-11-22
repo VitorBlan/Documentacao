@@ -2,7 +2,7 @@
 s
 MMilestones 1, 2 e 3 · Fábrica de Software I · Engenharia de Software · IFRO, Campus Vilhena · 2026/2
 
-Este é o ponto de entrada da documentação do projeto. Aqui ficam o contexto do projeto, a equipe, o cliente, os catálogos de identificadores e o mapa de todos os artefatos. Os artefatos dos milestones anteriores ficam na raiz do repositório: o PM Canvas do Milestone 1 em `milestone_1/` e o banco do Milestone 2 em `milestone_2/` (`ddl.sql` e o modelo do MySQL Workbench).
+Este é o ponto de entrada da documentação do projeto. Aqui ficam o contexto do projeto, a equipe, o cliente, os catálogos de identificadores e o mapa de todos os artefatos. O PM Canvas do Milestone 1 está em [01-visao/pm-canvas.md](01-visao/pm-canvas.md) e o banco do Milestone 2, em [06-banco-de-dados](06-banco-de-dados/README.md).
 
 ## Projeto
 
@@ -12,7 +12,7 @@ O projeto ainda não tem código da aplicação. As fontes de verdade são três
 
 1. **Issues do GitLab** ([projeto2](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2)): requisitos, histórias, casos de uso e diagramas, cada um em uma issue.
 2. **Arquivo do Figma** "[Gestão de Oficina Mecânica](https://www.figma.com/design/EHj0Js5KtOJ88TRQd5fTJI/Gest%C3%A3o-de-Oficina-Mec%C3%A2nica?node-id=3-36)": site map, IFML, protótipo, casos de uso, classes, sequência, banco e atividades e estados.
-3. **Banco do Milestone 2** (`milestone_2/ddl.sql`): tabelas, restrições e gatilhos em MySQL.
+3. **Banco do Milestone 2** ([06-banco-de-dados](06-banco-de-dados/README.md)): tabelas, restrições e gatilhos em MySQL.
 
 Quando um documento diverge dessas fontes, a divergência é registrada na seção Divergências do próprio documento.
 
@@ -81,7 +81,7 @@ Status: "Concluído" indica documento já adaptado ao Bancada; "Em elaboração"
 | [05-modelagem/ocl/README.md](05-modelagem/ocl/README.md)                                     | Restrições em OCL                                                                   | 2         | Concluído     |
 | [06-banco-de-dados/README.md](06-banco-de-dados/README.md)                                   | Índice do banco de dados                                                            | 2         | Pendente      |
 | [06-banco-de-dados/dicionario-de-dados.md](06-banco-de-dados/dicionario-de-dados.md)         | Dicionário de dados                                                                 | 2         | Pendente      |
-| [06-banco-de-dados/schema.sql](06-banco-de-dados/schema.sql)                                 | Esquema SQL (versão final de `milestone_2/ddl.sql`)                                 | 2         | Pendente      |
+| [06-banco-de-dados/schema.sql](06-banco-de-dados/schema.sql)                                 | Esquema SQL (versão final do DDL do Milestone 2)                                    | 2         | Pendente      |
 | [07-rastreabilidade/matriz.md](07-rastreabilidade/matriz.md)                                 | Matriz de rastreabilidade, uma linha por história                                   | 3         | Concluído     |
 | [07-rastreabilidade/lacunas.md](07-rastreabilidade/lacunas.md)                               | As quatro perguntas da revisão cruzada, órfãos e lacunas com ação                   | 3         | Concluído     |
 | [07-rastreabilidade/malha-rastreabilidade.svg](07-rastreabilidade/malha-rastreabilidade.svg) | Malha de rastreabilidade, com a cadeia da US-003 como exemplo                       | 3         | Concluído     |

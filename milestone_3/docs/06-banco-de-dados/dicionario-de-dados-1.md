@@ -2,7 +2,7 @@
 
 Contexto: Fábrica de Software I · projeto Bancada (Gestão de Oficina Mecânica) · modelagem relacional (MySQL 8, InnoDB).
 
-Fonte: `milestone_2/ddl.sql`, do repositório do grupo, na versão ajustada, que parte do commit `fc46f06` (20/11/2026) e acrescenta restrições `CHECK`, a coluna `orca_meio_resposta` e gatilhos de status. Foi conferido coluna a coluna com o banco `oficina_carro` criado a partir dele em um MySQL 8.0.46. O DDL está em [schema.sql](schema.sql). Para as decisões de modelagem e a lista dos ajustes, veja o [README](README.md).
+Fonte: [schema.sql](schema.sql), na versão ajustada do DDL do Milestone 2, que acrescenta restrições `CHECK`, a coluna `orca_meio_resposta` e gatilhos de status. Foi conferido coluna a coluna com o banco `oficina_carro` criado a partir dele em um MySQL 8.0.46. Para as decisões de modelagem e a lista dos ajustes, veja o [README](README.md).
 
 O banco tem 21 tabelas, 155 colunas, 27 chaves estrangeiras, 17 restrições `CHECK`, 16 chaves únicas além das primárias, 24 índices comuns, 1 coluna gerada e 5 gatilhos.
 

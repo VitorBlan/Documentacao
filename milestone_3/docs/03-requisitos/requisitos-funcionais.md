@@ -2,7 +2,7 @@
 
 Milestone 1 · Fábrica de Software I · Unidade de requisitos
 
-Os requisitos funcionais do Bancada são as issues RF-01 a RF-07 do GitLab. Cada RF agrupa histórias de usuário e casos de uso. Para cada RF, este documento traz o texto da issue, as regras verificáveis que dele decorrem e a evidência no banco do Milestone 2 (`milestone_2/ddl.sql`). A prioridade MoSCoW vem da label `prio::` (ver [README](README.md#priorização)).
+Os requisitos funcionais do Bancada são as issues RF-01 a RF-07 do GitLab. Cada RF agrupa histórias de usuário e casos de uso. Para cada RF, este documento traz o texto da issue, as regras verificáveis que dele decorrem e a evidência no banco do Milestone 2 ([06-banco-de-dados](../06-banco-de-dados/README.md)). A prioridade MoSCoW vem da label `prio::` (ver [README](README.md#priorização)).
 
 ## Como ler
 

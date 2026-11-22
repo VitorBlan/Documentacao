@@ -40,7 +40,7 @@ Metas de prazo: Milestone 1 em 15/09/2026, Milestone 2 em 20/10/2026 e Milestone
 
 - Bancada: sistema web de gestão de oficina mecânica de carros.
 - Protótipo navegável no Figma (arquivo "Gestão de Oficina Mecânica").
-- Banco relacional MySQL: script `milestone_2/ddl.sql` e DER em `milestone_2/ddl_der.mwb`.
+- Banco relacional MySQL: script e modelos em [06-banco-de-dados](../06-banco-de-dados/README.md).
 - Modelagem UML (casos de uso, sequência, atividades e estados) e IFML no Figma.
 - Issues, milestones e quadro Kanban no GitLab.
 - Documentação em Markdown nesta pasta `docs/`.

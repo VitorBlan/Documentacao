@@ -2,7 +2,7 @@
 
 Milestone 2 · Unidade: Engenharia de Software (Fábrica de Software I) · Modelagem do domínio
 
-Esta tabela compara os nomes usados nas [restrições OCL](README.md) com os nomes do glossário e dos requisitos, que citam as tabelas e colunas do banco do Milestone 2, e com o catálogo de classes definido em [classes/README.md](../classes/README.md): classes em português, no singular. O `milestone_2/ddl.sql` não está no repositório; por isso os nomes de coluna vêm só do [glossário](../../01-visao/glossario.md) e de [requisitos-funcionais.md](../../03-requisitos/requisitos-funcionais.md), e os que não aparecem nesses documentos não foram conferidos.
+Esta tabela compara os nomes usados nas [restrições OCL](README.md) com os nomes do glossário e dos requisitos, que citam as tabelas e colunas do banco do Milestone 2, e com o catálogo de classes definido em [classes/README.md](../classes/README.md): classes em português, no singular. Esta tabela não foi conferida com o script do banco; por isso os nomes de coluna vêm só do [glossário](../../01-visao/glossario.md) e de [requisitos-funcionais.md](../../03-requisitos/requisitos-funcionais.md), e os que não aparecem nesses documentos não foram conferidos.
 
 | # | Nome no OCL e nas classes | Nome no glossário e no banco | Razão |
 |---|---|---|---|

@@ -2,7 +2,7 @@
 
 Milestone 1 · Fábrica de Software I · Unidade de requisitos
 
-Esta pasta registra o levantamento de requisitos do Bancada, o sistema de gestão de oficina mecânica da RFP 2 (cliente Antônio Júnior). A fonte oficial dos requisitos são as issues do GitLab do projeto ([projeto2](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2)). Os documentos desta pasta consolidam essas issues, apontam onde cada regra aparece no banco do Milestone 2 (`milestone_2/ddl.sql`) e registram as divergências encontradas.
+Esta pasta registra o levantamento de requisitos do Bancada, o sistema de gestão de oficina mecânica da RFP 2 (cliente Antônio Júnior). A fonte oficial dos requisitos são as issues do GitLab do projeto ([projeto2](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2)). Os documentos desta pasta consolidam essas issues, apontam onde cada regra aparece no banco do Milestone 2 ([06-banco-de-dados](../06-banco-de-dados/README.md)) e registram as divergências encontradas.
 
 ## Técnicas de elicitação
 
@@ -12,7 +12,7 @@ Esta pasta registra o levantamento de requisitos do Bancada, o sistema de gestã
 | Reunião com o cliente | Reunião de levantamento de 26/08/2026, gravada em áudio; ata na issue [#2](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2/-/issues/2) | Fluxo da OS, perfis de usuário, regras de estoque e de retirada do veículo |
 | PM Canvas | Issue [#3](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2/-/issues/3) e [pm-canvas.md](../01-visao/pm-canvas.md) | Problema, objetivos e partes interessadas |
 | Prototipação | Arquivo do Figma "Gestão de Oficina Mecânica" (telas de 1440 × 900) | Validação visual do fluxo de balcão, orçamento, OS, boxes, estoque e histórico do veículo |
-| Modelagem do banco | `milestone_2/ddl.sql` | Restrições que confirmam ou contradizem os requisitos (unicidade, status, gatilhos) |
+| Modelagem do banco | [06-banco-de-dados](../06-banco-de-dados/README.md) | Restrições que confirmam ou contradizem os requisitos (unicidade, status, gatilhos) |
 
 ## Reunião com o cliente
 
@@ -46,7 +46,7 @@ A validação acontece nas apresentações de cada milestone, com o cliente e o 
 
 1. **Inventário.** Todas as issues de requisito (RF, RNF) e de história (US) do GitLab foram lidas, com labels, milestone e texto completo.
 2. **Agrupamento.** Cada história foi ligada ao RF citado no seu título. Cada caso de uso foi ligado à história citada no título da issue de UC (padrão `UC-0YY - US-0XX - <nome>`).
-3. **Conferência com o banco.** Cada regra verificável foi procurada em `milestone_2/ddl.sql`. Quando a regra existe, o documento cita a tabela, a coluna ou a restrição.
+3. **Conferência com o banco.** Cada regra verificável foi procurada no banco do Milestone 2 ([06-banco-de-dados](../06-banco-de-dados/README.md)). Quando a regra existe, o documento cita a tabela, a coluna ou a restrição.
 4. **Redação verificável.** O texto das issues foi preservado, com correção ortográfica. As regras de cada RF foram reescritas como itens verificáveis, sem mudar o sentido.
 5. **Critérios de aceite.** Histórias sem critério de aceite, ou com critério fora do padrão `Dado` / `Quando` / `Então` / `E`, receberam um cenário marcado como `@proposta`, para revisão da equipe.
 6. **Rastreabilidade.** As tabelas de mapeamento RF → US → UC alimentam o [backlog](backlog.md), o [diagrama de rastreabilidade](rastreabilidade-requisitos.svg) e a [matriz](../07-rastreabilidade/matriz.md).

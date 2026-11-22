@@ -1,415 +1,376 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2913 1300" width="2913" height="1300" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2820 1270" width="2820" height="1270" role="img" aria-labelledby="t d" xmlns:c2pa="http://c2pa.org/manifest">
 <title id="t">Modelo lógico: visão geral (chaves e ligações)</title>
-<desc id="d">Todas as 20 tabelas com PK, FK e UK. Tipos, nulidade e índices estão nos arquivos modelo-logico-&lt;área&gt;.svg.</desc>
-<rect x="0" y="0" width="2913" height="1300" fill="#ffffff"/>
+<desc id="d">Todas as 21 tabelas com PK, FK e UK. Tipos, nulidade e índices estão no dicionário de dados.</desc>
+<rect x="0" y="0" width="2820" height="1270" fill="#ffffff"/>
 <text x="40" y="48" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#1f2933">Modelo lógico: visão geral (chaves e ligações)</text>
-<text x="40" y="74" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#52606d">Todas as 20 tabelas com PK, FK e UK. Tipos, nulidade e índices estão nos arquivos modelo-logico-&lt;área&gt;.svg.</text>
-<line x1="852.2" y1="145.6" x2="1030.6" y2="157.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="314.4" y1="184.0" x2="521.1" y2="184.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="314.4" y1="422.0" x2="562.5" y2="248.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="686.7" y1="368.0" x2="645.3" y2="248.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1030.6" y1="194.0" x2="852.2" y2="171.2" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1030.6" y1="231.0" x2="852.2" y2="196.8" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1491.4" y1="174.0" x2="1305.0" y2="169.3" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1980.6" y1="174.0" x2="1305.0" y2="218.7" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="2538.7" y1="174.0" x2="2311.7" y2="174.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1743.8" y1="596.0" x2="2146.2" y2="228.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1570.1" y1="596.0" x2="1250.1" y2="268.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1483.3" y1="653.0" x2="769.4" y2="248.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1483.3" y1="710.0" x2="810.8" y2="248.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1483.3" y1="767.0" x2="1222.9" y2="476.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1657.0" y1="596.0" x2="1657.0" y2="496.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="2538.7" y1="432.0" x2="2228.9" y2="228.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="741.8" y1="924.0" x2="1140.3" y2="268.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="631.5" y1="924.0" x2="686.7" y2="248.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="150.4" y1="924.0" x2="603.9" y2="248.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="260.7" y1="924.0" x2="1085.4" y2="268.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1167.8" y1="368.0" x2="1195.2" y2="268.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1548.1" y1="400.0" x2="1333.3" y2="404.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1765.8" y1="400.0" x2="2063.4" y2="228.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1167.8" y1="596.0" x2="1112.6" y2="476.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1313.1" y1="645.3" x2="1548.1" y2="432.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1313.1" y1="694.7" x2="1548.1" y2="464.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1988.8" y1="694.7" x2="1830.6" y2="710.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1988.8" y1="645.3" x2="1333.3" y2="440.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="2146.2" y1="596.0" x2="1765.8" y2="432.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="2461.7" y1="707.0" x2="2303.5" y2="670.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="2461.7" y1="670.0" x2="1765.8" y2="464.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="2461.7" y1="633.0" x2="852.2" y2="222.4" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1698.6" y1="924.0" x2="1657.0" y2="824.0" stroke="#3e4c59" stroke-width="1.3"/>
-<line x1="1615.3" y1="924.0" x2="728.0" y2="248.0" stroke="#3e4c59" stroke-width="1.3"/>
-<rect x="521.1" y="120" width="331.1" height="128.0" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
-<path d="M521.1 126 a6 6 0 0 1 6 -6 h319.1 a6 6 0 0 1 6 6 v44 h-331.1 z" fill="#dde7f3"/>
-<text x="533.1" y="142" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">users</text>
-<text x="533.1" y="159" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo User</text>
-<text x="533.1" y="192" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="565.1" y="192" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="533.1" y="212" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
-<text x="565.1" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">email</text>
-<text x="533.1" y="232" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="565.1" y="232" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">instituicaoId</text>
-<text x="690.4000000000001" y="232" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; instituicoes.id</text>
-<rect x="96.70000000000002" y="120" width="217.7" height="128.0" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
-<path d="M96.70000000000002 126 a6 6 0 0 1 6 -6 h205.7 a6 6 0 0 1 6 6 v44 h-217.7 z" fill="#dde7f3"/>
-<text x="108.70000000000002" y="142" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">sessions</text>
-<text x="108.70000000000002" y="159" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Session</text>
-<text x="108.70000000000002" y="192" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="140.70000000000002" y="192" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="108.70000000000002" y="212" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
-<text x="140.70000000000002" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">token</text>
-<text x="108.70000000000002" y="232" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="140.70000000000002" y="232" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">userId</text>
-<text x="209.3" y="232" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<rect x="96.70000000000002" y="368" width="217.7" height="108.0" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
-<path d="M96.70000000000002 374 a6 6 0 0 1 6 -6 h205.7 a6 6 0 0 1 6 6 v44 h-217.7 z" fill="#dde7f3"/>
-<text x="108.70000000000002" y="390" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">accounts</text>
-<text x="108.70000000000002" y="407" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Account</text>
-<text x="108.70000000000002" y="440" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="140.70000000000002" y="440" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="108.70000000000002" y="460" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="140.70000000000002" y="460" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">userId</text>
-<text x="209.3" y="460" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<rect x="120.87000000000002" y="596" width="169.4" height="88.0" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
-<path d="M120.87000000000002 602 a6 6 0 0 1 6 -6 h157.4 a6 6 0 0 1 6 6 v44 h-169.4 z" fill="#dde7f3"/>
-<text x="132.87" y="618" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">verifications</text>
-<text x="132.87" y="635" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Verification</text>
-<text x="132.87" y="668" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="164.87" y="668" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<rect x="557.6500000000001" y="368" width="258.0" height="108.0" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
-<path d="M557.6500000000001 374 a6 6 0 0 1 6 -6 h246.0 a6 6 0 0 1 6 6 v44 h-258.0 z" fill="#dde7f3"/>
-<text x="569.6500000000001" y="390" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">usuario_papeis</text>
-<text x="569.6500000000001" y="407" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo UsuarioPapel</text>
-<text x="569.6500000000001" y="440" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
-<text x="617.6500000000001" y="440" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">usuarioId</text>
-<text x="710.5500000000001" y="440" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<text x="569.6500000000001" y="460" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="617.6500000000001" y="460" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">papel</text>
-<rect x="1030.5500000000002" y="120" width="274.4" height="148.0" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
-<path d="M1030.5500000000002 126 a6 6 0 0 1 6 -6 h262.4 a6 6 0 0 1 6 6 v44 h-274.4 z" fill="#d9ebdd"/>
-<text x="1042.5500000000002" y="142" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">instituicoes</text>
-<text x="1042.5500000000002" y="159" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Instituicao</text>
-<text x="1042.5500000000002" y="192" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="1074.5500000000002" y="192" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="1042.5500000000002" y="212" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
-<text x="1074.5500000000002" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">nome</text>
-<text x="1042.5500000000002" y="232" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1074.5500000000002" y="232" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">solicitanteId</text>
-<text x="1199.8500000000001" y="232" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<text x="1042.5500000000002" y="252" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1074.5500000000002" y="252" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">aprovadoPorId</text>
-<text x="1199.8500000000001" y="252" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<rect x="1491.4" y="120" width="331.1" height="108.0" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
-<path d="M1491.4 126 a6 6 0 0 1 6 -6 h319.1 a6 6 0 0 1 6 6 v44 h-331.1 z" fill="#d9ebdd"/>
-<text x="1503.4" y="142" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">tipos_etapa</text>
-<text x="1503.4" y="159" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo TipoEtapa</text>
-<text x="1503.4" y="192" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="1535.4" y="192" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="1503.4" y="212" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1535.4" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">instituicaoId</text>
-<text x="1660.7" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; instituicoes.id</text>
-<rect x="1980.6000000000001" y="120" width="331.1" height="108.0" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
-<path d="M1980.6000000000001 126 a6 6 0 0 1 6 -6 h319.1 a6 6 0 0 1 6 6 v44 h-331.1 z" fill="#d9ebdd"/>
-<text x="1992.6000000000001" y="142" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">filas</text>
-<text x="1992.6000000000001" y="159" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Fila</text>
-<text x="1992.6000000000001" y="192" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="2024.6000000000001" y="192" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="1992.6000000000001" y="212" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="2024.6000000000001" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">instituicaoId</text>
-<text x="2149.9" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; instituicoes.id</text>
-<rect x="2538.65" y="120" width="217.7" height="108.0" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
-<path d="M2538.65 126 a6 6 0 0 1 6 -6 h205.7 a6 6 0 0 1 6 6 v44 h-217.7 z" fill="#d9ebdd"/>
-<text x="2550.65" y="142" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">mesas</text>
-<text x="2550.65" y="159" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Mesa</text>
-<text x="2550.65" y="192" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="2582.65" y="192" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="2550.65" y="212" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="2582.65" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">filaId</text>
-<text x="2651.25" y="212" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; filas.id</text>
-<rect x="1483.3000000000002" y="596" width="347.3" height="228.0" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
-<path d="M1483.3000000000002 602 a6 6 0 0 1 6 -6 h335.3 a6 6 0 0 1 6 6 v44 h-347.3 z" fill="#efe2cc"/>
-<text x="1495.3000000000002" y="618" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">senhas</text>
-<text x="1495.3000000000002" y="635" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Senha</text>
-<text x="1495.3000000000002" y="668" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="1527.3000000000002" y="668" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="1495.3000000000002" y="688" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
-<text x="1527.3000000000002" y="688" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">tokenPublico</text>
-<text x="1495.3000000000002" y="708" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1527.3000000000002" y="708" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">filaId</text>
-<text x="1668.8000000000002" y="708" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; filas.id</text>
-<text x="1495.3000000000002" y="728" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1527.3000000000002" y="728" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">instituicaoId</text>
-<text x="1668.8000000000002" y="728" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; instituicoes.id</text>
-<text x="1495.3000000000002" y="748" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1527.3000000000002" y="748" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">usuarioId</text>
-<text x="1668.8000000000002" y="748" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<text x="1495.3000000000002" y="768" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1527.3000000000002" y="768" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">operadorId</text>
-<text x="1668.8000000000002" y="768" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<text x="1495.3000000000002" y="788" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1527.3000000000002" y="788" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">flowId</text>
-<text x="1668.8000000000002" y="788" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flows.id</text>
-<text x="1495.3000000000002" y="808" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1527.3000000000002" y="808" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">flowStepAtualId</text>
-<text x="1668.8000000000002" y="808" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flow_steps.id</text>
-<rect x="2538.65" y="368" width="217.7" height="128.0" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
-<path d="M2538.65 374 a6 6 0 0 1 6 -6 h205.7 a6 6 0 0 1 6 6 v44 h-217.7 z" fill="#d9ebdd"/>
-<text x="2550.65" y="390" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">qr_codes</text>
-<text x="2550.65" y="407" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo QrCode</text>
-<text x="2550.65" y="440" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="2582.65" y="440" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="2550.65" y="460" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
-<text x="2582.65" y="460" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">codigo</text>
-<text x="2550.65" y="480" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="2582.65" y="480" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">filaId</text>
-<text x="2651.25" y="480" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; filas.id</text>
-<rect x="521.1" y="924" width="331.1" height="128.0" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
-<path d="M521.1 930 a6 6 0 0 1 6 -6 h319.1 a6 6 0 0 1 6 6 v44 h-331.1 z" fill="#e4dcef"/>
-<text x="533.1" y="946" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">auditorias</text>
-<text x="533.1" y="963" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Auditoria</text>
-<text x="533.1" y="996" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="565.1" y="996" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="533.1" y="1016" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="565.1" y="1016" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">instituicaoId</text>
-<text x="690.4000000000001" y="1016" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; instituicoes.id</text>
-<text x="533.1" y="1036" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="565.1" y="1036" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">usuarioId</text>
-<text x="690.4000000000001" y="1036" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<rect x="2566.5400000000004" y="924" width="161.9" height="108.0" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
-<path d="M2566.5400000000004 930 a6 6 0 0 1 6 -6 h149.9 a6 6 0 0 1 6 6 v44 h-161.9 z" fill="#e4dcef"/>
-<text x="2578.5400000000004" y="946" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">landing_pages</text>
-<text x="2578.5400000000004" y="963" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo LandingPage</text>
-<text x="2578.5400000000004" y="996" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="2610.5400000000004" y="996" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="2578.5400000000004" y="1016" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
-<text x="2610.5400000000004" y="1016" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">chave</text>
-<rect x="40.0" y="924" width="331.1" height="128.0" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
-<path d="M40.0 930 a6 6 0 0 1 6 -6 h319.1 a6 6 0 0 1 6 6 v44 h-331.1 z" fill="#e4dcef"/>
-<text x="52.0" y="946" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">notificacoes</text>
-<text x="52.0" y="963" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Notificacao</text>
-<text x="52.0" y="996" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="84.0" y="996" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="52.0" y="1016" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="84.0" y="1016" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">usuarioId</text>
-<text x="209.3" y="1016" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<text x="52.0" y="1036" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="84.0" y="1036" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">instituicaoId</text>
-<text x="209.3" y="1036" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; instituicoes.id</text>
-<rect x="1002.2" y="368" width="331.1" height="108.0" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
-<path d="M1002.2 374 a6 6 0 0 1 6 -6 h319.1 a6 6 0 0 1 6 6 v44 h-331.1 z" fill="#d9ebdd"/>
-<text x="1014.2" y="390" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">flows</text>
-<text x="1014.2" y="407" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo Flow</text>
-<text x="1014.2" y="440" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="1046.2" y="440" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="1014.2" y="460" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1046.2" y="460" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">instituicaoId</text>
-<text x="1171.5" y="460" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; instituicoes.id</text>
-<rect x="1548.1000000000001" y="368" width="217.7" height="128.0" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
-<path d="M1548.1000000000001 374 a6 6 0 0 1 6 -6 h205.7 a6 6 0 0 1 6 6 v44 h-217.7 z" fill="#d9ebdd"/>
-<text x="1560.1000000000001" y="390" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">flow_steps</text>
-<text x="1560.1000000000001" y="407" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo FlowStep</text>
-<text x="1560.1000000000001" y="440" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="1592.1000000000001" y="440" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="1560.1000000000001" y="460" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1592.1000000000001" y="460" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">flowId</text>
-<text x="1660.7" y="460" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flows.id</text>
-<text x="1560.1000000000001" y="480" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1592.1000000000001" y="480" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">filaId</text>
-<text x="1660.7" y="480" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; filas.id</text>
-<rect x="1022.45" y="596" width="290.6" height="148.0" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
-<path d="M1022.45 602 a6 6 0 0 1 6 -6 h278.6 a6 6 0 0 1 6 6 v44 h-290.6 z" fill="#d9ebdd"/>
-<text x="1034.45" y="618" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">flow_transitions</text>
-<text x="1034.45" y="635" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo FlowTransition</text>
-<text x="1034.45" y="668" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="1066.45" y="668" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="1034.45" y="688" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1066.45" y="688" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">flowId</text>
-<text x="1167.45" y="688" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flows.id</text>
-<text x="1034.45" y="708" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1066.45" y="708" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">fromStepId</text>
-<text x="1167.45" y="708" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flow_steps.id</text>
-<text x="1034.45" y="728" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1066.45" y="728" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">toStepId</text>
-<text x="1167.45" y="728" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flow_steps.id</text>
-<rect x="1988.8000000000002" y="596" width="314.7" height="148.0" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
-<path d="M1988.8000000000002 602 a6 6 0 0 1 6 -6 h302.7 a6 6 0 0 1 6 6 v44 h-314.7 z" fill="#efe2cc"/>
-<text x="2000.8000000000002" y="618" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">senha_flow_trackings</text>
-<text x="2000.8000000000002" y="635" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo SenhaFlowTracking</text>
-<text x="2000.8000000000002" y="668" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="2048.8" y="668" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="2000.8000000000002" y="688" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK,UK</text>
-<text x="2048.8" y="688" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">senhaId</text>
-<text x="2157.9" y="688" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; senhas.id</text>
-<text x="2000.8000000000002" y="708" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="2048.8" y="708" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">flowId</text>
-<text x="2157.9" y="708" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flows.id</text>
-<text x="2000.8000000000002" y="728" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="2048.8" y="728" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">stepAtualId</text>
-<text x="2157.9" y="728" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flow_steps.id</text>
-<rect x="2461.7000000000003" y="596" width="371.6" height="148.0" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
-<path d="M2461.7000000000003 602 a6 6 0 0 1 6 -6 h359.6 a6 6 0 0 1 6 6 v44 h-371.6 z" fill="#efe2cc"/>
-<text x="2473.7000000000003" y="618" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">senha_flow_historicos</text>
-<text x="2473.7000000000003" y="635" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo SenhaFlowHistorico</text>
-<text x="2473.7000000000003" y="668" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="2505.7000000000003" y="668" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="2473.7000000000003" y="688" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="2505.7000000000003" y="688" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">trackingId</text>
-<text x="2606.7000000000003" y="688" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; senha_flow_trackings.id</text>
-<text x="2473.7000000000003" y="708" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="2505.7000000000003" y="708" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">stepId</text>
-<text x="2606.7000000000003" y="708" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; flow_steps.id</text>
-<text x="2473.7000000000003" y="728" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="2505.7000000000003" y="728" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">operadorId</text>
-<text x="2606.7000000000003" y="728" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<rect x="1531.9" y="924" width="250.1" height="128.0" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
-<path d="M1531.9 930 a6 6 0 0 1 6 -6 h238.1 a6 6 0 0 1 6 6 v44 h-250.1 z" fill="#efe2cc"/>
-<text x="1543.9" y="946" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">chat_mensagens</text>
-<text x="1543.9" y="963" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">modelo ChatMensagem</text>
-<text x="1543.9" y="996" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
-<text x="1575.9" y="996" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">id</text>
-<text x="1543.9" y="1016" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1575.9" y="1016" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">senhaId</text>
-<text x="1668.8000000000002" y="1016" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; senhas.id</text>
-<text x="1543.9" y="1036" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
-<text x="1575.9" y="1036" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">usuarioId</text>
-<text x="1668.8000000000002" y="1036" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; users.id</text>
-<rect x="863.5" y="140.8" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="886.1" y="151.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="974.0" y="147.8" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="996.6" y="158.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="325.8" y="177.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="348.4" y="188.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="464.5" y="177.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="487.1" y="188.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="319.6" y="395.5" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="342.2" y="406.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="508.5" y="263.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="531.1" y="274.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="653.0" y="328.9" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="675.6" y="339.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="633.7" y="273.1" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="656.3" y="284.1" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="974.2" y="182.7" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="996.8" y="193.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="863.3" y="168.5" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="885.9" y="179.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="974.6" y="217.6" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="997.2" y="228.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="863.0" y="196.2" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="885.6" y="207.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1434.8" y="166.1" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1457.4" y="177.1" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1316.3" y="163.2" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1338.9" y="174.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1924.1" y="169.2" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1946.7" y="180.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1316.3" y="209.4" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1338.9" y="220.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="2482.1" y="167.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2504.7" y="178.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="2323.1" y="167.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2345.7" y="178.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1746.3" y="566.1" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1768.9" y="577.1" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="2098.5" y="243.9" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2121.1" y="254.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1523.8" y="564.7" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1546.4" y="575.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1251.2" y="285.3" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1273.8" y="296.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1431.1" y="629.2" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1453.7" y="640.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="785.6" y="263.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="808.2" y="274.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1432.7" y="683.7" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1455.3" y="694.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="837.5" y="274.9" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="860.1" y="285.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1433.4" y="729.4" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1456.0" y="740.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="1223.0" y="494.3" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1245.6" y="505.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1634.4" y="555.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1657.0" y="566.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="1634.4" y="523.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1657.0" y="534.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="2487.7" y="406.3" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2510.3" y="417.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="2239.7" y="243.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2262.3" y="254.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="736.9" y="887.9" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="759.5" y="898.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="1100.1" y="290.1" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1122.7" y="301.1" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="611.6" y="883.1" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="634.2" y="894.1" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="659.6" y="295.8" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="682.2" y="306.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="146.7" y="888.8" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="169.3" y="899.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="562.3" y="269.2" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="584.9" y="280.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="265.8" y="895.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="288.4" y="906.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="1035.2" y="283.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1057.8" y="294.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1154.1" y="328.2" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1176.7" y="339.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1163.6" y="293.8" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1186.2" y="304.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1491.5" y="393.6" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1514.1" y="404.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1344.7" y="396.4" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1367.3" y="407.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1772.6" y="376.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1795.2" y="387.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="2002.7" y="243.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2025.3" y="254.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1130.9" y="558.1" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1153.5" y="569.1" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1104.2" y="499.9" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1126.8" y="510.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1320.8" y="610.8" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1343.4" y="621.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1495.1" y="452.6" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1517.7" y="463.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1319.7" y="658.9" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1342.3" y="669.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1496.2" y="485.7" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1518.8" y="496.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1932.4" y="690.9" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1955.0" y="701.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1841.8" y="699.7" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1864.4" y="710.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="1933.8" y="628.2" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1956.4" y="639.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1343.1" y="443.2" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1365.7" y="454.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="2072.5" y="567.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2095.1" y="578.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="1774.4" y="438.5" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1797.0" y="449.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="2406.0" y="692.3" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2428.6" y="703.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="2314.0" y="670.7" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2336.6" y="681.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="2406.5" y="653.3" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2429.1" y="664.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1775.8" y="466.7" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1798.4" y="477.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="2406.2" y="617.6" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="2428.8" y="628.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
-<rect x="862.5" y="223.8" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="885.1" y="234.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1663.0" y="885.6" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1685.6" y="896.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="1647.4" y="848.4" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1670.0" y="859.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<rect x="1563.8" y="895.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="1586.4" y="906.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
-<rect x="734.3" y="263.0" width="45.2" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
-<text x="756.9" y="274.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
-<text x="40.0" y="1210.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">Notação: PK chave primária; FK chave estrangeira (-&gt; tabela.coluna e regra ON DELETE); UK restrição de unicidade; IDX índice.</text>
-<text x="40.0" y="1230.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">NOT NULL: coluna obrigatória; NULL: aceita vazio. Tipos conforme mapeamento padrão do Prisma para PostgreSQL 17.</text>
-<text x="40.0" y="1250.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">(mín,máx) junto à tabela: quantas linhas dela se ligam a uma linha da outra. Ex.: (1,1) na filha = toda linha tem exatamente 1 pai; (0,N) no pai = pode ter 0 ou mais filhas; (0,1) = no máximo 1.</text>
-</svg>
+<text x="40" y="74" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#52606d">Todas as 21 tabelas com PK, FK e UK. Tipos, nulidade e índices estão no dicionário de dados (dicionario-de-dados.md).</text>
+<line x1="1545.0" y1="1056.0" x2="1320.0" y2="1077.3" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="240.0" y1="630.0" x2="390.0" y2="630.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="240.0" y1="816.7" x2="493.3" y2="694.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="700.0" y1="630.0" x2="925.0" y2="608.7" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="603.3" y1="982.0" x2="1031.7" y2="694.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="596.7" y1="694.0" x2="545.0" y2="774.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="925.0" y1="651.3" x2="705.0" y2="838.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1245.0" y1="630.0" x2="1490.0" y2="630.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2045.0" y1="648.0" x2="1800.0" y2="630.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1138.3" y1="694.0" x2="1085.0" y2="784.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1545.0" y1="838.0" x2="1240.0" y2="838.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1085.0" y1="228.0" x2="1085.0" y2="308.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="545.0" y1="566.0" x2="900.0" y2="402.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="622.5" y1="566.0" x2="900.0" y2="449.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1085.0" y1="566.0" x2="1085.0" y2="496.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="467.5" y1="566.0" x2="545.0" y2="466.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="900.0" y1="355.0" x2="705.0" y2="402.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1270.0" y1="433.3" x2="1480.0" y2="402.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2045.0" y1="612.0" x2="1645.0" y2="456.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1270.0" y1="370.7" x2="1645.0" y2="238.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1840.0" y1="174.0" x2="1970.0" y2="174.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2615.0" y1="764.0" x2="2615.0" y2="694.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2245.0" y1="630.0" x2="2450.0" y2="630.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1320.0" y1="1034.7" x2="1975.0" y2="838.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2145.0" y1="684.0" x2="2145.0" y2="784.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="850.0" y1="1056.0" x2="720.0" y2="1056.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="240.0" y1="859.3" x2="486.7" y2="982.0" stroke="#3e4c59" stroke-width="1.3"/>
+<rect x="40.0" y="774.0" width="200" height="128" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
+<path d="M40.0 826.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#dde7f3"/>
+<text x="52.0" y="796.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">pessoa</text>
+<text x="52.0" y="813.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Pessoa e Cliente</text>
+<text x="52.0" y="846.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="84.0" y="846.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_id</text>
+<text x="52.0" y="866.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="84.0" y="866.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_cpf</text>
+<text x="52.0" y="886.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="84.0" y="886.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_email</text>
+<rect x="390.0" y="566.0" width="310" height="128" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
+<path d="M390.0 618.0 v-46.0 a6 6 0 0 1 6 -6 h298.0 a6 6 0 0 1 6 6 v46.0 z" fill="#dde7f3"/>
+<text x="402.0" y="588.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">funcionario</text>
+<text x="402.0" y="605.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Funcionario</text>
+<text x="402.0" y="638.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="448.0" y="638.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_id</text>
+<text x="549.0" y="638.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; pessoa.pess_id</text>
+<text x="402.0" y="658.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="448.0" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">funo_id</text>
+<text x="549.0" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcao.funo_id</text>
+<text x="402.0" y="678.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="448.0" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_login</text>
+<rect x="40.0" y="576.0" width="200" height="108" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
+<path d="M40.0 628.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#dde7f3"/>
+<text x="52.0" y="598.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">funcao</text>
+<text x="52.0" y="615.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Funcao</text>
+<text x="52.0" y="648.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="84.0" y="648.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">funo_id</text>
+<text x="52.0" y="668.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="84.0" y="668.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">funo_funcao</text>
+<rect x="1545.0" y="1002.0" width="200" height="108" rx="6" fill="#f2fafb" stroke="#3b7a84" stroke-width="1.5"/>
+<path d="M1545.0 1054.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d3e9ec"/>
+<text x="1557.0" y="1024.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">carro_marca</text>
+<text x="1557.0" y="1041.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe CarroMarca</text>
+<text x="1557.0" y="1074.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="1589.0" y="1074.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">cama_id</text>
+<text x="1557.0" y="1094.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="1589.0" y="1094.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">cama_marca</text>
+<rect x="850.0" y="992.0" width="470" height="128" rx="6" fill="#f2fafb" stroke="#3b7a84" stroke-width="1.5"/>
+<path d="M850.0 1044.0 v-46.0 a6 6 0 0 1 6 -6 h458.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d3e9ec"/>
+<text x="862.0" y="1014.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">carro_modelo</text>
+<text x="862.0" y="1031.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe CarroModelo</text>
+<text x="862.0" y="1064.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="908.0" y="1064.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">camo_id</text>
+<text x="862.0" y="1084.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="908.0" y="1084.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">camo_modelo</text>
+<text x="1016.9" y="1084.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">(UK composta)</text>
+<text x="862.0" y="1104.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK,UK</text>
+<text x="908.0" y="1104.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">cama_id</text>
+<text x="1016.9" y="1104.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; carro_marca.cama_id (UK composta)</text>
+<rect x="370.0" y="982.0" width="350" height="148" rx="6" fill="#f2fafb" stroke="#3b7a84" stroke-width="1.5"/>
+<path d="M370.0 1034.0 v-46.0 a6 6 0 0 1 6 -6 h338.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d3e9ec"/>
+<text x="382.0" y="1004.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">veiculo</text>
+<text x="382.0" y="1021.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Veiculo</text>
+<text x="382.0" y="1054.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="414.0" y="1054.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">veic_id</text>
+<text x="382.0" y="1074.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="414.0" y="1074.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">veic_placa</text>
+<text x="382.0" y="1094.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="414.0" y="1094.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_id</text>
+<text x="515.0" y="1094.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; pessoa.pess_id</text>
+<text x="382.0" y="1114.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="414.0" y="1114.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">camo_id</text>
+<text x="515.0" y="1114.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; carro_modelo.camo_id</text>
+<rect x="1545.0" y="784.0" width="200" height="108" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M1545.0 836.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="1557.0" y="806.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">servico</text>
+<text x="1557.0" y="823.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Servico</text>
+<text x="1557.0" y="856.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="1589.0" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">serv_id</text>
+<text x="1557.0" y="876.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="1589.0" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">serv_nome</text>
+<rect x="925.0" y="566.0" width="320" height="128" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M925.0 618.0 v-46.0 a6 6 0 0 1 6 -6 h308.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="937.0" y="588.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">orcamento</text>
+<text x="937.0" y="605.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Orcamento</text>
+<text x="937.0" y="638.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="969.0" y="638.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="937.0" y="658.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="969.0" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">veic_id</text>
+<text x="1046.3" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; veiculo.veic_id</text>
+<text x="937.0" y="678.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="969.0" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_id</text>
+<text x="1046.3" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<rect x="1490.0" y="576.0" width="310" height="108" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M1490.0 628.0 v-46.0 a6 6 0 0 1 6 -6 h298.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="1502.0" y="598.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">orcamento_peca</text>
+<text x="1502.0" y="615.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe ItemOrcamentoPeca</text>
+<text x="1502.0" y="648.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="1548.0" y="648.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="1625.3" y="648.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; orcamento.orca_id</text>
+<text x="1502.0" y="668.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="1548.0" y="668.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="1625.3" y="668.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; peca.peca_id</text>
+<rect x="930.0" y="784.0" width="310" height="108" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M930.0 836.0 v-46.0 a6 6 0 0 1 6 -6 h298.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="942.0" y="806.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">orcamento_servico</text>
+<text x="942.0" y="823.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe ItemOrcamentoServico</text>
+<text x="942.0" y="856.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="988.0" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="1065.3" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; orcamento.orca_id</text>
+<text x="942.0" y="876.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="988.0" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">serv_id</text>
+<text x="1065.3" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; servico.serv_id</text>
+<rect x="385.0" y="774.0" width="320" height="128" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M385.0 826.0 v-46.0 a6 6 0 0 1 6 -6 h308.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="397.0" y="796.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">orcamento_historico</text>
+<text x="397.0" y="813.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe HistoricoStatusOrcamento</text>
+<text x="397.0" y="846.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="429.0" y="846.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orhi_id</text>
+<text x="397.0" y="866.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="429.0" y="866.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="506.3" y="866.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; orcamento.orca_id</text>
+<text x="397.0" y="886.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="429.0" y="886.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_id</text>
+<text x="506.3" y="886.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<rect x="985.0" y="120.0" width="200" height="108" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
+<path d="M985.0 172.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d9ebdd"/>
+<text x="997.0" y="142.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">box</text>
+<text x="997.0" y="159.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Box</text>
+<text x="997.0" y="192.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="1029.0" y="192.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">box_id</text>
+<text x="997.0" y="212.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="1029.0" y="212.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">box_numero</text>
+<rect x="900.0" y="308.0" width="370" height="188" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
+<path d="M900.0 360.0 v-46.0 a6 6 0 0 1 6 -6 h358.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d9ebdd"/>
+<text x="912.0" y="330.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">ordem_servico</text>
+<text x="912.0" y="347.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe OrdemServico</text>
+<text x="912.0" y="380.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="958.0" y="380.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_id</text>
+<text x="912.0" y="400.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK,UK</text>
+<text x="958.0" y="400.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="1074.8" y="400.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; orcamento.orca_id</text>
+<text x="912.0" y="420.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="958.0" y="420.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">box_id</text>
+<text x="1074.8" y="420.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; box.box_id</text>
+<text x="912.0" y="440.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="958.0" y="440.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">meca_id</text>
+<text x="1074.8" y="440.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<text x="912.0" y="460.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="958.0" y="460.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_id</text>
+<text x="1074.8" y="460.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<text x="912.0" y="480.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="958.0" y="480.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_box_ativo</text>
+<text x="1074.8" y="480.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">(coluna gerada)</text>
+<rect x="1480.0" y="348.0" width="330" height="108" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
+<path d="M1480.0 400.0 v-46.0 a6 6 0 0 1 6 -6 h318.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d9ebdd"/>
+<text x="1492.0" y="370.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">ordem_servico_peca</text>
+<text x="1492.0" y="387.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">sem classe</text>
+<text x="1492.0" y="420.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="1538.0" y="420.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_id</text>
+<text x="1615.3" y="420.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; ordem_servico.os_id</text>
+<text x="1492.0" y="440.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="1538.0" y="440.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="1615.3" y="440.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; peca.peca_id</text>
+<rect x="385.0" y="338.0" width="320" height="128" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
+<path d="M385.0 390.0 v-46.0 a6 6 0 0 1 6 -6 h308.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d9ebdd"/>
+<text x="397.0" y="360.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">ordem_servico_historico</text>
+<text x="397.0" y="377.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe HistoricoStatusOS</text>
+<text x="397.0" y="410.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="429.0" y="410.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">oshi_id</text>
+<text x="397.0" y="430.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="429.0" y="430.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_id</text>
+<text x="506.3" y="430.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; ordem_servico.os_id</text>
+<text x="397.0" y="450.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="429.0" y="450.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_id</text>
+<text x="506.3" y="450.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<rect x="2045.0" y="576.0" width="200" height="108" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
+<path d="M2045.0 628.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#e4dcef"/>
+<text x="2057.0" y="598.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">peca</text>
+<text x="2057.0" y="615.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Peca</text>
+<text x="2057.0" y="648.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="2089.0" y="648.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="2057.0" y="668.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="2089.0" y="668.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_codigo</text>
+<rect x="1975.0" y="784.0" width="340" height="108" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
+<path d="M1975.0 836.0 v-46.0 a6 6 0 0 1 6 -6 h328.0 a6 6 0 0 1 6 6 v46.0 z" fill="#e4dcef"/>
+<text x="1987.0" y="806.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">peca_modelo</text>
+<text x="1987.0" y="823.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Compatibilidade</text>
+<text x="1987.0" y="856.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="2033.0" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="2110.3" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; peca.peca_id</text>
+<text x="1987.0" y="876.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="2033.0" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">camo_id</text>
+<text x="2110.3" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; carro_modelo.camo_id</text>
+<rect x="2515.0" y="764.0" width="200" height="148" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
+<path d="M2515.0 816.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#e4dcef"/>
+<text x="2527.0" y="786.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">distribuidora</text>
+<text x="2527.0" y="803.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Distribuidora</text>
+<text x="2527.0" y="836.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="2559.0" y="836.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_id</text>
+<text x="2527.0" y="856.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="2559.0" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_cnpj</text>
+<text x="2527.0" y="876.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="2559.0" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_telefone</text>
+<text x="2527.0" y="896.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="2559.0" y="896.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_email</text>
+<rect x="2450.0" y="566.0" width="330" height="128" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
+<path d="M2450.0 618.0 v-46.0 a6 6 0 0 1 6 -6 h318.0 a6 6 0 0 1 6 6 v46.0 z" fill="#e4dcef"/>
+<text x="2462.0" y="588.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">peca_distribuidora</text>
+<text x="2462.0" y="605.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe PecaDistribuidora</text>
+<text x="2462.0" y="638.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="2494.0" y="638.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pedi_id</text>
+<text x="2462.0" y="658.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="2494.0" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="2571.3" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; peca.peca_id</text>
+<text x="2462.0" y="678.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="2494.0" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_id</text>
+<text x="2571.3" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; distribuidora.dist_id</text>
+<rect x="1450.0" y="110.0" width="390" height="128" rx="6" fill="#fbf4f5" stroke="#9a5a66" stroke-width="1.5"/>
+<path d="M1450.0 162.0 v-46.0 a6 6 0 0 1 6 -6 h378.0 a6 6 0 0 1 6 6 v46.0 z" fill="#f0dce0"/>
+<text x="1462.0" y="132.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">pagamento</text>
+<text x="1462.0" y="149.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">sem classe</text>
+<text x="1462.0" y="182.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="1494.0" y="182.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">paga_id</text>
+<text x="1462.0" y="202.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="1494.0" y="202.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">paga_nota_fiscal</text>
+<text x="1462.0" y="222.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="1494.0" y="222.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_id</text>
+<text x="1642.4" y="222.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; ordem_servico.os_id</text>
+<rect x="1970.0" y="120.0" width="350" height="108" rx="6" fill="#fbf4f5" stroke="#9a5a66" stroke-width="1.5"/>
+<path d="M1970.0 172.0 v-46.0 a6 6 0 0 1 6 -6 h338.0 a6 6 0 0 1 6 6 v46.0 z" fill="#f0dce0"/>
+<text x="1982.0" y="142.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">pagamento_parcelas</text>
+<text x="1982.0" y="159.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">sem classe</text>
+<text x="1982.0" y="192.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="2028.0" y="192.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">paga_id</text>
+<text x="2136.9" y="192.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; pagamento.paga_id</text>
+<text x="1982.0" y="212.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="2028.0" y="212.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">papa_numero</text>
+<rect x="1498.1" y="1049.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1521.1" y="1062.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1320.9" y="1066.1" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1343.9" y="1079.1" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="241.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="264.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="343.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="366.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="243.1" y="795.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="266.1" y="808.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
+<rect x="448.7" y="695.5" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="471.7" y="708.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="700.9" y="618.7" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="723.9" y="631.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="878.1" y="601.9" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="901.1" y="614.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="600.2" y="959.6" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="623.2" y="972.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="988.8" y="698.4" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1011.8" y="711.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="560.6" y="705.2" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="583.6" y="718.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="535.0" y="744.8" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="558.0" y="757.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="875.3" y="665.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="898.3" y="678.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="708.7" y="806.4" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="731.7" y="819.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1246.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1269.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1443.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1466.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1998.1" y="637.2" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2021.1" y="650.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1800.9" y="622.8" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1823.9" y="635.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1103.1" y="705.6" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1126.1" y="718.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1074.2" y="754.4" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1097.2" y="767.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1498.0" y="829.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1521.0" y="842.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1241.0" y="829.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1264.0" y="842.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1062.0" y="243.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1085.0" y="256.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1062.0" y="275.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1085.0" y="288.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
+<rect x="543.8" y="546.9" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="566.8" y="559.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="850.7" y="405.2" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="873.7" y="418.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="621.6" y="547.7" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="644.6" y="560.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="850.3" y="451.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="873.3" y="464.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
+<rect x="1062.0" y="533.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1085.0" y="546.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
+<rect x="1062.0" y="511.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1085.0" y="524.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="459.2" y="538.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="482.2" y="551.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="507.3" y="476.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="530.3" y="489.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="853.7" y="351.6" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="876.7" y="364.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="705.3" y="387.4" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="728.3" y="400.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1270.7" y="420.8" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1293.7" y="433.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1433.3" y="396.5" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1456.3" y="409.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1995.0" y="592.5" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2018.0" y="605.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1649.0" y="457.5" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1672.0" y="470.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1274.3" y="352.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1297.3" y="365.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1594.7" y="238.7" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1617.7" y="251.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1841.0" y="165.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1864.0" y="178.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1923.0" y="165.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1946.0" y="178.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="2592.0" y="731.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2615.0" y="744.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="2592.0" y="709.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2615.0" y="722.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="2246.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2269.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="2403.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2426.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1324.8" y="1017.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1347.8" y="1030.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1924.2" y="837.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1947.2" y="850.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="2122.0" y="699.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2145.0" y="712.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="2122.0" y="751.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2145.0" y="764.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="803.0" y="1047.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="826.0" y="1060.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="721.0" y="1047.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="744.0" y="1060.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="243.0" y="863.2" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="266.0" y="876.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="442.2" y="962.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="465.2" y="975.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<text x="40.0" y="1176.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">Notação: PK chave primária; FK chave estrangeira (-&gt; tabela.coluna); UK restrição de unicidade. Todas as 27 chaves estrangeiras usam a regra padrão (NO ACTION, equivalente a RESTRICT).</text>
+<text x="40.0" y="1196.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">A UK composta de carro_modelo é (cama_id, camo_modelo). O MySQL cria um índice para cada FK; os índices comuns, a nulidade e os tipos estão no dicionário de dados.</text>
+<text x="40.0" y="1216.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">(mín,máx) junto à tabela: quantas linhas dela se ligam a uma linha da outra. Ex.: (1,1) na filha = toda linha tem exatamente 1 pai; (0,N) no pai = pode ter 0 ou mais filhas; (0,1) = no máximo 1.</text>
+<text x="40.0" y="1236.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">Cores por área: azul = pessoas e acesso; azul-petróleo = veículos; bege = orçamento; verde = ordem de serviço e boxes; roxo = estoque; rosa = pagamento.</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTozNGM5NDVhZS0zNjIzLTQ4NzAtOWE0NC05MDMxZTNiNDJiZDUAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaLbrCRuHUgp2658jmimkTHoAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoyZTUzMzliMC00Y2Y2LTQwODMtYTM1Ny01NDA4MzhjYmU0NTZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNocaPsyy/fQ0DAoMlX4O+nzAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggYxeh7A40ERSi26n2M2ucPdMDyk/maUixw+AOaTwolTukZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaKtZi8H8fNYSsbXMqC038wwAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYINdFpPPVlXWUVoNs6BeH+cB+1tHva0Zu/3JaHOFD4+LPZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GbWZZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjM0Yzk0NWFlLTM2MjMtNDg3MC05YTQ0LTkwMzFlM2I0MmJkNS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjRmYmI1Y2RmLWE1NWEtNGVlOC05ODYzLThhYmZjNjYxZTdhY3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBjF6HsDjQRFKLbqfYza5w90wPKT+ZpSLHD4A5pPCiVO6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggzRNPObd5OlseDb1dX1K7YLj37sWKZvv95IzlvKbbarmiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggLw7bdAIJmLpzUQWROLH7LgJ8dK6bwBqsNekhVAFuyod0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQL19L+FlfcfFyMIZ+I6FIJfTfB5BJwTqvxcYADFLe1WGkKwwbCPpWTfe+ZO+3dFr9EaI1+zupx/mNvM4rF95CFU=</c2pa:manifest></metadata></svg>
