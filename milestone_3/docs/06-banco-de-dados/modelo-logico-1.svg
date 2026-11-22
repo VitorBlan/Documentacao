@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2820 1270" width="2820" height="1270" role="img" aria-labelledby="t d" xmlns:c2pa="http://c2pa.org/manifest">
+<title id="t">Modelo lógico: visão geral (chaves e ligações)</title>
+<desc id="d">Todas as 21 tabelas com PK, FK e UK. Tipos, nulidade e índices estão no dicionário de dados.</desc>
+<rect x="0" y="0" width="2820" height="1270" fill="#ffffff"/>
+<text x="40" y="48" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#1f2933">Modelo lógico: visão geral (chaves e ligações)</text>
+<text x="40" y="74" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#52606d">Todas as 21 tabelas com PK, FK e UK. Tipos, nulidade e índices estão no dicionário de dados (dicionario-de-dados.md).</text>
+<line x1="1545.0" y1="1056.0" x2="1320.0" y2="1077.3" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="240.0" y1="630.0" x2="390.0" y2="630.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="240.0" y1="816.7" x2="493.3" y2="694.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="700.0" y1="630.0" x2="925.0" y2="608.7" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="603.3" y1="982.0" x2="1031.7" y2="694.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="596.7" y1="694.0" x2="545.0" y2="774.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="925.0" y1="651.3" x2="705.0" y2="838.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1245.0" y1="630.0" x2="1490.0" y2="630.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2045.0" y1="648.0" x2="1800.0" y2="630.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1138.3" y1="694.0" x2="1085.0" y2="784.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1545.0" y1="838.0" x2="1240.0" y2="838.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1085.0" y1="228.0" x2="1085.0" y2="308.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="545.0" y1="566.0" x2="900.0" y2="402.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="622.5" y1="566.0" x2="900.0" y2="449.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1085.0" y1="566.0" x2="1085.0" y2="496.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="467.5" y1="566.0" x2="545.0" y2="466.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="900.0" y1="355.0" x2="705.0" y2="402.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1270.0" y1="433.3" x2="1480.0" y2="402.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2045.0" y1="612.0" x2="1645.0" y2="456.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1270.0" y1="370.7" x2="1645.0" y2="238.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1840.0" y1="174.0" x2="1970.0" y2="174.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2615.0" y1="764.0" x2="2615.0" y2="694.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2245.0" y1="630.0" x2="2450.0" y2="630.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="1320.0" y1="1034.7" x2="1975.0" y2="838.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="2145.0" y1="684.0" x2="2145.0" y2="784.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="850.0" y1="1056.0" x2="720.0" y2="1056.0" stroke="#3e4c59" stroke-width="1.3"/>
+<line x1="240.0" y1="859.3" x2="486.7" y2="982.0" stroke="#3e4c59" stroke-width="1.3"/>
+<rect x="40.0" y="774.0" width="200" height="128" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
+<path d="M40.0 826.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#dde7f3"/>
+<text x="52.0" y="796.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">pessoa</text>
+<text x="52.0" y="813.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Pessoa e Cliente</text>
+<text x="52.0" y="846.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="84.0" y="846.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_id</text>
+<text x="52.0" y="866.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="84.0" y="866.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_cpf</text>
+<text x="52.0" y="886.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="84.0" y="886.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_email</text>
+<rect x="390.0" y="566.0" width="310" height="128" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
+<path d="M390.0 618.0 v-46.0 a6 6 0 0 1 6 -6 h298.0 a6 6 0 0 1 6 6 v46.0 z" fill="#dde7f3"/>
+<text x="402.0" y="588.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">funcionario</text>
+<text x="402.0" y="605.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Funcionario</text>
+<text x="402.0" y="638.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="448.0" y="638.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_id</text>
+<text x="549.0" y="638.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; pessoa.pess_id</text>
+<text x="402.0" y="658.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="448.0" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">funo_id</text>
+<text x="549.0" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcao.funo_id</text>
+<text x="402.0" y="678.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="448.0" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_login</text>
+<rect x="40.0" y="576.0" width="200" height="108" rx="6" fill="#f4f7fb" stroke="#4a6785" stroke-width="1.5"/>
+<path d="M40.0 628.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#dde7f3"/>
+<text x="52.0" y="598.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">funcao</text>
+<text x="52.0" y="615.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Funcao</text>
+<text x="52.0" y="648.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="84.0" y="648.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">funo_id</text>
+<text x="52.0" y="668.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="84.0" y="668.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">funo_funcao</text>
+<rect x="1545.0" y="1002.0" width="200" height="108" rx="6" fill="#f2fafb" stroke="#3b7a84" stroke-width="1.5"/>
+<path d="M1545.0 1054.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d3e9ec"/>
+<text x="1557.0" y="1024.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">carro_marca</text>
+<text x="1557.0" y="1041.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe CarroMarca</text>
+<text x="1557.0" y="1074.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="1589.0" y="1074.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">cama_id</text>
+<text x="1557.0" y="1094.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="1589.0" y="1094.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">cama_marca</text>
+<rect x="850.0" y="992.0" width="470" height="128" rx="6" fill="#f2fafb" stroke="#3b7a84" stroke-width="1.5"/>
+<path d="M850.0 1044.0 v-46.0 a6 6 0 0 1 6 -6 h458.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d3e9ec"/>
+<text x="862.0" y="1014.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">carro_modelo</text>
+<text x="862.0" y="1031.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe CarroModelo</text>
+<text x="862.0" y="1064.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="908.0" y="1064.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">camo_id</text>
+<text x="862.0" y="1084.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="908.0" y="1084.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">camo_modelo</text>
+<text x="1016.9" y="1084.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">(UK composta)</text>
+<text x="862.0" y="1104.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK,UK</text>
+<text x="908.0" y="1104.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">cama_id</text>
+<text x="1016.9" y="1104.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; carro_marca.cama_id (UK composta)</text>
+<rect x="370.0" y="982.0" width="350" height="148" rx="6" fill="#f2fafb" stroke="#3b7a84" stroke-width="1.5"/>
+<path d="M370.0 1034.0 v-46.0 a6 6 0 0 1 6 -6 h338.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d3e9ec"/>
+<text x="382.0" y="1004.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">veiculo</text>
+<text x="382.0" y="1021.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Veiculo</text>
+<text x="382.0" y="1054.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="414.0" y="1054.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">veic_id</text>
+<text x="382.0" y="1074.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="414.0" y="1074.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">veic_placa</text>
+<text x="382.0" y="1094.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="414.0" y="1094.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pess_id</text>
+<text x="515.0" y="1094.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; pessoa.pess_id</text>
+<text x="382.0" y="1114.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="414.0" y="1114.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">camo_id</text>
+<text x="515.0" y="1114.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; carro_modelo.camo_id</text>
+<rect x="1545.0" y="784.0" width="200" height="108" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M1545.0 836.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="1557.0" y="806.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">servico</text>
+<text x="1557.0" y="823.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Servico</text>
+<text x="1557.0" y="856.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="1589.0" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">serv_id</text>
+<text x="1557.0" y="876.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="1589.0" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">serv_nome</text>
+<rect x="925.0" y="566.0" width="320" height="128" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M925.0 618.0 v-46.0 a6 6 0 0 1 6 -6 h308.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="937.0" y="588.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">orcamento</text>
+<text x="937.0" y="605.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Orcamento</text>
+<text x="937.0" y="638.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="969.0" y="638.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="937.0" y="658.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="969.0" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">veic_id</text>
+<text x="1046.3" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; veiculo.veic_id</text>
+<text x="937.0" y="678.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="969.0" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_id</text>
+<text x="1046.3" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<rect x="1490.0" y="576.0" width="310" height="108" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M1490.0 628.0 v-46.0 a6 6 0 0 1 6 -6 h298.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="1502.0" y="598.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">orcamento_peca</text>
+<text x="1502.0" y="615.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe ItemOrcamentoPeca</text>
+<text x="1502.0" y="648.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="1548.0" y="648.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="1625.3" y="648.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; orcamento.orca_id</text>
+<text x="1502.0" y="668.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="1548.0" y="668.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="1625.3" y="668.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; peca.peca_id</text>
+<rect x="930.0" y="784.0" width="310" height="108" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M930.0 836.0 v-46.0 a6 6 0 0 1 6 -6 h298.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="942.0" y="806.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">orcamento_servico</text>
+<text x="942.0" y="823.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe ItemOrcamentoServico</text>
+<text x="942.0" y="856.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="988.0" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="1065.3" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; orcamento.orca_id</text>
+<text x="942.0" y="876.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="988.0" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">serv_id</text>
+<text x="1065.3" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; servico.serv_id</text>
+<rect x="385.0" y="774.0" width="320" height="128" rx="6" fill="#fbf7f1" stroke="#8a6a3b" stroke-width="1.5"/>
+<path d="M385.0 826.0 v-46.0 a6 6 0 0 1 6 -6 h308.0 a6 6 0 0 1 6 6 v46.0 z" fill="#efe2cc"/>
+<text x="397.0" y="796.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">orcamento_historico</text>
+<text x="397.0" y="813.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe HistoricoStatusOrcamento</text>
+<text x="397.0" y="846.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="429.0" y="846.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orhi_id</text>
+<text x="397.0" y="866.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="429.0" y="866.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="506.3" y="866.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; orcamento.orca_id</text>
+<text x="397.0" y="886.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="429.0" y="886.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_id</text>
+<text x="506.3" y="886.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<rect x="985.0" y="120.0" width="200" height="108" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
+<path d="M985.0 172.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d9ebdd"/>
+<text x="997.0" y="142.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">box</text>
+<text x="997.0" y="159.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Box</text>
+<text x="997.0" y="192.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="1029.0" y="192.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">box_id</text>
+<text x="997.0" y="212.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="1029.0" y="212.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">box_numero</text>
+<rect x="900.0" y="308.0" width="370" height="188" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
+<path d="M900.0 360.0 v-46.0 a6 6 0 0 1 6 -6 h358.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d9ebdd"/>
+<text x="912.0" y="330.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">ordem_servico</text>
+<text x="912.0" y="347.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe OrdemServico</text>
+<text x="912.0" y="380.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="958.0" y="380.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_id</text>
+<text x="912.0" y="400.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK,UK</text>
+<text x="958.0" y="400.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">orca_id</text>
+<text x="1074.8" y="400.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; orcamento.orca_id</text>
+<text x="912.0" y="420.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="958.0" y="420.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">box_id</text>
+<text x="1074.8" y="420.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; box.box_id</text>
+<text x="912.0" y="440.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="958.0" y="440.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">meca_id</text>
+<text x="1074.8" y="440.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<text x="912.0" y="460.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="958.0" y="460.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_id</text>
+<text x="1074.8" y="460.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<text x="912.0" y="480.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="958.0" y="480.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_box_ativo</text>
+<text x="1074.8" y="480.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">(coluna gerada)</text>
+<rect x="1480.0" y="348.0" width="330" height="108" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
+<path d="M1480.0 400.0 v-46.0 a6 6 0 0 1 6 -6 h318.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d9ebdd"/>
+<text x="1492.0" y="370.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">ordem_servico_peca</text>
+<text x="1492.0" y="387.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">sem classe</text>
+<text x="1492.0" y="420.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="1538.0" y="420.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_id</text>
+<text x="1615.3" y="420.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; ordem_servico.os_id</text>
+<text x="1492.0" y="440.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="1538.0" y="440.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="1615.3" y="440.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; peca.peca_id</text>
+<rect x="385.0" y="338.0" width="320" height="128" rx="6" fill="#f4f9f5" stroke="#4d7a5a" stroke-width="1.5"/>
+<path d="M385.0 390.0 v-46.0 a6 6 0 0 1 6 -6 h308.0 a6 6 0 0 1 6 6 v46.0 z" fill="#d9ebdd"/>
+<text x="397.0" y="360.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">ordem_servico_historico</text>
+<text x="397.0" y="377.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe HistoricoStatusOS</text>
+<text x="397.0" y="410.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="429.0" y="410.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">oshi_id</text>
+<text x="397.0" y="430.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="429.0" y="430.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_id</text>
+<text x="506.3" y="430.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; ordem_servico.os_id</text>
+<text x="397.0" y="450.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="429.0" y="450.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">func_id</text>
+<text x="506.3" y="450.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; funcionario.pess_id</text>
+<rect x="2045.0" y="576.0" width="200" height="108" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
+<path d="M2045.0 628.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#e4dcef"/>
+<text x="2057.0" y="598.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">peca</text>
+<text x="2057.0" y="615.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Peca</text>
+<text x="2057.0" y="648.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="2089.0" y="648.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="2057.0" y="668.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="2089.0" y="668.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_codigo</text>
+<rect x="1975.0" y="784.0" width="340" height="108" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
+<path d="M1975.0 836.0 v-46.0 a6 6 0 0 1 6 -6 h328.0 a6 6 0 0 1 6 6 v46.0 z" fill="#e4dcef"/>
+<text x="1987.0" y="806.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">peca_modelo</text>
+<text x="1987.0" y="823.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Compatibilidade</text>
+<text x="1987.0" y="856.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="2033.0" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="2110.3" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; peca.peca_id</text>
+<text x="1987.0" y="876.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="2033.0" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">camo_id</text>
+<text x="2110.3" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; carro_modelo.camo_id</text>
+<rect x="2515.0" y="764.0" width="200" height="148" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
+<path d="M2515.0 816.0 v-46.0 a6 6 0 0 1 6 -6 h188.0 a6 6 0 0 1 6 6 v46.0 z" fill="#e4dcef"/>
+<text x="2527.0" y="786.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">distribuidora</text>
+<text x="2527.0" y="803.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe Distribuidora</text>
+<text x="2527.0" y="836.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="2559.0" y="836.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_id</text>
+<text x="2527.0" y="856.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="2559.0" y="856.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_cnpj</text>
+<text x="2527.0" y="876.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="2559.0" y="876.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_telefone</text>
+<text x="2527.0" y="896.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="2559.0" y="896.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_email</text>
+<rect x="2450.0" y="566.0" width="330" height="128" rx="6" fill="#f7f5fa" stroke="#6d5b8c" stroke-width="1.5"/>
+<path d="M2450.0 618.0 v-46.0 a6 6 0 0 1 6 -6 h318.0 a6 6 0 0 1 6 6 v46.0 z" fill="#e4dcef"/>
+<text x="2462.0" y="588.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">peca_distribuidora</text>
+<text x="2462.0" y="605.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">classe PecaDistribuidora</text>
+<text x="2462.0" y="638.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="2494.0" y="638.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">pedi_id</text>
+<text x="2462.0" y="658.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="2494.0" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">peca_id</text>
+<text x="2571.3" y="658.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; peca.peca_id</text>
+<text x="2462.0" y="678.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="2494.0" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">dist_id</text>
+<text x="2571.3" y="678.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; distribuidora.dist_id</text>
+<rect x="1450.0" y="110.0" width="390" height="128" rx="6" fill="#fbf4f5" stroke="#9a5a66" stroke-width="1.5"/>
+<path d="M1450.0 162.0 v-46.0 a6 6 0 0 1 6 -6 h378.0 a6 6 0 0 1 6 6 v46.0 z" fill="#f0dce0"/>
+<text x="1462.0" y="132.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">pagamento</text>
+<text x="1462.0" y="149.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">sem classe</text>
+<text x="1462.0" y="182.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="1494.0" y="182.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">paga_id</text>
+<text x="1462.0" y="202.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">UK</text>
+<text x="1494.0" y="202.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">paga_nota_fiscal</text>
+<text x="1462.0" y="222.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">FK</text>
+<text x="1494.0" y="222.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">os_id</text>
+<text x="1642.4" y="222.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; ordem_servico.os_id</text>
+<rect x="1970.0" y="120.0" width="350" height="108" rx="6" fill="#fbf4f5" stroke="#9a5a66" stroke-width="1.5"/>
+<path d="M1970.0 172.0 v-46.0 a6 6 0 0 1 6 -6 h338.0 a6 6 0 0 1 6 6 v46.0 z" fill="#f0dce0"/>
+<text x="1982.0" y="142.0" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1f2933">pagamento_parcelas</text>
+<text x="1982.0" y="159.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">sem classe</text>
+<text x="1982.0" y="192.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK,FK</text>
+<text x="2028.0" y="192.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">paga_id</text>
+<text x="2136.9" y="192.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#52606d">-&gt; pagamento.paga_id</text>
+<text x="1982.0" y="212.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2933">PK</text>
+<text x="2028.0" y="212.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#1f2933">papa_numero</text>
+<rect x="1498.1" y="1049.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1521.1" y="1062.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1320.9" y="1066.1" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1343.9" y="1079.1" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="241.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="264.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="343.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="366.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="243.1" y="795.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="266.1" y="808.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
+<rect x="448.7" y="695.5" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="471.7" y="708.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="700.9" y="618.7" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="723.9" y="631.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="878.1" y="601.9" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="901.1" y="614.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="600.2" y="959.6" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="623.2" y="972.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="988.8" y="698.4" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1011.8" y="711.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="560.6" y="705.2" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="583.6" y="718.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="535.0" y="744.8" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="558.0" y="757.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="875.3" y="665.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="898.3" y="678.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="708.7" y="806.4" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="731.7" y="819.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1246.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1269.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1443.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1466.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1998.1" y="637.2" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2021.1" y="650.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1800.9" y="622.8" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1823.9" y="635.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1103.1" y="705.6" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1126.1" y="718.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1074.2" y="754.4" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1097.2" y="767.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1498.0" y="829.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1521.0" y="842.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1241.0" y="829.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1264.0" y="842.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1062.0" y="243.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1085.0" y="256.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1062.0" y="275.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1085.0" y="288.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
+<rect x="543.8" y="546.9" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="566.8" y="559.9" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="850.7" y="405.2" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="873.7" y="418.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="621.6" y="547.7" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="644.6" y="560.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="850.3" y="451.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="873.3" y="464.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
+<rect x="1062.0" y="533.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1085.0" y="546.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,1)</text>
+<rect x="1062.0" y="511.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1085.0" y="524.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="459.2" y="538.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="482.2" y="551.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="507.3" y="476.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="530.3" y="489.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="853.7" y="351.6" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="876.7" y="364.6" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="705.3" y="387.4" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="728.3" y="400.4" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1270.7" y="420.8" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1293.7" y="433.8" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1433.3" y="396.5" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1456.3" y="409.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1995.0" y="592.5" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2018.0" y="605.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1649.0" y="457.5" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1672.0" y="470.5" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1274.3" y="352.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1297.3" y="365.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1594.7" y="238.7" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1617.7" y="251.7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1841.0" y="165.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1864.0" y="178.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1923.0" y="165.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1946.0" y="178.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="2592.0" y="731.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2615.0" y="744.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="2592.0" y="709.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2615.0" y="722.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="2246.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2269.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="2403.0" y="621.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2426.0" y="634.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="1324.8" y="1017.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1347.8" y="1030.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="1924.2" y="837.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1947.2" y="850.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="2122.0" y="699.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2145.0" y="712.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="2122.0" y="751.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="2145.0" y="764.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="803.0" y="1047.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="826.0" y="1060.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="721.0" y="1047.0" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="744.0" y="1060.0" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<rect x="243.0" y="863.2" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="266.0" y="876.2" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(0,N)</text>
+<rect x="442.2" y="962.3" width="46.0" height="18.0" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<text x="465.2" y="975.3" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#1f2933">(1,1)</text>
+<text x="40.0" y="1176.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">Notação: PK chave primária; FK chave estrangeira (-&gt; tabela.coluna); UK restrição de unicidade. Todas as 27 chaves estrangeiras usam a regra padrão (NO ACTION, equivalente a RESTRICT).</text>
+<text x="40.0" y="1196.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">A UK composta de carro_modelo é (cama_id, camo_modelo). O MySQL cria um índice para cada FK; os índices comuns, a nulidade e os tipos estão no dicionário de dados.</text>
+<text x="40.0" y="1216.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">(mín,máx) junto à tabela: quantas linhas dela se ligam a uma linha da outra. Ex.: (1,1) na filha = toda linha tem exatamente 1 pai; (0,N) no pai = pode ter 0 ou mais filhas; (0,1) = no máximo 1.</text>
+<text x="40.0" y="1236.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52606d">Cores por área: azul = pessoas e acesso; azul-petróleo = veículos; bege = orçamento; verde = ordem de serviço e boxes; roxo = estoque; rosa = pagamento.</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo1ZWIwM2NjMy1lZjAzLTRkNDktYWJmYS05YzU3ZGI4MDZjZTgAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaKd4ok1vX9efINd7w8AXqV0AAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDphNGQ3OTU2Ny1hN2Q4LTRkNzEtYjhkYi0yMmZlODE0N2M2Y2NscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo3hkbw+n/2+KIaoxQX52lQQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggD0Ktlfh6BEzbCyM1uBNG9rHz33SjPjkx4m50Y9CobgOkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaJEIAfXLXzplbQ+QumsN2XAAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYINdFpPPVlXWUVoNs6BeH+cB+1tHva0Zu/3JaHOFD4+LPZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GbWZZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjVlYjAzY2MzLWVmMDMtNGQ0OS1hYmZhLTljNTdkYjgwNmNlOC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjNmOWRhOTM0LTY1NzktNGFmOS04ODhiLWE0Y2I2MmRkODY0N3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAPQq2V+HoETNsLIzW4E0b2sfPfdKM+OTHibnRj0KhuA6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggeWIhtHcWQhWKj+mFQvVgA9hTxV/XLjALulvzohzWzA6iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggq6NmwaKmPsOXAdWkdyb3hGJ96Nzt21NbMpM5ZR/jxAF0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQOQwRmAeIz6KiOsoe+oBzDT3vbvAidkTcwTbA1nkWRUS4OetPywzPYvALuKzchms4kIVQEfnNH4U7oWT27J3WqM=</c2pa:manifest></metadata></svg>
