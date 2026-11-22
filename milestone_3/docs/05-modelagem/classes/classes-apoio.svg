@@ -1,289 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1120" width="1720" height="1120" role="img" aria-labelledby="titulo descricao">
-  <title id="titulo">Diagrama de classes de domínio (apoio) do FilaCidadã</title>
-  <desc id="descricao">Classes de apoio ao núcleo: fluxos (Fluxo, EtapaFluxo, TransicaoFluxo, RastreioFluxo, HistoricoFluxo), ChatMensagem, Notificacao, Auditoria e LandingPage, com enumerações TipoTransicao, StatusRastreio e TipoNotificacao. Instituicao, Fila, Senha e Usuario aparecem tracejadas como referências ao núcleo (classes.svg). As ligações de Notificacao e Auditoria com Instituicao estão no README por falta de espaço sem cruzamentos.</desc>
-  <style>
-    text { font-family: sans-serif; fill: #1d1d1f; }
-    .nome { font-size: 15px; font-weight: bold; }
-    .est { font-size: 12px; font-style: italic; fill: #444444; }
-    .at { font-size: 13px; }
-    .ml { font-size: 12px; }
-    .rl { font-size: 12px; font-style: italic; fill: #1f4e8c; }
-    .cl { fill: #ffffff; stroke: #4a5b70; stroke-width: 1.2; }
-    .ch { fill: #e6edf6; stroke: #4a5b70; stroke-width: 1.2; }
-    .sb { fill: #f5f5f5; stroke: #7a7a7a; stroke-width: 1.2; stroke-dasharray: 6 4; }
-    .en { fill: #ffffff; stroke: #7a7a7a; stroke-width: 1.2; }
-    .eh { fill: #ededed; stroke: #7a7a7a; stroke-width: 1.2; }
-    .ln { fill: none; stroke: #4a5b70; stroke-width: 1.3; }
-    .sp { stroke: #4a5b70; stroke-width: 1; }
-    .cp { fill: #4a5b70; stroke: #4a5b70; stroke-width: 1; }
-  </style>
-  <rect x="0" y="0" width="1720" height="1120" fill="#ffffff"/>
-
-  <!-- Referencias ao nucleo (tracejadas) -->
-  <g id="ref-Instituicao">
-    <rect class="sb" x="40" y="60" width="220" height="46"/>
-    <text class="nome" x="150" y="80" text-anchor="middle">Instituicao</text>
-    <text class="est" x="150" y="96" text-anchor="middle">(classes.svg)</text>
-  </g>
-  <g id="ref-Fila">
-    <rect class="sb" x="40" y="300" width="220" height="46"/>
-    <text class="nome" x="150" y="320" text-anchor="middle">Fila</text>
-    <text class="est" x="150" y="336" text-anchor="middle">(classes.svg)</text>
-  </g>
-  <g id="ref-Senha">
-    <rect class="sb" x="1100" y="320" width="260" height="46"/>
-    <text class="nome" x="1230" y="340" text-anchor="middle">Senha</text>
-    <text class="est" x="1230" y="356" text-anchor="middle">(classes.svg)</text>
-  </g>
-  <g id="ref-Usuario">
-    <rect class="sb" x="1100" y="800" width="260" height="46"/>
-    <text class="nome" x="1230" y="820" text-anchor="middle">Usuario</text>
-    <text class="est" x="1230" y="836" text-anchor="middle">(classes.svg)</text>
-  </g>
-
-  <!-- Classe: Fluxo -->
-  <g id="Fluxo">
-    <rect class="cl" x="340" y="60" width="280" height="196"/>
-    <rect class="ch" x="340" y="60" width="280" height="34"/>
-    <text class="nome" x="480" y="82" text-anchor="middle">Fluxo</text>
-    <line class="sp" x1="340" y1="94" x2="620" y2="94"/>
-    <text class="at" x="350" y="111">-nome: Texto</text>
-    <text class="at" x="350" y="129">-descricao: Texto?</text>
-    <text class="at" x="350" y="147">-ativo: Booleano</text>
-    <line class="sp" x1="340" y1="154" x2="620" y2="154"/>
-    <text class="at" x="350" y="171">+ingressar(senha)</text>
-    <text class="at" x="350" y="189">+encaminhar(senha, etapa)</text>
-    <text class="at" x="350" y="207">+darAlta(senha)</text>
-    <text class="at" x="350" y="225">+transicoesDisponiveis(senha)</text>
-    <text class="at" x="350" y="243">+desativar()</text>
-  </g>
-
-  <!-- Classe: EtapaFluxo -->
-  <g id="EtapaFluxo">
-    <rect class="cl" x="340" y="300" width="280" height="154"/>
-    <rect class="ch" x="340" y="300" width="280" height="34"/>
-    <text class="nome" x="480" y="322" text-anchor="middle">EtapaFluxo</text>
-    <line class="sp" x1="340" y1="334" x2="620" y2="334"/>
-    <text class="at" x="350" y="351">-nome: Texto</text>
-    <text class="at" x="350" y="369">-ordem: Inteiro</text>
-    <text class="at" x="350" y="387">-tipo: Texto</text>
-    <text class="at" x="350" y="405">-tempoMedioMinutos: Inteiro?</text>
-    <text class="at" x="350" y="423">-permiteBifurcacao: Booleano</text>
-    <text class="at" x="350" y="441">-ativa: Booleano</text>
-  </g>
-
-  <!-- Classe: TransicaoFluxo -->
-  <g id="TransicaoFluxo">
-    <rect class="cl" x="340" y="560" width="280" height="82"/>
-    <rect class="ch" x="340" y="560" width="280" height="34"/>
-    <text class="nome" x="480" y="582" text-anchor="middle">TransicaoFluxo</text>
-    <line class="sp" x1="340" y1="594" x2="620" y2="594"/>
-    <text class="at" x="350" y="611">-tipo: TipoTransicao</text>
-    <text class="at" x="350" y="629">-rotulo: Texto?</text>
-  </g>
-
-  <!-- Classe: RastreioFluxo -->
-  <g id="RastreioFluxo">
-    <rect class="cl" x="720" y="300" width="280" height="160"/>
-    <rect class="ch" x="720" y="300" width="280" height="34"/>
-    <text class="nome" x="860" y="322" text-anchor="middle">RastreioFluxo</text>
-    <line class="sp" x1="720" y1="334" x2="1000" y2="334"/>
-    <text class="at" x="730" y="351">-status: StatusRastreio</text>
-    <text class="at" x="730" y="369">-iniciadoEm: DataHora</text>
-    <text class="at" x="730" y="387">-etapaAtual: EtapaFluxo?</text>
-    <line class="sp" x1="720" y1="394" x2="1000" y2="394"/>
-    <text class="at" x="730" y="411">+concluir()</text>
-    <text class="at" x="730" y="429">+cancelar()</text>
-    <text class="at" x="730" y="447">+registrarEntrada(etapa)</text>
-  </g>
-
-  <!-- Classe: HistoricoFluxo -->
-  <g id="HistoricoFluxo">
-    <rect class="cl" x="720" y="540" width="280" height="178"/>
-    <rect class="ch" x="720" y="540" width="280" height="34"/>
-    <text class="nome" x="860" y="562" text-anchor="middle">HistoricoFluxo</text>
-    <line class="sp" x1="720" y1="574" x2="1000" y2="574"/>
-    <text class="at" x="730" y="591">-nomeEtapa: Texto</text>
-    <text class="at" x="730" y="609">-filaSnapshot: Texto</text>
-    <text class="at" x="730" y="627">-entradaEm: DataHora</text>
-    <text class="at" x="730" y="645">-saidaEm: DataHora?</text>
-    <text class="at" x="730" y="663">-resultado: Texto?</text>
-    <text class="at" x="730" y="681">-observacao: Texto?</text>
-    <line class="sp" x1="720" y1="688" x2="1000" y2="688"/>
-    <text class="at" x="730" y="705">+registrarSaida(resultado, observacao)</text>
-  </g>
-
-  <!-- Classe: ChatMensagem -->
-  <g id="ChatMensagem">
-    <rect class="cl" x="1100" y="540" width="260" height="100"/>
-    <rect class="ch" x="1100" y="540" width="260" height="34"/>
-    <text class="nome" x="1230" y="562" text-anchor="middle">ChatMensagem</text>
-    <line class="sp" x1="1100" y1="574" x2="1360" y2="574"/>
-    <text class="at" x="1110" y="591">-texto: Texto</text>
-    <text class="at" x="1110" y="609">-nomeAutor: Texto</text>
-    <text class="at" x="1110" y="627">-criadaEm: DataHora</text>
-  </g>
-
-  <!-- Classe: Notificacao -->
-  <g id="Notificacao">
-    <rect class="cl" x="720" y="780" width="280" height="160"/>
-    <rect class="ch" x="720" y="780" width="280" height="34"/>
-    <text class="nome" x="860" y="802" text-anchor="middle">Notificacao</text>
-    <line class="sp" x1="720" y1="814" x2="1000" y2="814"/>
-    <text class="at" x="730" y="831">-tipo: TipoNotificacao</text>
-    <text class="at" x="730" y="849">-titulo: Texto</text>
-    <text class="at" x="730" y="867">-mensagem: Texto</text>
-    <text class="at" x="730" y="885">-lida: Booleano</text>
-    <text class="at" x="730" y="903">-dados: JSON?</text>
-    <line class="sp" x1="720" y1="910" x2="1000" y2="910"/>
-    <text class="at" x="730" y="927">+marcarComoLida()</text>
-  </g>
-
-  <!-- Classe: Auditoria -->
-  <g id="Auditoria">
-    <rect class="cl" x="40" y="900" width="260" height="160"/>
-    <rect class="ch" x="40" y="900" width="260" height="34"/>
-    <text class="nome" x="170" y="922" text-anchor="middle">Auditoria</text>
-    <line class="sp" x1="40" y1="934" x2="300" y2="934"/>
-    <text class="at" x="50" y="951">-acao: Texto</text>
-    <text class="at" x="50" y="969">-entidade: Texto</text>
-    <text class="at" x="50" y="987">-entidadeId: UUID?</text>
-    <text class="at" x="50" y="1005">-dados: JSON?</text>
-    <text class="at" x="50" y="1023">-registradaEm: DataHora</text>
-    <line class="sp" x1="40" y1="1030" x2="300" y2="1030"/>
-    <text class="at" x="50" y="1047">+registrar(acao, entidade)</text>
-  </g>
-
-  <!-- Classe: LandingPage -->
-  <g id="LandingPage">
-    <rect class="cl" x="1420" y="470" width="260" height="124"/>
-    <rect class="ch" x="1420" y="470" width="260" height="34"/>
-    <text class="nome" x="1550" y="492" text-anchor="middle">LandingPage</text>
-    <line class="sp" x1="1420" y1="504" x2="1680" y2="504"/>
-    <text class="at" x="1430" y="521">-chave: Texto</text>
-    <text class="at" x="1430" y="539">-conteudo: JSON</text>
-    <line class="sp" x1="1420" y1="546" x2="1680" y2="546"/>
-    <text class="at" x="1430" y="563">+atualizar(dados)</text>
-    <text class="at" x="1430" y="581">+dadosPadrao()</text>
-  </g>
-
-  <!-- Enumeracoes -->
-  <g id="TipoTransicao">
-    <rect class="en" x="1100" y="60" width="260" height="110"/>
-    <rect class="eh" x="1100" y="60" width="260" height="44"/>
-    <text class="est" x="1230" y="77" text-anchor="middle">&#171;enumeração&#187;</text>
-    <text class="nome" x="1230" y="96" text-anchor="middle">TipoTransicao</text>
-    <line class="sp" x1="1100" y1="104" x2="1360" y2="104"/>
-    <text class="at" x="1110" y="121">SEQUENCIAL</text>
-    <text class="at" x="1110" y="139">CONDICIONAL</text>
-    <text class="at" x="1110" y="157">ALTA</text>
-  </g>
-  <g id="StatusRastreio">
-    <rect class="en" x="1100" y="190" width="260" height="110"/>
-    <rect class="eh" x="1100" y="190" width="260" height="44"/>
-    <text class="est" x="1230" y="207" text-anchor="middle">&#171;enumeração&#187;</text>
-    <text class="nome" x="1230" y="226" text-anchor="middle">StatusRastreio</text>
-    <line class="sp" x1="1100" y1="234" x2="1360" y2="234"/>
-    <text class="at" x="1110" y="251">EM_ANDAMENTO</text>
-    <text class="at" x="1110" y="269">CONCLUIDO</text>
-    <text class="at" x="1110" y="287">CANCELADO</text>
-  </g>
-  <g id="TipoNotificacao">
-    <rect class="en" x="1420" y="60" width="260" height="344"/>
-    <rect class="eh" x="1420" y="60" width="260" height="44"/>
-    <text class="est" x="1550" y="77" text-anchor="middle">&#171;enumeração&#187;</text>
-    <text class="nome" x="1550" y="96" text-anchor="middle">TipoNotificacao</text>
-    <line class="sp" x1="1420" y1="104" x2="1680" y2="104"/>
-    <text class="at" x="1430" y="121">SENHA_CHAMADA</text>
-    <text class="at" x="1430" y="139">SENHA_FINALIZADA</text>
-    <text class="at" x="1430" y="157">SENHA_CANCELADA</text>
-    <text class="at" x="1430" y="175">SENHA_PROXIMA</text>
-    <text class="at" x="1430" y="193">SENHA_NOVA_NA_FILA</text>
-    <text class="at" x="1430" y="211">SENHA_TRANSFERIDA</text>
-    <text class="at" x="1430" y="229">SENHA_ENCAMINHADA_FLOW</text>
-    <text class="at" x="1430" y="247">SENHA_MOVIDA_FILA</text>
-    <text class="at" x="1430" y="265">FILA_CRIADA</text>
-    <text class="at" x="1430" y="283">FILA_REMOVIDA</text>
-    <text class="at" x="1430" y="301">FILA_ATUALIZADA</text>
-    <text class="at" x="1430" y="319">SOLICITACAO_INSTITUICAO</text>
-    <text class="at" x="1430" y="337">INSTITUICAO_APROVADA</text>
-    <text class="at" x="1430" y="355">INSTITUICAO_REJEITADA</text>
-    <text class="at" x="1430" y="373">USUARIO_CRIADO</text>
-    <text class="at" x="1430" y="391">SISTEMA</text>
-  </g>
-
-  <!-- Associacoes -->
-  <!-- Instituicao 1 para 0..* Fluxo -->
-  <line class="ln" x1="260" y1="83" x2="340" y2="83"/>
-  <text class="ml" x="266" y="76">1</text>
-  <text class="ml" x="334" y="76" text-anchor="end">0..*</text>
-
-  <!-- Fila 1 para 0..* EtapaFluxo -->
-  <line class="ln" x1="260" y1="323" x2="340" y2="323"/>
-  <text class="ml" x="266" y="316">1</text>
-  <text class="ml" x="334" y="316" text-anchor="end">0..*</text>
-
-  <!-- Fluxo 1 composicao 1..* EtapaFluxo -->
-  <line class="ln" x1="480" y1="256" x2="480" y2="300"/>
-  <polygon class="cp" points="480,256 486,262 480,268 474,262"/>
-  <text class="ml" x="490" y="274">1</text>
-  <text class="ml" x="490" y="296">1..*</text>
-
-  <!-- Fluxo 1 composicao 0..* TransicaoFluxo -->
-  <polyline class="ln" points="620,200 680,200 680,600 620,600"/>
-  <polygon class="cp" points="620,200 626,194 632,200 626,206"/>
-  <text class="ml" x="638" y="192">1</text>
-  <text class="ml" x="686" y="592">0..*</text>
-
-  <!-- TransicaoFluxo 0..* origem 1 EtapaFluxo -->
-  <line class="ln" x1="420" y1="454" x2="420" y2="560"/>
-  <text class="ml" x="426" y="470">1</text>
-  <text class="ml" x="426" y="552">0..*</text>
-  <text class="ml" x="426" y="508">origem</text>
-
-  <!-- TransicaoFluxo 0..* destino 1 EtapaFluxo -->
-  <line class="ln" x1="540" y1="454" x2="540" y2="560"/>
-  <text class="ml" x="546" y="470">1</text>
-  <text class="ml" x="546" y="552">0..*</text>
-  <text class="ml" x="546" y="508">destino</text>
-
-  <!-- Fluxo 1 para 0..* RastreioFluxo -->
-  <polyline class="ln" points="620,120 760,120 760,300"/>
-  <text class="ml" x="626" y="112">1</text>
-  <text class="ml" x="766" y="290">0..*</text>
-
-  <!-- RastreioFluxo 0..1 para 1 Senha -->
-  <line class="ln" x1="1000" y1="343" x2="1100" y2="343"/>
-  <text class="ml" x="1006" y="336">0..1</text>
-  <text class="ml" x="1094" y="336" text-anchor="end">1</text>
-
-  <!-- RastreioFluxo 1 composicao 0..* HistoricoFluxo -->
-  <line class="ln" x1="860" y1="460" x2="860" y2="540"/>
-  <polygon class="cp" points="860,460 866,466 860,472 854,466"/>
-  <text class="ml" x="870" y="478">1</text>
-  <text class="ml" x="866" y="530">0..*</text>
-
-  <!-- Senha 1 para 0..* ChatMensagem -->
-  <line class="ln" x1="1230" y1="366" x2="1230" y2="540"/>
-  <text class="ml" x="1236" y="382">1</text>
-  <text class="ml" x="1236" y="530">0..*</text>
-
-  <!-- Usuario 1 para 0..* ChatMensagem -->
-  <line class="ln" x1="1230" y1="640" x2="1230" y2="800"/>
-  <text class="ml" x="1236" y="654">0..*</text>
-  <text class="ml" x="1236" y="790">1</text>
-
-  <!-- Usuario 1 para 0..* Notificacao -->
-  <line class="ln" x1="1000" y1="823" x2="1100" y2="823"/>
-  <text class="ml" x="1006" y="816">0..*</text>
-  <text class="ml" x="1094" y="816" text-anchor="end">1</text>
-
-  <!-- Usuario 0..1 para 0..* Auditoria -->
-  <polyline class="ln" points="1230,846 1230,1010 300,1010"/>
-  <text class="ml" x="1236" y="866">0..1</text>
-  <text class="ml" x="306" y="1002">0..*</text>
-
-  <!-- Legenda -->
-  <text class="ml" x="40" y="1085">Visibilidade: - privado, + público. Multiplicidade junto a cada classe: quantas instâncias daquela classe se ligam a uma instância da outra.</text>
-  <text class="ml" x="40" y="1105">Losango preenchido = composição. Classes tracejadas são referências ao núcleo (classes.svg). LandingPage é isolada: uma linha por chave.</text>
-</svg>
+<svg width="1100" height="790" viewBox="0 0 1100 790" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:c2pa="http://c2pa.org/manifest">
+<title>Bancada: diagrama de classes de apoio</title>
+<defs><marker id="seta" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#333333" stroke-width="1.2"/></marker></defs>
+<rect width="1100" height="790" fill="white"/>
+<rect x="120" y="50" width="270" height="110" fill="#ECECFF" stroke="#9370DB" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="255.0" y="72" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#333333">Orcamento</text>
+<line x1="120" y1="84" x2="390" y2="84" stroke="#9370DB" stroke-width="1.5"/>
+<text x="130" y="104" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">- status : StatusOrcamento</text>
+<text x="130" y="124" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">...</text>
+<line x1="120" y1="136" x2="390" y2="136" stroke="#9370DB" stroke-width="1.5"/>
+<rect x="710" y="50" width="270" height="110" fill="#ECECFF" stroke="#9370DB" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="845.0" y="72" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#333333">Funcionario</text>
+<line x1="710" y1="84" x2="980" y2="84" stroke="#9370DB" stroke-width="1.5"/>
+<text x="720" y="104" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">- matricula : Texto</text>
+<text x="720" y="124" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">...</text>
+<line x1="710" y1="136" x2="980" y2="136" stroke="#9370DB" stroke-width="1.5"/>
+<rect x="395" y="260" width="310" height="130" fill="#ECECFF" stroke="#9370DB" stroke-width="1.5"/>
+<text x="550.0" y="282" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#333333">HistoricoStatusOrcamento</text>
+<line x1="395" y1="294" x2="705" y2="294" stroke="#9370DB" stroke-width="1.5"/>
+<text x="405" y="314" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">- statusAnterior : StatusOrcamento</text>
+<text x="405" y="334" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">- statusNovo : StatusOrcamento</text>
+<text x="405" y="354" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">- dataHora : DataHora</text>
+<line x1="395" y1="366" x2="705" y2="366" stroke="#9370DB" stroke-width="1.5"/>
+<polyline points="255,176 255,324 395,324" stroke="#333333" stroke-width="1.2" fill="none"/>
+<polygon points="255,160 262,168 255,176 248,168" fill="#333333" stroke="#333333" stroke-width="1"/>
+<text x="263" y="194" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">1</text>
+<text x="379" y="318" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">*</text>
+<text x="265" y="246.0" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">registra</text>
+<polyline points="845,160 845,324 706,324" stroke="#333333" stroke-width="1.2" fill="none" marker-end="url(#seta)"/>
+<text x="853" y="178" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">1</text>
+<text x="713" y="316" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">*</text>
+<text x="855" y="246.0" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">responsavel</text>
+<text x="550" y="470" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#333333">Enumerações de status</text>
+<rect x="70" y="490" width="250" height="136" fill="#ECECFF" stroke="#9370DB" stroke-width="1.5"/>
+<text x="195.0" y="508" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="italic" text-anchor="middle" fill="#333333">«enumeration»</text>
+<text x="195.0" y="526" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#333333">StatusOrcamento</text>
+<line x1="70" y1="534" x2="320" y2="534" stroke="#9370DB" stroke-width="1.5"/>
+<text x="80" y="554" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">aberto</text>
+<text x="80" y="574" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">orçado</text>
+<text x="80" y="594" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">aprovado</text>
+<text x="80" y="614" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">recusado</text>
+<rect x="425" y="490" width="250" height="116" fill="#ECECFF" stroke="#9370DB" stroke-width="1.5"/>
+<text x="550.0" y="508" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="italic" text-anchor="middle" fill="#333333">«enumeration»</text>
+<text x="550.0" y="526" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#333333">StatusOS</text>
+<line x1="425" y1="534" x2="675" y2="534" stroke="#9370DB" stroke-width="1.5"/>
+<text x="435" y="554" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">aberta</text>
+<text x="435" y="574" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">em execução</text>
+<text x="435" y="594" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">concluída</text>
+<rect x="780" y="490" width="250" height="96" fill="#ECECFF" stroke="#9370DB" stroke-width="1.5"/>
+<text x="905.0" y="508" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="italic" text-anchor="middle" fill="#333333">«enumeration»</text>
+<text x="905.0" y="526" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#333333">StatusBox</text>
+<line x1="780" y1="534" x2="1030" y2="534" stroke="#9370DB" stroke-width="1.5"/>
+<text x="790" y="554" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">livre</text>
+<text x="790" y="574" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">ocupado</text>
+<text x="195.0" y="646" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" text-anchor="middle" fill="#555555">Usada em Orcamento.status e em</text>
+<text x="195.0" y="662" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" text-anchor="middle" fill="#555555">HistoricoStatusOrcamento (statusAnterior, statusNovo)</text>
+<text x="550.0" y="626" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" text-anchor="middle" fill="#555555">Usada em OrdemServico.status e em</text>
+<text x="550.0" y="642" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" text-anchor="middle" fill="#555555">HistoricoStatusOS (statusAnterior, statusNovo)</text>
+<text x="905.0" y="606" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" text-anchor="middle" fill="#555555">Usada em Box.status</text>
+<text x="20" y="700" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">Visibilidade: -privado, +público.</text>
+<rect x="20" y="712" width="34" height="14" fill="#ECECFF" stroke="#9370DB" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="64" y="724" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">Classe tracejada: referência a uma classe do diagrama principal (classes.svg), com só os atributos que se ligam ao apoio.</text>
+<polygon points="30,740 37,748 30,756 23,748" fill="#333333"/>
+<text x="64" y="752" font-family="Inter, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" text-anchor="start" fill="#333333">Losango preenchido: composição (a parte não existe sem o todo).</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToxNDdkZDIxZi04YTM1LTQ4ZDctOGM2Ni0wOTMyNDIzODVjZTkAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaJuNu01ZTo8/GFaYmY9wWMQAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo2OGUyMDI0Ny05NThhLTQxYTctYjBjNi1iZWFmM2UwYjQxOGNscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo7jA+30NN6KiIfJlrirpTuwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggs4u9AbH+PMXPkqskdBnhtfRmOoJ8+8CO5MvVvkByjH2kZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaAxAEMlv2uQkSQLBhNihp2UAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIMaUaEtWi7A1SCTh3bEs6ejxgIEynfLZ2/dJcGR1NmUdZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSbrZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjE0N2RkMjFmLThhMzUtNDhkNy04YzY2LTA5MzI0MjM4NWNlOS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjM0MTY4NTIyLWYzYmYtNDFiOC1hY2JhLTNjZGUxNWM2MzI5YnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCzi70Bsf48xc+SqyR0GeG19GY6gnz7wI7ky9W+QHKMfaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggLyXW43kwSHNJbRfw/yMrcOUJX/GmewPp5hcrGgMSeoiiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggVOEVLTBJm//QrjVjvHHxhdAOke+4bTjKvGyGFU2QyAp0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQPsstvKprmcIbYQViBNP5vyZdoxPF8G66nrXQDKc6UfxK2hHGTXk2jLcTNpGndCsUIGmNN7H4+ak38ffz1fun4M=</c2pa:manifest></metadata></svg>
