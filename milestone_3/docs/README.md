@@ -73,7 +73,7 @@ Status: "Concluído" indica documento já adaptado ao Bancada; "Em elaboração"
 | [04-prototipo/ifml/README.md](04-prototipo/ifml/README.md)                                   | Modelo IFML                                                                         | 2         | Concluído     |
 | [04-prototipo/wireframes/README.md](04-prototipo/wireframes/README.md)                       | Telas do protótipo                                                                  | 1         | Concluído     |
 | [05-modelagem/README.md](05-modelagem/README.md)                                             | Índice da modelagem UML                                                             | 2         | Concluído     |
-| [05-modelagem/casos-de-uso/README.md](05-modelagem/casos-de-uso/README.md)                   | Diagrama e descrição dos casos de uso (UC-001 a UC-023)                             | 2         | Pendente      |
+| [05-modelagem/casos-de-uso/README.md](05-modelagem/casos-de-uso/README.md)                   | Diagrama e descrição dos casos de uso (UC-001 a UC-023)                             | 2         | Concluído     |
 | [05-modelagem/classes/README.md](05-modelagem/classes/README.md)                             | Diagrama de classes do domínio                                                      | 2         | Concluído     |
 | [05-modelagem/sequencia/README.md](05-modelagem/sequencia/README.md)                         | Diagramas de sequência (DS-001 a DS-020)                                            | 2         | Concluído     |
 | [05-modelagem/atividades/README.md](05-modelagem/atividades/README.md)                       | Diagramas de atividades (DA-001 a DA-016)                                           | 3         | Concluído     |
@@ -183,7 +183,7 @@ Diferenças entre as fontes que afetam vários documentos. As listas completas e
 
 1. **Ciclo de status da OS.** A issue RF-06 descreve `Aprovada → em execução → concluída`; o banco e a decisão do grupo usam `aberta → em execução → concluída`, e `aprovado` pertence ao orçamento. O protótipo ainda mostra OS "Aprovada" na listagem.
 2. **Perfis de acesso.** A premissa do Milestone 1 é que só a secretária tem login, mas os casos de uso têm Estoquista e Gerente, e o protótipo tem telas de Almoxarifado e de Gerente.
-3. **Histórias sem caso de uso.** 16 das 30 histórias não têm caso de uso no catálogo, entre elas a autenticação, o histórico do veículo e a agenda dos boxes.
+3. **Histórias sem caso de uso.** 14 das 30 histórias não têm caso de uso no catálogo, entre elas a autenticação, o histórico do veículo e a agenda dos boxes. A conta usa os vínculos da modelagem (US-008 no UC-014 e US-017 nos UC-009 e UC-010); no GitLab, os títulos dessas três issues citam a US-028 (lacuna L-02 de [07-rastreabilidade/lacunas.md](07-rastreabilidade/lacunas.md)).
 4. **Sem código e sem testes.** O elo de teste da malha fica vazio até haver aplicação; os critérios de aceite em Gherkin são a base para os testes futuros.
 5. **Pastas com conteúdo do modelo.** As pastas marcadas como "Pendente" ainda descrevem o sistema de exemplo da disciplina e precisam ser refeitas antes da entrega final.
 

@@ -574,24 +574,26 @@ Convenções: os passos do fluxo principal são numerados, e cada extensão rece
 
 ## Funcionalidades sem caso de uso
 
-As histórias e os requisitos abaixo não têm caso de uso no catálogo (lacuna L-01 de [lacunas.md](../../07-rastreabilidade/lacunas.md)). O diagrama de peças desenha "Ser alertado de estoque baixo", que não existe no catálogo.
+Catorze das 30 histórias não têm caso de uso no catálogo, e as outras 16 têm (lacuna L-01 de [lacunas.md](../../07-rastreabilidade/lacunas.md)). A lista abaixo é a da [matriz de rastreabilidade](../../07-rastreabilidade/matriz.md#cobertura-da-cadeia), com uma história por linha. O diagrama de peças desenha "Ser alertado de estoque baixo", que não existe no catálogo.
 
 | Funcionalidade | Origem | Situação no diagrama |
 |---|---|---|
-| Alerta de estoque baixo | US-024 | Desenhado ("Ser alertado de estoque baixo"), sem UC |
-| Autenticação da Secretária | US-001 | Só como `<<include>>` |
-| Registro de retirada do veículo | US-002 | Sem caso de uso próprio; ver UC-013 |
+| Autenticação da secretária | US-001 | Só como `<<include>>` |
 | Busca de clientes | US-005 | Desenhado como extensão do UC-003 |
-| Cadastro e atualização da OS | US-008, US-009 | Sem caso de uso (a OS nasce do orçamento aprovado) |
-| Lista de OS e informações de uma OS | US-012, US-015 | Sem caso de uso; têm DS-017 e DS-020 (`UC-000`) |
-| Decisão do cliente sobre o orçamento | US-017 | Coberta pelos UC-009 e UC-010 (GitLab cita a US-028) |
+| Atualização da OS | US-009 | Sem caso de uso |
+| Listagem de OS | US-012 | Sem caso de uso; tem o DS-017 (`UC-000`) |
+| Visualização das informações de uma OS | US-015 | Sem caso de uso; tem o DS-020 (`UC-000`) |
 | Histórico de status do orçamento | US-018 | Sem caso de uso |
-| Filtro de orçamentos por status | US-026 | Desenhado como extensão do UC-007 |
 | Exclusão de peça | US-022 | Sem caso de uso |
 | Busca e filtros de peças | US-023 | Desenhado como extensão do UC-020 |
+| Alerta de estoque baixo | US-024 | Desenhado ("Ser alertado de estoque baixo"), sem UC |
+| Filtro de orçamentos por status | US-026 | Desenhado como extensão do UC-007 |
 | Histórico de status da OS | US-027 | Sem caso de uso |
-| Histórico do veículo por placa | US-029, US-030 | Sem caso de uso |
+| Histórico do veículo por placa | US-029 | Sem caso de uso |
+| Orientação inicial na tela de histórico do veículo | US-030 | Sem caso de uso |
 | Agenda dos boxes, designação de box e mecânico | #42 (RF-03) | Sem caso de uso |
+
+Três histórias não estão na lista porque têm caso de uso pelo vínculo da modelagem: a US-002 (UC-013), a US-008 (UC-014) e a US-017 (UC-009 e UC-010). O registro de retirada do veículo, da US-002, não tem caso de uso próprio (divergência 9). Nos UC-009, UC-010 e UC-014, o título da issue no GitLab cita a US-028 (divergência 6).
 
 ## Divergências
 
@@ -601,7 +603,7 @@ Diferenças entre os diagramas, o catálogo do GitLab e as demais fontes do proj
 2. **Dois usos de "UC-0N".** Os diagramas dos grupos são titulados "UC-01" a "UC-06", e o catálogo usa "UC-001" a "UC-023". A diferença de um zero faz o título de um grupo parecer um caso de uso do catálogo. Sugestão: renomear os quadros para "Diagrama 1 · Clientes" e assim por diante.
 3. **Nomes diferentes entre diagrama e catálogo.** O diagrama usa "Cadastrar cliente", "Ver informações do cliente", "Atualizar informações do veículo", "Criar orçamento", "Aprovar orçamento", "Recusar orçamento", "Concluir OS" e "Visualizar lista de relatórios"; o catálogo usa "Cadastro de cliente", "Visualizar perfil do cliente", "Atualizar informações do veículo", "Cadastrar orçamento", "Mudar o status do orçamento para aprovado", "Mudar o status do orçamento para recusado" e "Mudar status de uma OS para concluída". O diagrama também escreve "Autenticação" onde o catálogo diz "Autenticar". A tabela do catálogo usa os nomes do GitLab.
 4. **Caso de uso desenhado e fora do catálogo.** "Ser alertado de estoque baixo" aparece no diagrama de peças, mas não tem UC. A história é a US-024.
-5. **Histórias sem caso de uso (L-01) e casos de uso sem história.** Dezesseis histórias não têm caso de uso (seção anterior). Sete casos de uso têm `US-000`: UC-007, UC-015, UC-016, UC-018, UC-019, UC-020 e UC-023. Nos UC-007 e UC-020, a história existe (US-026 e US-023), mas o título da issue não a cita.
+5. **Histórias sem caso de uso (L-01) e casos de uso sem história.** Catorze das 30 histórias não têm caso de uso (seção anterior). Sete casos de uso têm `US-000`: UC-007, UC-015, UC-016, UC-018, UC-019, UC-020 e UC-023. Nos UC-007 e UC-020, a história existe (US-026 e US-023), mas o título da issue não a cita.
 6. **Vínculos UC → US incorretos (L-02).** UC-009, UC-010 e UC-014 citam a US-028, que trata do status da OS. A história correta é a US-017 nos dois primeiros e a US-008 no UC-014. A correção é no título das issues #62, #63 e #67.
 7. **Atores das histórias.** A US-016 atribui o orçamento ao Mecânico, e a issue do UC-006 e o diagrama atribuem a Secretária. As US-020 e US-021 falam em funcionário de atendimento, e os casos de uso UC-021 e UC-022 usam o Estoquista.
 8. **`<<extend>> Criar OS` no UC-006.** A issue #59 cita a extensão, e o diagrama não a desenha. Como a OS depende do orçamento aprovado (UC-010), a ligação correta parece ser entre o UC-010 e o UC-014, e não uma extensão do UC-006. Decisão do grupo.
