@@ -1,437 +1,525 @@
 # Restrições OCL do domínio
 
-Milestone 2 · Unidade: Engenharia de Software (Fábrica de Software I) · Analista de modelagem
+Milestone 2 · Unidade: Engenharia de Software (Fábrica de Software I) · Modelagem do domínio
 
-Este documento escreve em OCL as regras de negócio que o diagrama de classes não expressa. Cada restrição foi lida no código (`src/services/`, `src/repositories/`, `src/utils/validators/`) e no schema (`prisma/schema.prisma`). Quando [documentacao/03-papeis-e-regras.md](../../../documentacao/03-papeis-e-regras.md) diverge do código, vale o código, e a diferença está na seção [Divergências](#divergências).
+Este documento escreve em OCL as regras de negócio que o [diagrama de classes](../classes/README.md) não expressa. Cada restrição vem de um requisito funcional ([requisitos-funcionais.md](../../03-requisitos/requisitos-funcionais.md)), de uma história de usuário, de um cenário de diagrama de sequência ou de uma decisão do grupo. O projeto ainda não tem código da aplicação nem o `milestone_2/ddl.sql` no repositório; por isso a garantia no banco, na [tabela de rastreio](#tabela-de-rastreio), vem do que os requisitos citam (restrições, chaves únicas e gatilhos), e não de uma leitura do DDL. Onde os documentos do projeto divergem, a OCL segue a issue do GitLab e a decisão do grupo, e a diferença fica na seção de [divergências](#divergências).
 
 ## Convenções
 
 - Sintaxe: OCL 2.4, em subconjunto (`context`, `inv`, `pre`, `post`, `@pre`, `result`, `allInstances()`, coleções `Set{...}`).
-- Classes seguem a convenção de [docs/README.md](../../README.md): português, singular. Atributos e papéis de associação seguem o schema Prisma, para que cada expressão possa ser conferida campo a campo.
-- `agora : Date` é parâmetro das operações que dependem do relógio. Assim a expressão não chama uma função que o modelo não define.
-- Enumerações usam o nome do enum do schema, por exemplo `StatusSenha::EM_ATENDIMENTO`.
-- Os códigos de erro citados são os HTTP devolvidos por `CustomError.statusCode`.
+- Classes seguem a [lista oficial](../classes/README.md#lista-oficial-de-classes): português, no singular, sem acento. Os papéis de associação são os do diagrama de classes (`veiculos`, `orcamentos`, `itensPeca`, `ordemServico` e assim por diante), listados no [mapeamento](#mapeamento-para-classes-e-associações).
+- Tipos dos atributos: `Texto`, `Inteiro`, `Decimal`, `Data`, `DataHora`, `Hora` e `Booleano`, como no diagrama. Atributo opcional ausente é testado com `oclIsUndefined()`; associação opcional (0..1) é testada com `isEmpty()` e `notEmpty()`.
+- `agora : DataHora` é parâmetro das operações que dependem do relógio, para que a expressão não chame uma função que o modelo não define.
+- Os literais das enumerações são escritos sem acento, para valerem como identificadores OCL: `StatusOrcamento::aberto`, `orcado`, `aprovado`, `recusado`; `StatusOS::aberta`, `emExecucao`, `concluida`; `StatusBox::livre`, `ocupado`. Os valores com acento (`orçado`, `em execução`, `concluída`) são os do [glossário](../../01-visao/glossario.md) e do banco. Ver [divergencias-m2.md](divergencias-m2.md), N-09.
+- Os nomes de classe e de atributo que mudam entre diagrama, glossário e banco estão em [divergencias-m2.md](divergencias-m2.md).
 
-### Mapeamento schema para classes OCL
+### Mapeamento para classes e associações
 
-| Model Prisma | Classe OCL | Observação |
+| Classe OCL | Tabela (glossário e RF) | Associações usadas nas expressões |
 |---|---|---|
-| `User` | `Usuario` | `Session`, `Account` e `Verification` são do BetterAuth e ficam fora do domínio |
-| `UsuarioPapel` e enum `Papel` | `Papel` (enumeração) | `Usuario.papeis : Set(Papel)`. Ver [divergencias-m2.md](divergencias-m2.md), N-02 |
-| `Instituicao` | `Instituicao` | |
-| `TipoEtapa` | `TipoEtapa` | |
-| `Fila` | `Fila` | |
-| `Mesa` | `Mesa` | Não associada a `Senha`: `Senha.mesa` é texto. Ver [divergencias-m2.md](divergencias-m2.md), N-09 |
-| `Senha` | `Senha` | |
-| `QrCode` | `QrCode` | |
-| `Auditoria` | `Auditoria` | |
-| `Notificacao` | `Notificacao` | |
-| `LandingPage` | `LandingPage` | |
-| `Flow` | `Fluxo` | Grafo de atendimento por instituição |
-| `FlowStep` | `PassoFluxo` | |
-| `FlowTransition` | `TransicaoFluxo` | Atributos `fromStep` e `toStep` |
-| `SenhaFlowTracking` | `AcompanhamentoFluxo` | |
-| `SenhaFlowHistorico` | `HistoricoFluxo` | |
-| `ChatMensagem` | `MensagemChat` | |
+| `Pessoa` (abstrata) | `pessoa` | `endereco` |
+| `Cliente` (herda `Pessoa`) | `pessoa` | `veiculos` |
+| `Funcionario` (herda `Pessoa`) | `funcionario` | `funcao` |
+| `Funcao` | `funcao` | |
+| `Veiculo` | `veiculo` | `cliente`, `modelo`, `orcamentos` |
+| `CarroMarca`, `CarroModelo` | `carro_marca`, `carro_modelo` | `modelos`, `marca` |
+| `Orcamento` | `orcamento` | `veiculo`, `funcionario`, `itensPeca`, `itensServico`, `ordemServico`, `historico` |
+| `ItemOrcamentoPeca` | `orcamento_peca` | `peca` |
+| `ItemOrcamentoServico` | `orcamento_servico` | `servico` |
+| `Servico` | `servico` | |
+| `OrdemServico` | `ordem_servico` | `orcamento`, `box`, `mecanico`, `historico` |
+| `Box` | `box` | |
+| `HistoricoStatusOS` | `ordem_servico_historico` | `funcionario` |
+| `HistoricoStatusOrcamento` | `orcamento_historico` | `funcionario` |
+| `Peca` | `peca` | |
+| `Distribuidora` | `distribuidora` | `endereco` |
+| `PecaDistribuidora` | `peca_distribuidora` | |
+| `Compatibilidade` | `peca_modelo` | |
+
+`Orcamento.historico` e `HistoricoStatusOrcamento` estão no [diagrama de apoio](../classes/classes-apoio.svg). O papel `historico` é o nome adotado aqui para a composição "registra" do diagrama.
 
 ## Invariantes
 
-Cada invariante indica o contexto em que vale, a expressão e a consequência da violação. A garantia no código e no banco está na [tabela de rastreio](#tabela-de-rastreio).
+Cada invariante indica o contexto em que vale, a expressão e a consequência da violação. A garantia no banco e a origem estão na [tabela de rastreio](#tabela-de-rastreio).
 
-### INV-01 Senha em atendimento tem operador
+### INV-01 CPF único
 
-Vale para `Senha`. Uma senha `EM_ATENDIMENTO` tem o operador responsável, gravado por `chamar` e `assumirAtendimento`.
+Vale para `Pessoa`. Duas pessoas não têm o mesmo CPF. O cadastro e a atualização de cliente recusam CPF repetido (US-003 e US-004).
 
 ```ocl
-context Senha
-inv OperadorEmAtendimento:
-  self.status = StatusSenha::EM_ATENDIMENTO implies self.operador->notEmpty()
+context Pessoa
+inv CpfUnico:
+  Pessoa.allInstances()->forAll(p | p <> self implies p.cpf <> self.cpf)
 ```
 
-Consequência: `rechamar` passa a responder 403 para todos ("Apenas o operador responsável pode rechamar a senha"), e o painel mostra um atendimento sem responsável.
+Consequência: dois clientes passam a representar a mesma pessoa, e o histórico do atendimento se divide entre eles.
 
-### INV-02 Senha aguardando não tem operador
+### INV-02 E-mail e telefone únicos
 
-Vale para `Senha`. Uma senha nova ou ainda não chamada não tem operador.
+Vale para `Pessoa`. O diagrama de sequência do cadastro (DS-001) recusa telefone, e-mail ou CPF já cadastrado com "Campo de valor único duplicado".
 
 ```ocl
-context Senha
-inv AguardandoSemOperador:
-  self.status = StatusSenha::AGUARDANDO implies self.operador->isEmpty()
+context Pessoa
+inv EmailUnico:
+  Pessoa.allInstances()->forAll(p | p <> self implies p.email <> self.email)
+inv TelefoneUnico:
+  Pessoa.allInstances()->forAll(p | p <> self implies p.telefone <> self.telefone)
 ```
 
-Consequência: a fila exibiria um atendente numa senha que ninguém chamou, e a auditoria de atendimento ficaria inconsistente.
+Consequência: a Secretária liga ou escreve para a pessoa errada. A unicidade do telefone só aparece nos diagramas (divergência D-08).
 
-### INV-03 Identificação do cidadão
+### INV-03 Placa única
 
-Vale para `Senha`. Senha presencial é de cidadão sem conta: não tem `usuario` e tem `nomeCidadao`. Senha online tem `usuario`.
+Vale para `Veiculo`. A placa identifica um único veículo, e a consulta do histórico parte dela (RF-01 e RF-04).
 
 ```ocl
-context Senha
-inv IdentificacaoDoCidadao:
-  (self.presencial implies (self.usuario->isEmpty() and self.nomeCidadao->notEmpty()))
-  and (not self.presencial implies self.usuario->notEmpty())
+context Veiculo
+inv PlacaUnica:
+  Veiculo.allInstances()->forAll(v | v <> self implies v.placa <> self.placa)
 ```
 
-Consequência: senha online sem `usuario` não recebe notificação (`_notificar(senha.usuarioId)`) e não aparece em `GET /senhas`.
+Consequência: a consulta do histórico por placa (US-029) devolve veículos misturados.
 
-### INV-04 Senha na instituição da fila
+### INV-04 Um orçamento aberto por veículo
 
-Vale para `Senha`. A senha pertence à mesma instituição da fila em que foi emitida.
-
-```ocl
-context Senha
-inv InstituicaoDaFila:
-  self.instituicao = self.fila.instituicao
-```
-
-Consequência: um operador de uma instituição passa a enxergar ou chamar senhas de outra. O isolamento por `instituicaoId` deixa de valer.
-
-### INV-05 Peso coerente com a prioridade
-
-Vale para `Senha`. O peso de ordenação segue a prioridade efetiva: LEGAL = 1, FIDELIDADE = 2, sem prioridade = 3.
+Vale para `Orcamento`. Um veículo tem no máximo um orçamento `aberto`. O DS-003 recusa o cadastro com "O veículo já tem um orçamento aberto".
 
 ```ocl
-context Senha
-inv PesoDaPrioridade:
-  (self.prioridade = PrioridadeSenha::LEGAL implies self.prioridadePeso = 1)
-  and (self.prioridade = PrioridadeSenha::FIDELIDADE implies self.prioridadePeso = 2)
-  and (self.prioridade.oclIsUndefined() implies self.prioridadePeso = 3)
-```
-
-Consequência: a próxima senha, ordenada por `prioridadePeso, posicao`, sairia fora de ordem. Uma senha LEGAL com peso 3 seria chamada depois de senhas NORMAL.
-
-### INV-06 Uma senha ativa por cidadão e fila
-
-Vale para `Senha` com `usuario` definido. Só há uma senha `AGUARDANDO` ou `EM_ATENDIMENTO` do mesmo cidadão na mesma fila.
-
-```ocl
-context Senha
-inv UmaSenhaAtivaPorCidadaoNaFila:
-  self.usuario->notEmpty() implies
-    Senha.allInstances()->select(s |
-      s.usuario = self.usuario
-      and s.fila = self.fila
-      and Set{StatusSenha::AGUARDANDO, StatusSenha::EM_ATENDIMENTO}->includes(s.status)
-    )->size() <= 1
-```
-
-Consequência: o cidadão ocupa duas posições na mesma fila. A operação `criar` responde 409 ("Usuário já possui senha ativa nesta fila"). Duas requisições simultâneas podem passar pela checagem, porque o banco não tem restrição única para esse caso.
-
-### INV-07 Um atendimento por operador
-
-Vale para `Senha`. Um operador tem no máximo uma senha `EM_ATENDIMENTO`.
-
-```ocl
-context Senha
-inv UmAtendimentoPorOperador:
-  (self.operador->notEmpty() and self.status = StatusSenha::EM_ATENDIMENTO) implies
-    Senha.allInstances()->select(s |
-      s.operador = self.operador
-      and s.status = StatusSenha::EM_ATENDIMENTO
+context Orcamento
+inv UmAbertoPorVeiculo:
+  self.status = StatusOrcamento::aberto implies
+    Orcamento.allInstances()->select(o |
+      o.veiculo = self.veiculo and o.status = StatusOrcamento::aberto
     )->size() = 1
 ```
 
-Consequência: o operador atende duas pessoas ao mesmo tempo. `chamar` e `assumirAtendimento` respondem 409 ("Você já está atendendo a senha ...") para impedir isso.
+Consequência: dois orçamentos abertos para o mesmo veículo, e a Secretária não sabe qual aprovar.
 
-### INV-08 Mesa exclusiva por fila
+### INV-05 Orçamento orçado tem itens
 
-Vale para `Senha` com `mesa` preenchida. Duas senhas `EM_ATENDIMENTO` da mesma fila não usam a mesma estação.
+Vale para `Orcamento`. O orçamento é montado item a item, com peças e mão de obra separadas, e só deixa de ser `aberto` depois de lançados os itens (RF-02 e US-016).
 
 ```ocl
-context Senha
-inv MesaExclusivaNaFila:
-  (self.status = StatusSenha::EM_ATENDIMENTO and not self.mesa.oclIsUndefined()) implies
-    Senha.allInstances()->select(s |
-      s.fila = self.fila
-      and s.status = StatusSenha::EM_ATENDIMENTO
-      and s.mesa = self.mesa
+context Orcamento
+inv OrcadoTemItens:
+  self.status <> StatusOrcamento::aberto implies
+    (self.itensPeca->notEmpty() or self.itensServico->notEmpty())
+```
+
+Consequência: um orçamento `orçado` ou `aprovado` sem nenhum item, ou seja, sem valor com origem técnica. A tela atual registra um valor fixo, sem itens (divergência D-05).
+
+### INV-06 Total igual à soma dos itens
+
+Vale para `Orcamento`. Depois de `aberto`, o valor total é a soma das peças e da mão de obra.
+
+```ocl
+context Orcamento
+inv TotalConfere:
+  self.status <> StatusOrcamento::aberto implies
+    self.valorTotal =
+      self.itensPeca->collect(i | i.quantidade * i.valorUnitario)->sum()
+      + self.itensServico->collect(i | i.quantidade * i.valorUnitario)->sum()
+```
+
+Consequência: o balcão apresenta ao cliente um valor diferente do que foi lançado.
+
+### INV-07 Uma OS por orçamento
+
+Vale para `OrdemServico`. Cada orçamento gera no máximo uma OS (RF-02 e RF-06).
+
+```ocl
+context OrdemServico
+inv UmaOSPorOrcamento:
+  OrdemServico.allInstances()->select(o | o.orcamento = self.orcamento)->size() = 1
+```
+
+Consequência: o mesmo serviço seria executado e cobrado duas vezes.
+
+### INV-08 A OS nasce de orçamento aprovado
+
+Vale para `OrdemServico`. Nenhuma OS existe sem um orçamento aprovado. A regra é do grupo e vem da RF-02 e da RF-06.
+
+```ocl
+context OrdemServico
+inv OrcamentoAprovado:
+  self.orcamento.status = StatusOrcamento::aprovado
+```
+
+Consequência: um serviço começa sem a autorização do cliente.
+
+### INV-09 Box e mecânico antes de executar
+
+Vale para `OrdemServico`. A OS só deixa de estar `aberta` com box e mecânico definidos (RF-03 e US-028).
+
+```ocl
+context OrdemServico
+inv BoxEMecanicoDefinidos:
+  self.status <> StatusOS::aberta implies
+    (self.box->notEmpty() and self.mecanico->notEmpty())
+```
+
+Consequência: uma OS em execução sem box nem responsável, e o painel não mostra onde o veículo está.
+
+### INV-10 Um box, uma OS em execução
+
+Vale para `OrdemServico`. Um box comporta um veículo por vez: enquanto houver OS `em execução` nele, não recebe outra (RF-03).
+
+```ocl
+context OrdemServico
+inv BoxExclusivoEmExecucao:
+  self.status = StatusOS::emExecucao implies
+    OrdemServico.allInstances()->select(o |
+      o.box = self.box and o.status = StatusOS::emExecucao
     )->size() = 1
 ```
 
-Consequência: duas pessoas são atendidas na mesma estação. `chamar` responde 409 ("Estação X já está em uso por outro atendimento").
+Consequência: dois veículos no mesmo box ao mesmo tempo.
 
-### INV-09 Número da senha único por instituição
+### INV-11 Situação do box coerente com as OS
 
-Vale para `Senha` com `numero` definido. Dois números iguais não existem na mesma instituição.
-
-```ocl
-context Senha
-inv NumeroUnicoNaInstituicao:
-  Senha.allInstances()->forAll(outra |
-    (outra <> self
-      and outra.instituicao = self.instituicao
-      and not self.numero.oclIsUndefined()
-      and not outra.numero.oclIsUndefined())
-    implies outra.numero <> self.numero
-  )
-```
-
-Consequência: duas senhas com o mesmo número no painel e no histórico. A unicidade depende só da transação em `calcularProximoNumero`, porque o índice do banco não é único.
-
-### INV-10 Tolerância do QR Code não anterior à validade
-
-Vale para `QrCode`. A janela de tolerância começa depois de `validoAte` e nunca termina antes dela.
+Vale para `Box`. O box está `ocupado` exatamente quando há uma OS `em execução` nele.
 
 ```ocl
-context QrCode
-inv JanelaDeTolerancia:
-  self.toleranciaAte >= self.validoAte
+context Box
+inv SituacaoCoerente:
+  (self.status = StatusBox::ocupado) =
+    OrdemServico.allInstances()->exists(o |
+      o.box = self and o.status = StatusOS::emExecucao)
 ```
 
-Consequência: a tolerância deixa de ter efeito e o código fica válido apenas até `validoAte`, sem o período configurado.
+Consequência: um box aparece livre com veículo dentro, ou ocupado depois da conclusão. Os valores de `StatusBox` ainda precisam de confirmação (divergência D-04).
 
-### INV-11 Instituição aprovada tem registro de aprovação
+### INV-12 Datas da OS
 
-Vale para `Instituicao` com `status = APROVADA`.
+Vale para `OrdemServico`. A OS `concluída` tem data de conclusão, e a conclusão não é anterior à abertura (RF-03: início e conclusão gravam data e hora).
 
 ```ocl
-context Instituicao
-inv AprovadaComRegistro:
-  self.status = StatusInstituicao::APROVADA implies
-    (self.aprovadoPor->notEmpty() and not self.aprovadoEm.oclIsUndefined())
+context OrdemServico
+inv DatasCoerentes:
+  (self.status = StatusOS::concluida implies not self.dataConclusao.oclIsUndefined())
+  and (not self.dataConclusao.oclIsUndefined() implies self.dataConclusao >= self.dataAbertura)
 ```
 
-Consequência: instituição ativa sem registro de quem aprovou e quando. A trilha de aprovação fica incompleta.
+Consequência: o tempo de permanência do veículo na oficina não pode ser calculado.
 
-### INV-12 Instituição rejeitada tem motivo
+### INV-13 Histórico da OS registra quem e quando
 
-Vale para `Instituicao` com `status = REJEITADA`.
+Vale para `HistoricoStatusOS`. Cada mudança de status grava o funcionário e a data e hora (RF-06). O registro de criação da OS tem status anterior vazio.
 
 ```ocl
-context Instituicao
-inv RejeitadaComMotivo:
-  self.status = StatusInstituicao::REJEITADA implies not self.motivoRejeicao.oclIsUndefined()
+context HistoricoStatusOS
+inv RegistroCompleto:
+  self.funcionario->notEmpty()
+  and not self.dataHora.oclIsUndefined()
+  and (self.statusAnterior.oclIsUndefined() or self.statusAnterior <> self.statusNovo)
 ```
 
-Consequência: o solicitante recebe a notificação `INSTITUICAO_REJEITADA` sem motivo (`InstituicaoService.js:142` usa `motivoRejeicao`). A validação está só na camada HTTP.
+Consequência: o histórico mostra mudanças sem autor ou transições que não aconteceram.
 
-### INV-13 Solicitação pendente sem resíduos de decisão anterior
+### INV-14 Histórico do orçamento registra quem e quando
 
-Vale para `Instituicao` com `status = PENDENTE`. Uma solicitação que volta a pendente não carrega aprovador, data ou motivo da decisão anterior.
+Vale para `HistoricoStatusOrcamento`. Mesma regra, para o orçamento (RF-02 e US-018).
 
 ```ocl
-context Instituicao
-inv PendenteSemResiduos:
-  self.status = StatusInstituicao::PENDENTE implies
-    (self.aprovadoPor->isEmpty()
-      and self.aprovadoEm.oclIsUndefined()
-      and self.motivoRejeicao.oclIsUndefined())
+context HistoricoStatusOrcamento
+inv RegistroCompleto:
+  self.funcionario->notEmpty()
+  and not self.dataHora.oclIsUndefined()
+  and (self.statusAnterior.oclIsUndefined() or self.statusAnterior <> self.statusNovo)
 ```
 
-Consequência: a tela de análise mostraria um motivo de rejeição ou um aprovador numa solicitação que ainda está em análise.
+Consequência: a oficina não tem como comprovar quem registrou a aprovação do cliente.
 
-### INV-14 Papel administrativo exige instituição
+### INV-15 Código da peça único
 
-Vale para `Usuario` com papel `ADMIN_INSTITUICAO` ou `OPERADOR`. Esses papéis só existem vinculados a uma instituição.
+Vale para `Peca`. O código identifica a peça (US-019 e US-021 recusam código repetido).
 
 ```ocl
-context Usuario
-inv PapelAdministrativoExigeInstituicao:
-  (self.papeis->includes(Papel::ADMIN_INSTITUICAO) or self.papeis->includes(Papel::OPERADOR))
-  implies self.instituicao->notEmpty()
+context Peca
+inv CodigoUnico:
+  Peca.allInstances()->forAll(p | p <> self implies p.codigo <> self.codigo)
 ```
 
-Consequência: um operador sem instituição recebe 403 ("usuário sem vínculo institucional") em todas as listagens escopadas por instituição. A regra vale na criação, mas não na alteração: ver D-05.
+Consequência: o estoque baixa a peça errada.
 
-### INV-15 Transição entre passos do mesmo fluxo
+### INV-16 Estoque nunca negativo
 
-Vale para `TransicaoFluxo`. Origem e destino pertencem ao fluxo da transição.
+Vale para `Peca`. A quantidade em estoque não fica abaixo de zero, e o estoque mínimo também não (RF-05 e US-019).
 
 ```ocl
-context TransicaoFluxo
-inv MesmoFluxo:
-  self.fromStep.flow = self.flow and self.toStep.flow = self.flow
+context Peca
+inv EstoqueNaoNegativo:
+  self.estoque >= 0 and self.estoqueMinimo >= 0
 ```
 
-Consequência: `encaminhar` levaria a senha para um passo de outro fluxo, que o fluxo atual não conhece.
+Consequência: o alerta de estoque baixo deixa de ser confiável.
+
+### INV-17 CNPJ único
+
+Vale para `Distribuidora`. O CNPJ identifica a distribuidora (DS-010 e DS-011 recusam com "CNPJ já cadastrado").
+
+```ocl
+context Distribuidora
+inv CnpjUnico:
+  Distribuidora.allInstances()->forAll(d | d <> self implies d.cnpj <> self.cnpj)
+```
+
+Consequência: a mesma distribuidora com dois cadastros, e a cotação de uma peça se divide entre eles.
+
+### INV-18 Acesso ao sistema
+
+Vale para `Funcionario`. Só funcionário com login e senha acessa o sistema, e os dois existem juntos (RF-01 e US-001). O login é único.
+
+```ocl
+context Funcionario
+inv LoginESenhaJuntos:
+  self.matricula.oclIsUndefined() = self.senha.oclIsUndefined()
+inv LoginUnico:
+  not self.matricula.oclIsUndefined() implies
+    Funcionario.allInstances()->forAll(f | f <> self implies f.matricula <> self.matricula)
+```
+
+Consequência: um funcionário sem senha consegue entrar, ou dois funcionários dividem o mesmo login. Em `Funcionario`, `matricula` corresponde à coluna do login (divergência N-02).
 
 ## Operações
 
-Cada operação traz `pre` (condição de entrada) e `post` (efeito). Quando o papel exigido é imposto pela rota (`authorize` em `src/routes/senhaRoutes.js`), a `pre` aparece com o comentário `-- rota`. Em `@pre`, o valor vale antes da operação. `result` é o retorno.
+Cada operação traz `pre` (condição de entrada) e `post` (efeito). Em `@pre`, o valor vale antes da operação. `result` é o retorno. O ator de cada operação é o funcionário autenticado.
 
-### OP-01 Senha::criar (retirada online ou presencial com QR Code)
+### OP-01 Orcamento::calcularTotal
 
 ```ocl
-context Senha::criar(ator : Usuario, fila : Fila, codigoQr : String,
-                     prioridade : PrioridadeSenha, agora : Date) : Senha
-pre UsuarioAtivo:
-  ator.ativo
-pre FilaAtiva:
-  fila.ativa
-pre SemSenhaAtivaNaFila:
-  Senha.allInstances()->select(s |
-    s.usuario = ator
-    and s.fila = fila
-    and Set{StatusSenha::AGUARDANDO, StatusSenha::EM_ATENDIMENTO}->includes(s.status)
-  )->isEmpty()
-pre QrCodeValidoSeFilaPresencial:
-  fila.tipoAtendimento = TipoAtendimento::PRESENCIAL implies
-    QrCode.allInstances()->exists(q |
-      q.fila = fila
-      and q.ativo
-      and q.codigo.toUpper() = codigoQr.toUpper()
-      and (agora <= q.validoAte or agora <= q.toleranciaAte))
-post NovaSenhaAguardando:
-  result.status = StatusSenha::AGUARDANDO
-post VinculadaAoCidadaoEFila:
-  result.usuario = ator
-  and result.fila = fila
-  and result.instituicao = fila.instituicao
-post PrioridadeSomenteSeHabilitada:
-  (result.prioridade = PrioridadeSenha::LEGAL implies fila.prioridadesHabilitadas)
-  and (result.prioridade = PrioridadeSenha::FIDELIDADE implies fila.fidelidadeHabilitada)
-post UmaSenhaAMais:
-  Senha.allInstances()->size() = Senha.allInstances()@pre->size() + 1
+context Orcamento::calcularTotal() : Decimal
+post SomaDosItens:
+  result =
+    self.itensPeca->collect(i | i.quantidade * i.valorUnitario)->sum()
+    + self.itensServico->collect(i | i.quantidade * i.valorUnitario)->sum()
 ```
 
-Observações: a comparação do código é insensível a maiúsculas (`mesmoCodigo`, `QrCodeRepository.js:29`), por isso `toUpper()`. A `post PrioridadeSomenteSeHabilitada` cobre o caso em que a prioridade pedida não é habilitada: o código grava `prioridade` nula, e não `NORMAL` (ver D-02).
+Observação: a operação só lê. A atualização de `valorTotal` e a mudança para `orçado` acontecem quando os itens são lançados (INV-05 e INV-06).
 
-### OP-02 Senha::chamar
+### OP-02 Orcamento::aprovar
 
 ```ocl
-context Senha::chamar(ator : Usuario, mesa : String)
-pre EstadoAguardando:
-  self.status = StatusSenha::AGUARDANDO
-pre MesmaInstituicao:
-  ator.instituicao = self.instituicao
-pre PapelDeAtendimento:  -- rota
-  ator.papeis->exists(p | p = Papel::ADMIN_INSTITUICAO or p = Papel::OPERADOR)
-pre OperadorLivre:
-  Senha.allInstances()->select(s |
-    s.operador = ator and s.status = StatusSenha::EM_ATENDIMENTO
-  )->isEmpty()
-pre MesaLivre:
-  mesa.oclIsUndefined() or
-  Senha.allInstances()->select(s |
-    s.fila = self.fila and s.mesa = mesa and s.status = StatusSenha::EM_ATENDIMENTO
-  )->isEmpty()
-post EmAtendimento:
-  self.status = StatusSenha::EM_ATENDIMENTO
-post OperadorResponsavel:
-  self.operador = ator
-post MesaRegistrada:
-  self.mesa = mesa
-post EstadoAnterior:
-  self.status@pre = StatusSenha::AGUARDANDO
+context Orcamento::aprovar(ator : Funcionario, agora : DataHora)
+pre EstadoOrcado:
+  self.status = StatusOrcamento::orcado
+post StatusAprovado:
+  self.status = StatusOrcamento::aprovado
+post HistoricoGravado:
+  self.historico->exists(h |
+    h.statusAnterior = StatusOrcamento::orcado
+    and h.statusNovo = StatusOrcamento::aprovado
+    and h.funcionario = ator
+    and h.dataHora = agora)
 ```
 
-Observação: quando o cidadão da senha já está em atendimento em outra fila da mesma instituição, `chamar` não responde 409. Move a senha para o fim da fila e tenta a próxima `AGUARDANDO` (`SenhaService.js:355-370`). Por isso as `post` valem para a senha efetivamente chamada, que pode ser outra que não `self`. A resposta traz `skippedMessages` (ver D-06).
+Observação: corresponde ao DS-012 e ao DE-002. Aprovar um orçamento `aberto`, `aprovado` ou `recusado` retorna "O orçamento não pode ser aprovado nesse status". A US-017 pede também o meio da resposta (presencial, telefone ou mensagem), que o modelo ainda não tem (divergência D-06).
 
-### OP-03 Senha::rechamar
+### OP-03 Orcamento::recusar
 
 ```ocl
-context Senha::rechamar(ator : Usuario)
-pre EmAtendimento:
-  self.status = StatusSenha::EM_ATENDIMENTO
-pre OperadorResponsavel:
-  self.operador = ator
-post EstadoPreservado:
+context Orcamento::recusar(ator : Funcionario, agora : DataHora)
+pre EstadoOrcado:
+  self.status = StatusOrcamento::orcado
+post StatusRecusado:
+  self.status = StatusOrcamento::recusado
+post HistoricoGravado:
+  self.historico->exists(h |
+    h.statusAnterior = StatusOrcamento::orcado
+    and h.statusNovo = StatusOrcamento::recusado
+    and h.funcionario = ator
+    and h.dataHora = agora)
+post NaoGeraOS:
+  self.ordemServico->isEmpty()
+```
+
+Observação: corresponde ao DS-013 e ao DE-003. `recusado` é final, e o orçamento recusado não gera OS. Retorna "O orçamento não pode ser recusado nesse status" fora de `orçado`.
+
+### OP-04 OrdemServico::criar
+
+```ocl
+context OrdemServico::criar(orc : Orcamento, ator : Funcionario,
+                            detalhes : Texto, agora : DataHora) : OrdemServico
+pre OrcamentoAprovado:
+  orc.status = StatusOrcamento::aprovado
+pre SemOutraOS:
+  orc.ordemServico->isEmpty()
+post OSAberta:
+  result.status = StatusOS::aberta
+  and result.orcamento = orc
+  and result.dataAbertura = agora
+post HistoricoGravado:
+  result.historico->exists(h |
+    h.statusNovo = StatusOS::aberta
+    and h.funcionario = ator
+    and h.dataHora = agora)
+```
+
+Observação: corresponde ao UC-014 (issue #81). Com o orçamento não aprovado, o sistema notifica que o orçamento não foi aprovado e não registra a OS. O diagrama de classes não tem essa operação, e o DA-005 registra a OS como "Aprovada" (divergência D-07).
+
+### OP-05 OrdemServico::designarBox
+
+```ocl
+context OrdemServico::designarBox(b : Box, m : Funcionario)
+pre OSAberta:
+  self.status = StatusOS::aberta
+pre BoxLivre:
+  OrdemServico.allInstances()->select(o |
+    o.box = b and o.status = StatusOS::emExecucao
+  )->isEmpty()
+pre MecanicoAtivo:
+  m.ativo
+post BoxEMecanicoDefinidos:
+  self.box = b and self.mecanico = m
+post StatusInalterado:
   self.status = self.status@pre
-post OperadorPreservado:
-  self.operador = self.operador@pre
 ```
 
-Observação: `rechamar` não muda estado nem operador. Reemite o evento de chamada para o painel e não grava nova notificação.
+Observação: corresponde às telas de designar box e mecânico (T-SEC-56 e T-SEC-57), em que os boxes em execução aparecem desabilitados. A designação não ocupa o box; a ocupação começa em `iniciar` (divergência D-09). A designação não tem caso de uso no catálogo.
 
-### OP-04 Senha::finalizar
+### OP-06 OrdemServico::iniciar
 
 ```ocl
-context Senha::finalizar(ator : Usuario)
-pre EmAtendimento:
-  self.status = StatusSenha::EM_ATENDIMENTO
-pre MesmaInstituicao:
-  ator.instituicao = self.instituicao
-pre PapelDeAtendimento:  -- rota
-  ator.papeis->exists(p | p = Papel::ADMIN_INSTITUICAO or p = Papel::OPERADOR)
-post Finalizada:
-  self.status = StatusSenha::FINALIZADA
-post EstadoAnterior:
-  self.status@pre = StatusSenha::EM_ATENDIMENTO
-post OperadorPreservado:
-  self.operador = self.operador@pre
+context OrdemServico::iniciar(ator : Funcionario, agora : DataHora)
+pre EstadoAberta:
+  self.status = StatusOS::aberta
+pre BoxEMecanicoDesignados:
+  self.box->notEmpty() and self.mecanico->notEmpty()
+post EmExecucao:
+  self.status = StatusOS::emExecucao
+post BoxOcupado:
+  self.box.status = StatusBox::ocupado
+post HistoricoGravado:
+  self.historico->exists(h |
+    h.statusAnterior = StatusOS::aberta
+    and h.statusNovo = StatusOS::emExecucao
+    and h.funcionario = ator
+    and h.dataHora = agora)
 ```
 
-Observação: a operação não exige que `ator` seja o operador responsável. Qualquer AI ou OP da instituição finaliza (ver D-04).
+Observação: corresponde aos cenários "iniciar a execução" da US-028 e à transição do DE-001. Sem box ou mecânico, a alteração é recusada com o aviso de que é preciso designar os dois.
 
-### OP-05 Senha::cancelar
+### OP-07 OrdemServico::concluir
 
 ```ocl
-context Senha::cancelar(ator : Usuario)
-pre AguardandoApenas:
-  self.status = StatusSenha::AGUARDANDO
-pre Autorizado:
-  self.usuario = ator
-  or ator.papeis->includes(Papel::ADMIN_PLATAFORMA)
-  or (ator.papeis->exists(p | p = Papel::ADMIN_INSTITUICAO or p = Papel::OPERADOR)
-      and ator.instituicao = self.instituicao)
-post Cancelada:
-  self.status = StatusSenha::CANCELADA
-post EstadoAnterior:
-  self.status@pre = StatusSenha::AGUARDANDO
+context OrdemServico::concluir(ator : Funcionario, agora : DataHora)
+pre EstadoEmExecucao:
+  self.status = StatusOS::emExecucao
+post Concluida:
+  self.status = StatusOS::concluida
+  and self.dataConclusao = agora
+post BoxLiberado:
+  self.box.status = StatusBox::livre
+post HistoricoGravado:
+  self.historico->exists(h |
+    h.statusAnterior = StatusOS::emExecucao
+    and h.statusNovo = StatusOS::concluida
+    and h.funcionario = ator
+    and h.dataHora = agora)
 ```
 
-Observação: `cancelar` só vale em `AGUARDANDO`. Uma senha `EM_ATENDIMENTO` responde 409 antes de qualquer checagem de permissão (`SenhaService.js:255-258`).
+Observação: corresponde ao DS-008, ao UC-013 e ao DE-001. O DS-008 não desenha a guarda da `pre EstadoEmExecucao`, que vem do DE-001.
 
-### OP-06 Senha::assumirAtendimento
+### OP-08 Box::ocupar e Box::liberar
 
 ```ocl
-context Senha::assumirAtendimento(ator : Usuario)
-pre EmAtendimento:
-  self.status = StatusSenha::EM_ATENDIMENTO
-pre AdministradorDaInstituicao:  -- rota
-  ator.papeis->includes(Papel::ADMIN_INSTITUICAO)
-  and ator.instituicao = self.instituicao
-pre NaoEhOperadorAtual:
-  self.operador <> ator
-pre SemOutroAtendimento:
-  Senha.allInstances()->select(s |
-    s.operador = ator and s.status = StatusSenha::EM_ATENDIMENTO
-  )->isEmpty()
-post NovoOperador:
-  self.operador = ator
-post EstadoPreservado:
-  self.status = self.status@pre
-post OperadorAnteriorSubstituido:
-  self.operador <> self.operador@pre
+context Box::ocupar()
+pre BoxLivre:
+  self.status = StatusBox::livre
+post Ocupado:
+  self.status = StatusBox::ocupado
+
+context Box::liberar()
+pre BoxOcupado:
+  self.status = StatusBox::ocupado
+post Livre:
+  self.status = StatusBox::livre
 ```
+
+Observação: `iniciar` chama `ocupar`, e `concluir` chama `liberar`. O `Box` tem `status` sem máquina de estados (lacuna L-13); estas duas operações são a regra mínima, até o grupo decidir entre desenhar o diagrama de estados do box e trocar o atributo por um booleano.
+
+### OP-09 Peca::cadastrarEstoque, baixarEstoque e estoqueBaixo
+
+```ocl
+context Peca::cadastrarEstoque(qtd : Inteiro)
+pre QuantidadePositiva:
+  qtd > 0
+post EstoqueAumentou:
+  self.estoque = self.estoque@pre + qtd
+
+context Peca::baixarEstoque(qtd : Inteiro)
+pre QuantidadePositiva:
+  qtd > 0
+pre HaEstoque:
+  qtd <= self.estoque
+post EstoqueDiminuiu:
+  self.estoque = self.estoque@pre - qtd
+
+context Peca::estoqueBaixo() : Booleano
+post AbaixoDoMinimo:
+  result = (self.estoque <= self.estoqueMinimo)
+```
+
+Observação: a baixa de estoque protege INV-16. O sistema avisa quando a quantidade chega ao mínimo definido pela oficina (RF-05 e US-024); a regra "chega ao mínimo" foi escrita como `<=`.
+
+### OP-10 Funcionario::autenticar
+
+```ocl
+context Funcionario::autenticar(login : Texto, senhaInformada : Texto) : Booleano
+post CredenciaisConferem:
+  result = (self.ativo
+            and self.matricula = login
+            and self.senha = senhaInformada)
+```
+
+Observação: a classe guarda a senha em um atributo, e o modelo não define como ela é protegida; essa decisão é de implementação. A autenticação é incluída (`<<include>>`) por todos os casos de uso.
 
 ## Tabela de rastreio
 
-Expressão (resumida), regra e onde está garantida. "Nenhuma" no banco quer dizer que o modelo físico aceita a violação, e só o código impede.
+Expressão (resumida), regra, origem e a garantia no banco. A coluna "Garantia no banco" cita as restrições, as chaves únicas e os gatilhos que os requisitos e o glossário mencionam. "Não confirmada" quer dizer que o `milestone_2/ddl.sql` não está no repositório e nenhum documento cita a restrição. "Nenhuma" quer dizer que o documento afirma que o banco aceita a violação.
 
-| Ref | Expressão (resumo) | Regra | Garantia no código (arquivo:linha) | Garantia no banco |
+| Ref | Expressão (resumo) | Regra | Origem | Garantia no banco |
 |---|---|---|---|---|
-| INV-01 | `status = EM_ATENDIMENTO implies operador->notEmpty()` | Atendimento tem responsável | `src/services/SenhaService.js:415` (chamar grava `operadorId`); `:596` (assumir) | Nenhuma: `operadorId` é nullable (`prisma/schema.prisma:308`) |
-| INV-02 | `status = AGUARDANDO implies operador->isEmpty()` | Senha nova sem atendente | `SenhaService.js:166-176` (criar não grava operador); `:255-258` (cancelar só em AGUARDANDO) | Nenhuma |
-| INV-03 | `presencial implies usuario->isEmpty()` e o inverso | Identificação do cidadão | `SenhaService.js:170` (online), `:226-228` (presencial) | Nenhuma: `usuarioId` nullable (`schema.prisma:306`) |
-| INV-04 | `instituicao = fila.instituicao` | Isolamento por instituição | `SenhaService.js:169` e `:225` (instituicaoId vem da fila) | Nenhuma: `filaId` e `instituicaoId` são FKs independentes (`schema.prisma:302`, `:304`) |
-| INV-05 | `prioridade = LEGAL implies prioridadePeso = 1`, etc. | Ordem da fila | `SenhaService.js:174` e `:232` (`SENHA_PRIORIDADE_PESO[...] ?? 3`) | Só default 3 (`schema.prisma:292`); sem check |
-| INV-06 | uma senha ativa por cidadão e fila | Uma posição por fila | `SenhaService.js:145-149` (`buscarAtivaPorUsuarioEFila`, `SenhaRepository.js:73-80`) | Nenhuma: `@@index([usuarioId, filaId, status])` não é único (`schema.prisma:325`) |
-| INV-07 | um `EM_ATENDIMENTO` por operador | Um atendimento por vez | `SenhaService.js:393-400` (chamar); `:583-591` (assumir) | Nenhuma: `@@index([operadorId])` não é único (`schema.prisma:327`) |
-| INV-08 | mesa única por fila em atendimento | Estação exclusiva | `SenhaService.js:404-410`; `SenhaRepository.js:83-87` | Nenhuma: `mesa` é texto sem unicidade (`schema.prisma:298`) |
-| INV-09 | `numero` único por instituição | Número sequencial | `SenhaRepository.js:243-250` (max + 1 dentro de `$transaction`) | Índice não único `@@index([instituicaoId, numero])` (`schema.prisma:326`) |
-| INV-10 | `toleranciaAte >= validoAte` | Janela do QR Code | `QrCodeService.js:91-92` (fixo, +1 h); `:101-102` (rotativo) | Nenhuma |
-| INV-11 | `APROVADA implies aprovadoPor e aprovadoEm` | Trilha de aprovação | `InstituicaoService.js:74-77` | Nenhuma: `aprovadoPorId` nullable (`schema.prisma:205`) |
-| INV-12 | `REJEITADA implies motivoRejeicao` | Motivo obrigatório | `src/utils/validators/schemas/zod/InstituicaoSchema.js:35-37` (zod, camada HTTP); `InstituicaoService.js:108-124` não valida | Nenhuma: `motivoRejeicao` nullable (`schema.prisma:200`) |
-| INV-13 | `PENDENTE implies` sem aprovador, data ou motivo | Reconsideração limpa a decisão | `InstituicaoService.js:158-169` (reconsiderar só em REJEITADA; zera os campos) | Nenhuma |
-| INV-14 | papel administrativo exige `instituicao` | Vínculo institucional | `UsuarioService.js:122-127` (criar). Na alteração não há checagem: `UsuarioService.js:176-198` | Nenhuma: `instituicaoId` nullable (`schema.prisma:88`) |
-| INV-15 | origem e destino no mesmo fluxo | Grafo consistente | `FlowService.js:92-101` (transições só entre passos do próprio fluxo, via `idPorOrdem`) | Parcial: `@@unique([fromStepId, toStepId])` (`schema.prisma:523`) não liga a transição ao fluxo |
+| INV-01 | `cpf` diferente em toda outra `Pessoa` | CPF único | RF-01, US-003, US-004 | `uk_pessoa_cpf` |
+| INV-02 | `email` e `telefone` únicos | Contato único | DS-001, US-003 | E-mail: exigido pelo banco, segundo a US-003; telefone: não confirmada |
+| INV-03 | `placa` diferente em todo outro `Veiculo` | Placa única | RF-01, RF-04, US-006 | `uk_veiculo_placa` |
+| INV-04 | um `aberto` por `veiculo` | Orçamento aberto único | DS-003 | Não confirmada |
+| INV-05 | `status <> aberto implies` itens | Orçamento item a item | RF-02, US-016 | Nenhuma: a tela registra valor fixo |
+| INV-06 | `valorTotal` = soma dos itens | Total confere | RF-02, US-016 | Não confirmada |
+| INV-07 | uma OS por `orcamento` | Uma OS por orçamento | RF-02, RF-06 | `uk_os_orcamento` |
+| INV-08 | `orcamento.status = aprovado` | OS só de orçamento aprovado | RF-02, RF-06 | Gatilho `tg_os_bi_orcamento_aprovado` |
+| INV-09 | `status <> aberta implies` box e mecânico | Box e mecânico antes de executar | RF-03, US-028 | Nenhuma: `box_id` e `meca_id` aceitam nulo |
+| INV-10 | um `emExecucao` por `box` | Box exclusivo | RF-03 | Coluna gerada `os_box_ativo` e `uk_os_box_ativo` |
+| INV-11 | `ocupado` se e só se há OS `emExecucao` | Situação do box | RF-03 | Não confirmada |
+| INV-12 | `concluida implies dataConclusao` | Datas da OS | RF-03 | `os_fim` guarda a data; sem restrição citada |
+| INV-13 | funcionário, data e hora, transição real | Histórico da OS | RF-06 | `ordem_servico_historico` (`oshi_status`, `func_id`, `OSHI_CRIADO_EM`); só o novo status |
+| INV-14 | funcionário, data e hora, transição real | Histórico do orçamento | RF-02, US-018 | `orcamento_historico` (`orhi_status`, `func_id`, `ORHI_CRIADO_EM`); só o novo status |
+| INV-15 | `codigo` diferente em toda outra `Peca` | Código único | RF-05, US-019 | `uk_peca_codigo` |
+| INV-16 | `estoque >= 0` | Estoque não negativo | RF-05, US-019 | `ck_peca_estoque` (estoque); o mínimo não confirmada |
+| INV-17 | `cnpj` único | CNPJ único | DS-010, DS-011 | Não confirmada |
+| INV-18 | `matricula` e `senha` juntos; login único | Acesso ao sistema | RF-01, US-001 | `ck_func_acesso`, `uk_funcionario_login` |
+| OP-02 | `aprovar`: `orcado` para `aprovado` | Decisão do cliente | RF-02, DS-012 | `ck_orca_status` (valores); sem gatilho de transição |
+| OP-03 | `recusar`: `orcado` para `recusado` | Decisão do cliente | RF-02, DS-013 | `ck_orca_status` (valores); sem gatilho de transição |
+| OP-04 | `criar`: OS `aberta` de orçamento aprovado | Nascimento da OS | RF-06, UC-014 | `tg_os_bi_orcamento_aprovado` |
+| OP-05 a OP-07 | `designarBox`, `iniciar`, `concluir` | Ciclo da OS | RF-03, RF-06, US-028 | `ck_os_status` (valores); sem gatilho de transição |
+| OP-09 | `baixarEstoque` não deixa o estoque negativo | Controle de estoque | RF-05 | `ck_peca_estoque` |
 
 ## Divergências
 
-Onde a documentação e o código não batem, a OCL segue o código. A tabela lista o que foi encontrado ao escrever as restrições.
+Onde os documentos do projeto não batem, a OCL segue a issue do GitLab e a decisão do grupo registrada nos requisitos. A tabela lista o que foi encontrado ao escrever as restrições.
 
-| # | Documentação | Código | Tratamento na OCL |
+| # | Documentação | Fonte divergente | Tratamento na OCL |
 |---|---|---|---|
-| D-01 | `documentacao/03-papeis-e-regras.md`: fila `PRESENCIAL` ou `HIBRIDO` exige QR Code válido | `SenhaService.js:151`: só `TipoAtendimento.PRESENCIAL` valida o QR Code. `HIBRIDO` aceita retirada sem QR | `OP-01` usa `PRESENCIAL`. Se a regra for a documentada, a correção é no código (`SenhaService.js:151`) |
-| D-02 | Prioridade não habilitada "vira NORMAL" | `SenhaService.js:672-684` retorna `null`. A senha é gravada com `prioridade` nula e `prioridadePeso` 3 | `INV-05` aceita `prioridade` indefinida com peso 3. `NORMAL` não existe como valor gravado |
-| D-03 | Transição inválida de instituição responde 409 | `InstituicaoService.js:66-69`, `:111-114` e `:158-161` respondem 400. `FlowService.js:260` também responde 400 para transição inexistente | Códigos de erro citados na OCL são os do código |
-| D-04 | Finalizar: "AI, OP" | `SenhaService.js:510-528` não confere se `ator` é o operador responsável; qualquer AI ou OP da instituição finaliza | `OP-04` não restringe ao operador. Rechamar, ao contrário, exige o operador (`SenhaService.js:479-485`) |
-| D-05 | `instituicaoId` obrigatório para papéis administrativos | Só é checado na criação (`UsuarioService.js:122-127`). Na alteração (`UsuarioService.js:176-198`) aceita `papeis` com `ADMIN_INSTITUICAO` ou `OPERADOR` e `instituicaoId` nulo, porque `UsuarioUpdateSchema` deixa os dois opcionais | `INV-14` vale na criação. Na alteração a invariante não é garantida, e a lacuna está registrada aqui |
-| D-06 | Não documentado: chamar com cidadão já em atendimento | `SenhaService.js:355-370` move a senha para o fim da fila e chama a próxima. Não há 409 | `OP-02` descreve o comportamento real (ver observação da operação) |
-| D-07 | Comentário em `SenhaService.js:164` e `:220`: "Numero fixo da senha: único por instituição" | Índice `@@index([instituicaoId, numero])` não é único (`schema.prisma:326`). A unicidade vem só da transação em `calcularProximoNumero` (`SenhaRepository.js:243-250`) | `INV-09` depende do código. Um índice único em `(instituicaoId, numero)` fecharia a lacuna |
-| D-08 | `documentacao/05-dados.md` (seção "Índices que são regra") apresenta `(usuarioId, filaId, status)` como regra de "cidadão já tem senha ativa aqui" | O índice não é único (`schema.prisma:325`). A regra é checada só no serviço (`SenhaService.js:145-149`), em leitura sem bloqueio; duas requisições simultâneas podem passar | `INV-06` e `INV-07` ficam marcadas como "Nenhuma" no banco na tabela de rastreio |
+| D-01 | A issue da RF-06 diz que a OS passa por "Aprovada → em execução → concluída" | O banco (`ck_os_status`) e a decisão do grupo usam `aberta`, `em execução` e `concluída`; `aprovado` pertence ao orçamento | A OCL usa `aberta`, `emExecucao` e `concluida`. Ver [requisitos-funcionais.md](../../03-requisitos/requisitos-funcionais.md#divergências) |
+| D-02 | RF-03: a OS só entra em execução com box e mecânico definidos | O banco aceita `box_id` e `meca_id` nulos, sem restrição | `INV-09` e `OP-06` impõem a regra; só a aplicação a garante. Falta uma restrição no banco |
+| D-03 | RF-02: a transição segue a ordem do ciclo (não se aprova orçamento `aberto`) | O banco não tem gatilho de transição, só restrição nos valores | `OP-02` e `OP-03` têm `pre EstadoOrcado`, e `OP-05` a `OP-07` têm a guarda do estado de origem |
+| D-04 | Glossário e lacuna L-13: o box tem `status` com `livre` e `ocupado` | O README antigo de classes falava em `LIVRE` e `EM EXECUÇÃO`; o `Box` não tem máquina de estados | `INV-11` e `OP-08` usam `livre` e `ocupado`. Confirmar os valores com o banco |
+| D-05 | RF-02 e US-016: o orçamento é montado item a item, com peças e mão de obra separadas | A tela "Montar o orçamento" registra um valor fixo, sem itens (lacuna L-10) | `INV-05` e `INV-06` seguem a RF-02. Se o cliente aceitar o orçamento por valor fixo, as duas restrições deixam de valer |
+| D-06 | US-017: a aprovação registra o meio da resposta (presencial, telefone ou mensagem) e a recusa, o motivo | O diagrama de classes não tem esses atributos; o banco tem `orca_formato`, sem restrição de valores | `OP-02` e `OP-03` não exigem o meio nem o motivo. Lacuna L-07 |
+| D-07 | UC-014 (issue #81): a OS é criada a partir do orçamento aprovado | O DS-004 desenha `iniciarExecucao`, o DA-005 registra a OS como "Aprovada", e a classe `OrdemServico` não tem operação de criação | `OP-04` descreve a criação a partir do orçamento aprovado, com status `aberta`. Ver [sequência](../sequencia/README.md#divergências) |
+| D-08 | DS-001: telefone, e-mail e CPF repetidos são recusados | Só o CPF (`uk_pessoa_cpf`) e a placa (`uk_veiculo_placa`) têm restrição citada nos requisitos; a US-003 diz que o banco exige e-mail único | `INV-02` inclui telefone e e-mail por causa do DS-001. A garantia no banco do telefone não está confirmada |
+| D-09 | RF-03: o box fica indisponível enquanto houver OS em execução nele | A classe tem `designarBox` e `ocupar` separados; a tela mostra os boxes em execução desabilitados | A designação não ocupa o box; `iniciar` ocupa e `concluir` libera (`OP-05` a `OP-08`) |
+| D-10 | RF-02 e RF-06: cada mudança de status grava o novo status, o funcionário e a data e hora | As classes de histórico têm `statusAnterior` e `statusNovo`, e o banco guarda só o novo status (`oshi_status`, `orhi_status`) | `INV-13` e `INV-14` exigem o status novo, e o anterior pode ser vazio na criação. Confirmar quando o DDL for incluído |
+| D-11 | Lacuna L-16: o glossário e o banco têm Pagamento (`pagamento` e `pagamento_parcelas`) | Nenhum requisito e nenhuma classe trata dele | Sem restrição OCL. Nada a escrever até existir requisito |
 
-
-Veja também: [Divergências de nomes (M2)](divergencias-m2.md) · [Modelo de classes](../classes/README.md) · [Casos de uso](../casos-de-uso/README.md) · [Estados da senha](../estados/README.md) · [Papéis e regras de negócio](../../../documentacao/03-papeis-e-regras.md) · [Dicionário de dados](../../06-banco-de-dados/dicionario-de-dados.md) · [Requisitos funcionais](../../03-requisitos/requisitos-funcionais.md)
+Veja também: [Divergências de nomes (M2)](divergencias-m2.md) · [Classes](../classes/README.md) · [Casos de uso](../casos-de-uso/README.md) · [Estados](../estados/README.md) · [Sequência](../sequencia/README.md) · [Requisitos funcionais](../../03-requisitos/requisitos-funcionais.md) · [Glossário](../../01-visao/glossario.md) · [Lacunas](../../07-rastreabilidade/lacunas.md)
