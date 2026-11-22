@@ -1,78 +1,89 @@
 # Máquinas de estados
 
-Milestone 2 · Modelagem comportamental (Fábrica de Software I)
+Milestone 3 · Modelagem comportamental (Fábrica de Software I)
 
-Este diagrama mostra o ciclo de vida dos objetos de domínio que têm um campo `status` com enum fechado no banco. Os nomes dos estados são os valores reais do enum (`StatusSenha`, `StatusInstituicao`, `SenhaFlowStatus`). As transições são nomeadas pelo evento que as dispara; a guarda aparece entre colchetes e foi conferida nos services (`SenhaService`, `InstituicaoService`, `FlowService`). Filas, mesas e flows usam apenas um booleano `ativa`/`ativo`, sem máquina de estados própria, e ficam fora deste documento.
+Estes diagramas mostram o ciclo de vida dos objetos de domínio que têm um campo `status`: a ordem de serviço (OS) e o orçamento. Os estados são situações do objeto, e não ações ("Em execução", não "Executar"). As transições são nomeadas pelo evento que as dispara; a guarda aparece entre colchetes e vem dos cenários em Gherkin das issues do GitLab, porque o projeto ainda não tem código da aplicação. Nos diagramas do orçamento, a seta tracejada em vermelho indica uma transição bloqueada, que gera uma notificação de erro para a Secretária. O Box também tem `status`, mas não tem máquina de estados (lacuna L-13 de [lacunas.md](../../07-rastreabilidade/lacunas.md)). Segundo a revisão de classes com status, só a OS, o orçamento e o Box têm esse atributo (seção 2.4 de [lacunas.md](../../07-rastreabilidade/lacunas.md)).
 
-## Senha (StatusSenha)
+Os diagramas foram desenhados na página "08 - Diagrama de Atividades e Estados" do arquivo do Figma "Gestão de Oficina Mecânica". Cada um tem uma issue no GitLab e se liga a um diagrama de sequência pelo padrão de título `DE-00X | DS-0YY - <nome>`.
 
-![Máquina de estados da senha: AGUARDANDO, EM_ATENDIMENTO, CANCELADA e FINALIZADA, com transições nomeadas por evento](estado-senha.svg)
+## Catálogo
 
-| Origem | Evento | Guarda | Destino | Quem pode | Método |
+| DE | Objeto | Diagrama | DS | UC | US | Issue |
+|---|---|---|---|---|---|---|
+| DE-001 | Ordem de serviço | Mudar status de uma OS | DS-008 | UC-013 | US-002, US-028 | [#107](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2/-/issues/107) |
+| DE-002 | Orçamento | Mudar o status do orçamento para aprovado | DS-012 | UC-010 | US-017 | [#111](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2/-/issues/111) |
+| DE-003 | Orçamento | Mudar o status do orçamento para recusado | DS-013 | UC-009 | US-017 | [#112](https://gitlab.fslab.dev/fabrica-de-software-i-2026/projeto2/-/issues/112) |
+
+O GitLab vincula UC-009 e UC-010 à US-028, que trata do status da OS. A história correspondente é a US-017, que é a usada na tabela (ver a divergência 8 de [requisitos-funcionais.md](../../03-requisitos/requisitos-funcionais.md#divergências)).
+
+## Ordem de serviço (DE-001)
+
+![Máquina de estados da OS: Aberta, Em execução e Concluída, com as transições criar OS, iniciar serviço e concluir serviço](<DE-001 _ DS-008 - Mudar status de uma OS.svg>)
+
+O diagrama segue o ciclo da OS decidido pelo grupo: `aberta → em execução → concluída`. Os status de decisão do cliente (aprovado e recusado) pertencem ao orçamento e aparecem em DE-002 e DE-003.
+
+| Origem | Evento | Guarda | Destino | Quem pode | Fonte |
 |---|---|---|---|---|---|
-| (inicial) | emissão online | fila ativa; sem outra senha ativa do cidadão na fila; QR válido se a fila for presencial | AGUARDANDO | USUARIO_FINAL | `SenhaService.criar` (`POST /filas/:filaId/senhas`) |
-| (inicial) | emissão presencial | fila ativa da mesma instituição; prioridade habilitada na fila | AGUARDANDO | ADMIN_INSTITUICAO, OPERADOR | `SenhaService.criarPresencial` |
-| AGUARDANDO | chamada | status AGUARDANDO; mesma instituição; operador sem outro atendimento; mesa livre, se informada | EM_ATENDIMENTO | ADMIN_INSTITUICAO, OPERADOR | `SenhaService.chamar` |
-| AGUARDANDO | cancelamento | status AGUARDANDO; dono, admin ou operador da mesma instituição, ou ADMIN_PLATAFORMA | CANCELADA | Rota aberta a autenticados; permissão no service | `SenhaService.cancelar` |
-| EM_ATENDIMENTO | finalização | status EM_ATENDIMENTO; mesma instituição | FINALIZADA | ADMIN_INSTITUICAO, OPERADOR | `SenhaService.finalizar` |
-| EM_ATENDIMENTO | alta de flow | tracking EM_ANDAMENTO; senha EM_ATENDIMENTO (exigida por `finalizar`) | FINALIZADA | ADMIN_INSTITUICAO, OPERADOR | `FlowService.darAlta` |
-| EM_ATENDIMENTO | encaminhamento de flow | tracking EM_ANDAMENTO; existe transição do step atual para o step pedido | AGUARDANDO | ADMIN_INSTITUICAO, OPERADOR | `FlowService.encaminhar` |
-| EM_ATENDIMENTO | assunção de atendimento | status EM_ATENDIMENTO; mesma instituição; quem assume não é o operador atual e não tem outro atendimento | EM_ATENDIMENTO (troca `operadorId`) | ADMIN_INSTITUICAO | `SenhaService.assumirAtendimento` |
+| (inicial) | criar OS | O orçamento está aprovado | Aberta | Secretária | Diagrama; DA-005 |
+| Aberta | iniciar serviço | Box e mecânico designados | Em execução | Não definido | Diagrama; RF-03 |
+| Em execução | concluir serviço | Nenhuma | Concluída | Não definido | Diagrama |
+| Concluída | (sem evento) | Nenhuma | (final) | Não definido | Diagrama |
 
 Notas:
 
-- A rechamada (`rechamar`) não muda o estado. Só o operador responsável pode rechamar.
-- Em `chamar`, se o cidadão já está em atendimento em outra fila da mesma instituição, a senha pedida vai para o fim da fila e o service tenta a próxima senha AGUARDANDO. Por isso a senha devolvida pode não ser a que foi pedida.
-- O estado AGUARDANDO volta a valer também após o encaminhamento de flow, que recoloca a senha na fila do próximo step.
+- Toda mudança de status da OS registra funcionário, data e hora (RF-06). A nota do diagrama cita a RF-06.
+- A OS só nasce de um orçamento aprovado. Por isso a transição inicial tem a guarda "O orçamento está aprovado" e não existe estado de orçamento no ciclo da OS.
+- A RF-03 exige box e mecânico designados antes de a OS entrar em execução. A guarda aparece na transição "iniciar serviço".
+- Concluída é o único estado final: nenhuma transição sai dele.
 
-## Instituição (StatusInstituicao)
+## Orçamento (DE-002 e DE-003)
 
-![Máquina de estados da instituição: PENDENTE, APROVADA e REJEITADA](estado-instituicao.svg)
+Os dois diagramas descrevem o mesmo objeto, o orçamento, e cada um destaca uma transição de decisão do cliente: aprovar (DE-002) e recusar (DE-003).
 
-| Origem | Evento | Guarda | Destino | Quem pode | Método |
+### Mudar o status do orçamento para aprovado (DE-002)
+
+![Máquina de estados do orçamento com foco na aprovação: Em aberto, Orçada, Recusado e Aprovado, com as tentativas de aprovar bloqueadas em tracejado](<DE-002 _ DS-012 - Mudar o status do orçamento para aprovado.svg>)
+
+### Mudar o status do orçamento para recusado (DE-003)
+
+![Máquina de estados do orçamento com foco na recusa: Em aberta, Orçada, Aprovada e Recusada, com a recusa a partir de Em aberta bloqueada em tracejado](<DE-003 _ DS-013 - Mudar o status do orçamento para recusado.svg>)
+
+Transições do orçamento, reunindo os dois diagramas. Os nomes dos estados seguem o DE-002 e o DA-004 ("Em aberto", "Orçada", "Aprovado", "Recusado"); a divergência 3 trata das variações de grafia.
+
+| Origem | Evento | Guarda | Destino | Quem pode | Fonte |
 |---|---|---|---|---|---|
-| (inicial) | solicitação | usuário autenticado; grava `ativo = false` e `solicitanteId` | PENDENTE | Qualquer usuário autenticado (rota sem papel) | `InstituicaoService.solicitar` |
-| (inicial) | criação direta | dados válidos | APROVADA | ADMIN_PLATAFORMA | `InstituicaoService.criar` |
-| PENDENTE | aprovação | status PENDENTE ou REJEITADA; grava `ativo = true`, `aprovadoPorId` e `aprovadoEm`; envia e-mail ao solicitante | APROVADA | ADMIN_PLATAFORMA | `InstituicaoService.aprovar` |
-| PENDENTE | rejeição | status PENDENTE; `motivoRejeicao` informado; grava `ativo = false` | REJEITADA | ADMIN_PLATAFORMA | `InstituicaoService.rejeitar` |
-| REJEITADA | reconsideração | status REJEITADA; zera `motivoRejeicao`, `aprovadoPorId` e `aprovadoEm` | PENDENTE | ADMIN_PLATAFORMA | `InstituicaoService.reconsiderar` |
-| REJEITADA | aprovação | status PENDENTE ou REJEITADA (o código aceita a aprovação direta) | APROVADA | ADMIN_PLATAFORMA | `InstituicaoService.aprovar` |
+| (inicial) | criar | Nenhuma | Em aberto | Secretária | Diagrama; DA-004 |
+| Em aberto | orçar | Nenhuma | Orçada | Não definido | Diagrama |
+| Orçada | aprovar / notificar sucesso | Status igual a Orçada | Aprovado | Secretária | Cenário 2 da issue #111 |
+| Orçada | recusar / registrar motivo | Status igual a Orçada | Recusado | Secretária | Cenário 2 da issue #112 |
+| Em aberto | aprovar (bloqueada) | Status diferente de Orçada | Permanece Em aberto, com notificação de erro | Secretária | Cenário 1 da issue #111 |
+| Recusado | aprovar (bloqueada) | Status diferente de Orçada | Permanece Recusado, com notificação de erro | Secretária | Cenário 1 da issue #111 |
+| Em aberto | recusar (bloqueada) | O orçamento ainda está Em aberto | Permanece Em aberto, com notificação de que a mudança não é permitida | Secretária | Cenário 1 da issue #112 |
+| Aprovado | (sem evento) | Nenhuma | (final) | Não definido | Diagrama |
+| Recusado | (sem evento) | Nenhuma | (final) | Não definido | Diagrama |
 
 Notas:
 
-- APROVADA não tem transição de saída de status. O campo `ativo` é independente de `status`: pode ser alterado por `PUT /instituicoes/:id`, cujo schema não aceita `status`.
-- Aprovar não concede o papel ADMIN_INSTITUICAO. O administrador da instituição é criado depois, em `POST /instituicoes/:instituicaoId/usuarios` (ADMIN_PLATAFORMA ou ADMIN_INSTITUICAO). Ver [Papéis e regras](../../../documentacao/03-papeis-e-regras.md).
-- A exclusão (`DELETE /instituicoes/:id`) remove o registro em qualquer estado. Não é transição de status e não aparece no diagrama.
-
-## Acompanhamento de flow (SenhaFlowStatus)
-
-![Máquina de estados do acompanhamento de flow: EM_ANDAMENTO, CONCLUIDO e CANCELADO (tracejado, sem escrita no código)](estado-senha-flow.svg)
-
-Este enum fica em `SenhaFlowTracking`, que existe no máximo uma vez por senha (`senhaId` único).
-
-| Origem | Evento | Guarda | Destino | Quem pode | Método |
-|---|---|---|---|---|---|
-| (inicial) | ingresso no flow | senha sem tracking ativo; flow com ao menos um step | EM_ANDAMENTO | ADMIN_INSTITUICAO, OPERADOR | `FlowService.ingressar` |
-| EM_ANDAMENTO | encaminhamento | existe transição do step atual para o step pedido; registra histórico; troca `stepAtualId` | EM_ANDAMENTO (a senha volta a AGUARDANDO) | ADMIN_INSTITUICAO, OPERADOR | `FlowService.encaminhar` |
-| EM_ANDAMENTO | alta | tracking EM_ANDAMENTO; a senha é finalizada em seguida pelo `SenhaService` | CONCLUIDO | ADMIN_INSTITUICAO, OPERADOR | `FlowService.darAlta` |
-| EM_ANDAMENTO | cancelamento | (sem método no código) | CANCELADO | Nenhum | Não implementado |
+- Só um orçamento Orçada pode ser aprovado ou recusado. Orçamentos Em aberto não podem ser decididos antes de serem orçados.
+- Aprovado e Recusado são estados finais. O orçamento aprovado é a condição para criar a OS (ver [Diagramas de atividades](../atividades/README.md), DA-005).
+- Cada mudança de status do orçamento grava o novo status, o funcionário e a data e hora (RF-02, US-018).
 
 ## Divergências
 
-Diferenças entre o código e o que o modelo de estados sugere. A fonte da verdade é o código; estas linhas registram o comportamento atual.
+Diferenças entre os diagramas e as demais fontes do projeto. Onde há diferença, as issues do GitLab e as decisões do grupo registradas nos requisitos prevalecem, e as tabelas acima seguem as issues.
 
-1. `FlowService.encaminhar` não verifica `StatusSenha`. Uma senha CANCELADA ou FINALIZADA, com tracking ainda EM_ANDAMENTO, volta a AGUARDANDO. Não há transição de CANCELADA para AGUARDANDO no fluxo de senha.
-2. `FlowService.ingressar` também não verifica `StatusSenha`. Uma senha FINALIZADA ou CANCELADA pode entrar em um flow.
-3. `FlowService.darAlta` grava `CONCLUIDO` no tracking dentro de uma transação. Depois chama `SenhaService.finalizar`, que exige EM_ATENDIMENTO, fora dessa transação. Se a senha não estiver EM_ATENDIMENTO, o tracking fica CONCLUIDO e a senha não é finalizada. O erro 409 é devolvido, mas o tracking não é desfeito.
-4. `SenhaFlowStatus.CANCELADO` existe no enum, e nenhum método do código o grava. O estado é inalcançável.
-5. `SenhaService.finalizar` confere a instituição e o status, mas não confere se o operador é o responsável pela senha. Qualquer OPERADOR ou ADMIN_INSTITUICAO da instituição pode finalizar a senha de outro. Em contraste, `rechamar` exige o operador responsável.
-6. `InstituicaoService.aprovar` aceita REJEITADA como origem. A aprovação não precisa passar por `reconsiderar`.
-7. `POST /instituicoes/solicitar` (`solicitar`) não exige papel: qualquer usuário autenticado pode pedir o cadastro. O catálogo fala em ACT-01 (Cidadão), que é o papel USUARIO_FINAL. Ver a raia do solicitante em [Diagramas de atividades](../atividades/README.md).
+1. O DE-001 mistura status do orçamento (Orçada, Aprovada, Recusada) com os da OS e acrescenta Entregue. O ciclo da OS decidido pelo grupo é `aberta → em execução → concluída`, e `aprovado` e `recusado` pertencem ao orçamento (divergências 1 e 2 de [requisitos-funcionais.md](../../03-requisitos/requisitos-funcionais.md#divergências) e lacuna L-11 de [lacunas.md](../../07-rastreabilidade/lacunas.md)).
+2. O DE-001 começa com "abrir OS" antes do orçamento. A regra do projeto é que a OS nasce de um orçamento aprovado, o que o DA-005 também mostra (a OS é registrada depois da verificação do orçamento aprovado).
+3. O nome do primeiro estado varia: "Aberta" (DE-001), "Em aberto" (DE-002 e DA-004) e "Em aberta" (DE-003 e issue #112). Os estados finais também alternam entre masculino e feminino ("Aprovado" e "Recusado" no DE-002; "Aprovada" e "Recusada" no DE-003). No banco, os status do orçamento são `aberto`, `orçado`, `aprovado` e `recusado`.
+4. O DE-002 desenha `recusar` de Em aberto para Recusado como transição permitida. O DE-003 e a issue #112 bloqueiam essa mudança, e só permitem recusar a partir de Orçada.
+5. `criar` e `orçar` não têm cenário em nenhuma das issues. O DE-002 traz na própria figura uma nota de pendência pedindo para confirmar `criar`, `orçar` e `recusar` antes de fechar o diagrama.
+6. A nota do DE-001 cita a RF-02 para o registro de data, hora e autor. Na RF-02 essa regra é do histórico do orçamento; a da OS está na RF-06.
+7. O DE-001 está vinculado ao UC-013 (Mudar status de uma OS para concluída), mas desenha o ciclo inteiro da OS, não só a conclusão.
 
 ## Veja também
 
-- [Diagramas de atividades](../atividades/README.md): o fluxo que dispara estas transições.
-- [Diagrama de classes](../classes/README.md): classes `Senha`, `Instituicao` e `SenhaFlowTracking` e seus atributos.
-- [Casos de uso](../casos-de-uso/README.md): UC-03 a UC-11 e UC-15, que disparam as transições.
-- [Diagramas de sequência](../sequencia/README.md): troca de mensagens em cada transição.
+- [Diagramas de atividades](../atividades/README.md): o fluxo que dispara estas transições (DA-005 cria a OS e DA-007 atualiza o orçamento).
+- [Diagrama de classes](../classes/README.md): classes `OrdemServico`, `Orcamento` e `HistoricoStatusOS` e seus atributos.
+- [Casos de uso](../casos-de-uso/README.md): UC-009, UC-010 e UC-013, que disparam as transições.
+- [Diagramas de sequência](../sequencia/README.md): troca de mensagens em DS-008, DS-012 e DS-013.
 - [Modelagem](../README.md): visão geral da unidade.
